@@ -12,7 +12,7 @@ export default function Resolution() {
       <div className="grid grid-cols-1 md:grid-cols-2">
         
         {/* Lado Esquerdo - A Consulta */}
-        {/* AQUI: Usamos proporção em vez de altura fixa. aspect-video = formato TV/Cinema */}
+        {/** AQUI: Usamos proporção em vez de altura fixa. aspect-video = formato TV/Cinema */}
         <div className="relative aspect-[4/3] md:aspect-video overflow-hidden group bg-ink2">
           <img 
             src={imgConsulta} 
