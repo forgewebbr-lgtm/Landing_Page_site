@@ -12,6 +12,8 @@ import FinalCTA from '../components/sections/FinalCTA'; // Fechamento
 import Footer from '../components/layout/Footer';
 import FloatingElements from '../components/ui/FloatingElements';
 
+
+/*teste teste */
 export default function Home() {
   return (
     <div className="bg-ink text-champ selection:bg-gold selection:text-ink min-h-screen">
