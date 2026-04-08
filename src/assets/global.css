@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Variáveis de Cores *//
+  /* Variáveis de Cores */
   --color-ink: #0A0A0A;
   --color-ink2: #141414;
   --color-ink3: #1E1E1E;
