@@ -1,0 +1,98 @@
+/*
+ * AJUSTE FINAL DO HERO
+ * Cole este bloco no FINAL do arquivo responsive.css.
+ * Ele precisa vir depois das regras antigas para impedir que os
+ * breakpoints anteriores reduzam novamente o médico e a placa.
+ */
+
+/* Desktop amplo */
+@media (min-width: 1500px) {
+  .hero-section .hero-doctor-card {
+    right: clamp(22px, 2.3vw, 48px);
+    bottom: 0;
+    width: 630px;
+    height: 290px;
+  }
+
+  .hero-section .hero-doctor-card__plate {
+    left: 0;
+    bottom: 36px;
+    width: 74%;
+  }
+
+  .hero-section .hero-doctor-card__photo {
+    right: -1%;
+    bottom: -2px;
+    height: 117%;
+    max-width: 40%;
+  }
+}
+
+/* Desktop padrão */
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .hero-section .hero-doctor-card {
+    right: 24px;
+    bottom: 0;
+    width: 540px;
+    height: 255px;
+  }
+
+  .hero-section .hero-doctor-card__plate {
+    left: 0;
+    bottom: 32px;
+    width: 74%;
+  }
+
+  .hero-section .hero-doctor-card__photo {
+    right: -1%;
+    bottom: -2px;
+    height: 116%;
+    max-width: 40%;
+  }
+}
+
+/* Notebook */
+@media (min-width: 921px) and (max-width: 1199px) {
+  .hero-section .hero-doctor-card {
+    right: 8px;
+    bottom: 0;
+    width: 430px;
+    height: 205px;
+  }
+
+  .hero-section .hero-doctor-card__plate {
+    left: 0;
+    bottom: 26px;
+    width: 74%;
+  }
+
+  .hero-section .hero-doctor-card__photo {
+    right: -1%;
+    bottom: -2px;
+    height: 115%;
+    max-width: 40%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 920px) {
+  .hero-section .hero-doctor-card {
+    right: 0;
+    bottom: 16px;
+    width: min(100%, 470px);
+    height: 215px;
+  }
+
+  .hero-section .hero-doctor-card__plate {
+    left: 0;
+    bottom: 27px;
+    width: 75%;
+  }
+
+  .hero-section .hero-doctor-card__photo {
+    right: -1%;
+    bottom: -2px;
+    height: 115%;
+    max-width: 40%;
+  }
+}
