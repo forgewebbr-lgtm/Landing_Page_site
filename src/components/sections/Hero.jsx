@@ -1,9 +1,11 @@
 import heroImage from '../../assets/web/hero-casal.png'
 import heroMobileImage from '../../assets/web/hero-casal-mobile.webp'
 import doctorImage from '../../assets/web/dr-antonio-real-sem-fundo.webp'
-import doctorCard from '../../assets/web/placa-dr-antonio.webp'
+
+import DoctorPlaque from '../DoctorPlaque'
 import Icon from '../ui/Icon'
 import WhatsAppButton from '../ui/WhatsAppButton'
+
 import { SITE } from '../../config/site'
 
 const trustItems = [
@@ -14,9 +16,17 @@ const trustItems = [
 
 export default function Hero() {
   return (
-    <section className="hero-section" id="inicio" data-track-section="hero">
+    <section
+      className="hero-section"
+      id="inicio"
+      data-track-section="hero"
+    >
       <picture>
-        <source media="(max-width: 600px)" srcSet={heroMobileImage} />
+        <source
+          media="(max-width: 600px)"
+          srcSet={heroMobileImage}
+        />
+
         <img
           className="hero-bg"
           src={heroImage}
@@ -28,7 +38,10 @@ export default function Hero() {
         />
       </picture>
 
-      <div className="hero-shade" />
+      <div
+        className="hero-shade"
+        aria-hidden="true"
+      />
 
       <div className="page-shell hero-inner">
         <div className="hero-copy">
@@ -38,7 +51,8 @@ export default function Hero() {
             muda,{' '}
             <em>
               você é
-              <br />a primeira a perceber.
+              <br />
+              a primeira a perceber.
             </em>
           </h1>
 
@@ -52,11 +66,20 @@ export default function Hero() {
 
           <div className="hero-trust">
             {trustItems.map(([icon, label]) => (
-              <div className="trust-item" key={label}>
-                <Icon name={icon} size={30} />
+              <div
+                className="trust-item"
+                key={label}
+              >
+                <Icon
+                  name={icon}
+                  size={30}
+                />
+
                 <span>
                   {label.split('\n').map((text) => (
-                    <span key={text}>{text}</span>
+                    <span key={text}>
+                      {text}
+                    </span>
                   ))}
                 </span>
               </div>
@@ -67,21 +90,18 @@ export default function Hero() {
             Verificar disponibilidade
           </WhatsAppButton>
 
-          <small>Atendimento particular e reservado pelo WhatsApp.</small>
+          <small>
+            Atendimento particular e reservado pelo WhatsApp.
+          </small>
         </div>
 
         <aside
           className="hero-doctor-card"
           aria-label={`${SITE.doctorName}. ${SITE.specialty}.`}
         >
-          <img
-            className="hero-doctor-card__plate"
-            src={doctorCard}
-            alt=""
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
-          />
+          <div className="hero-doctor-card__plate">
+            <DoctorPlaque />
+          </div>
 
           <img
             className="hero-doctor-card__photo"

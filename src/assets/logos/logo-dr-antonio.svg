@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Logo do Dr. Antônio Flávio</title>
+  <desc id="desc">Brasão circular dourado com monograma AF e fundo transparente.</desc>
+
+  <defs>
+    <linearGradient id="gold" x1="76" y1="70" x2="438" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9a6b28"/>
+      <stop offset="0.22" stop-color="#f4dda0"/>
+      <stop offset="0.48" stop-color="#d6aa53"/>
+      <stop offset="0.68" stop-color="#fff0b8"/>
+      <stop offset="1" stop-color="#a77429"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="none" stroke="url(#gold)" stroke-linecap="square" stroke-linejoin="miter">
+    <circle cx="256" cy="256" r="220" stroke-width="7"/>
+
+    <!-- Monograma A -->
+    <path d="M145 340 L257 170 L257 449" stroke-width="12"/>
+    <path d="M170 340 L286 170 L286 340" stroke-width="12"/>
+    <path d="M257 194 L286 154" stroke-width="12"/>
+
+    <!-- Monograma F -->
+    <path d="M312 170 V340" stroke-width="12"/>
+    <path d="M312 170 H408" stroke-width="12"/>
+    <path d="M312 252 H473" stroke-width="12"/>
+  </g>
+</svg>

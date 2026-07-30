@@ -80,10 +80,29 @@
 }
 
 .brand-symbol {
+  display: block;
   flex: 0 0 auto;
+
   width: 44px;
   height: 44px;
-  color: var(--gold-light);
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 5px rgba(221, 180, 85, 0.2))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+
+  transition:
+    transform 250ms ease,
+    filter 250ms ease;
+}
+
+.brand:hover .brand-symbol {
+  transform: scale(1.04);
+
+  filter:
+    drop-shadow(0 0 7px rgba(235, 199, 112, 0.28))
+    drop-shadow(0 3px 5px rgba(0, 0, 0, 0.22));
 }
 
 .brand-copy {

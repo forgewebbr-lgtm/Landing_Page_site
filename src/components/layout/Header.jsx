@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Icon from '../ui/Icon'
 import WhatsAppButton from '../ui/WhatsAppButton'
-import KidneyLogo from '../ui/KidneyLogo'
+import doctorLogo from '../../assets/logos/logo-dr-antonio.svg'
 import { SITE } from '../../config/site'
 import { trackEvent } from '../../lib/tracking'
 
@@ -52,7 +52,12 @@ export default function Header() {
     <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}>
       <div className="page-shell header-inner">
         <a href="#inicio" className="brand" aria-label="Voltar ao início" onClick={() => trackEvent('menu_click', { menu_location: 'brand', link_target: 'inicio' })}>
-          <KidneyLogo size={42} className="brand-symbol" />
+          <img
+            className="brand-symbol"
+            src={doctorLogo}
+            alt=""
+            aria-hidden="true"
+          />
           <span className="brand-copy">
             <strong>{SITE.doctorName}</strong>
             <small>{SITE.specialtyShort}</small>
