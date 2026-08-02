@@ -71,7 +71,7 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
-          <WhatsAppButton className="header-cta" location="header">Falar com a equipe</WhatsAppButton>
+          <WhatsAppButton className="header-cta" location="header">Verificar disponibilidade</WhatsAppButton>
           <button
             className="menu-toggle"
             type="button"

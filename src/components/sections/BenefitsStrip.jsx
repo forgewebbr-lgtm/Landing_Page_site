@@ -1,4 +1,5 @@
 import Icon from '../ui/Icon'
+import Reveal from '../ui/Reveal'
 import TextLines from '../ui/TextLines'
 
 const items = [
@@ -12,15 +13,24 @@ export default function BenefitsStrip() {
   return (
     <section className="benefits-strip" id="beneficios" data-track-section="benefits">
       <div className="page-shell benefits-layout">
-        <h2><TextLines text={'POR QUE PROCURAR\nUM UROLOGISTA?'} /></h2>
-        {items.map(([icon, title, description]) => (
-          <article className="benefit-item" key={title}>
+        <Reveal as="h2" delay={0}>
+          <TextLines text={'POR QUE PROCURAR\nUM UROLOGISTA?'} />
+        </Reveal>
+
+        {items.map(([icon, title, description], index) => (
+          <Reveal
+            as="article"
+            className="benefit-item"
+            delay={130 + index * 105}
+            distance={14}
+            key={title}
+          >
             <Icon name={icon} size={34} />
             <div>
               <h3><TextLines text={title} /></h3>
               <p><TextLines text={description} /></p>
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
     </section>

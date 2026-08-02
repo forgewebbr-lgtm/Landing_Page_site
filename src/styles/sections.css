@@ -1,189 +1,12 @@
-/* Hero */
-.hero-section {
-  position: relative;
-  min-height: 650px;
-  overflow: hidden;
-  isolation: isolate;
-
-  color: #fff;
-  background: #17130f;
-}
-
-/* A imagem ocupa toda a largura do Hero. */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-
-  z-index: -3;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center center;
-
-  filter:
-    brightness(1.05)
-    contrast(1.03)
-    saturate(1.01);
-}
-
-/*
- * Sombreamento somente do lado esquerdo para dar contraste ao texto.
- * Não há máscara, faixa ou camuflagem no lado direito.
+/* Seções da página
+ *
+ * Este arquivo contém somente os estilos estruturais das seções abaixo do Hero.
+ * O Hero possui um arquivo próprio em styles/hero.css.
  */
-.hero-shade {
-  position: absolute;
-  inset: 0;
-
-  z-index: -2;
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(6, 47, 43, 0.96) 0%,
-      rgba(6, 47, 43, 0.88) 20%,
-      rgba(6, 47, 43, 0.62) 36%,
-      rgba(6, 47, 43, 0.28) 50%,
-      rgba(6, 47, 43, 0.08) 60%,
-      rgba(6, 47, 43, 0) 68%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(3, 25, 22, 0.22) 0%,
-      rgba(3, 25, 22, 0.06) 34%,
-      transparent 54%
-    );
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
-
-  min-height: 690px;
-
-  display: flex;
-  align-items: center;
-
-  padding-top: 92px;
-  padding-bottom: 48px;
-}
-
-.hero-copy {
-  width: min(48vw, 640px);
-}
-
-.hero-copy h1 {
-  margin: 0 0 20px;
-  color: #fff;
-  font: 500 clamp(54px, 4.7vw, 72px) / 1.01 var(--serif);
-  letter-spacing: -0.027em;
-}
-
-.hero-copy h1 em {
-  color: var(--gold-light);
-  font-style: normal;
-}
-
-.hero-copy > p {
-  margin: 0 0 24px;
-  font-size: clamp(16px, 1.15vw, 18px);
-  line-height: 1.58;
-}
-
-.hero-trust {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-
-  margin-bottom: 23px;
-}
-
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.trust-item svg {
-  flex: 0 0 auto;
-
-  width: 28px;
-  height: 28px;
-
-  color: var(--gold-light);
-}
-
-.hero-copy small {
-  display: block;
-
-  margin-top: 9px;
-
-  color: rgba(255, 255, 255, 0.91);
-
-  font-size: 11.5px;
-  font-weight: 500;
-}
-
-.hero-doctor-card {
-  position: absolute;
-  right: 0;
-  bottom: -4px;
-
-  width: 610px;
-  height: 390px;
-
-  z-index: 4;
-  pointer-events: none;
-}
-
-/* Placa translúcida: plano intermediário entre o casal e o médico. */
-.hero-doctor-card__plate {
-  position: absolute;
-  left: 4%;
-  bottom: 72px;
-
-  width: 58%;
-
-  z-index: 1;
-
-  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.24));
-  user-select: none;
-}
-
-/* Médico: primeiro plano e principal autoridade visual do lado direito. */
-.hero-doctor-card__photo {
-  position: absolute;
-  right: -5%;
-  bottom: -8px;
-
-  display: block;
-
-  width: auto;
-  height: 130%;
-  max-width: none;
-
-  object-fit: contain;
-  object-position: right bottom;
-
-  filter:
-    brightness(1.025)
-    contrast(1.01)
-    drop-shadow(-12px 16px 22px rgba(0, 0, 0, 0.3));
-
-  z-index: 5;
-  user-select: none;
-}
 
 /* Sinais */
 .signals-section {
-  padding: 44px 0 46px;
+  padding: clamp(64px, 5.4vw, 82px) 0 clamp(68px, 5.8vw, 88px);
   background: var(--cream-light);
 }
 
@@ -199,7 +22,7 @@
 }
 
 .section-kicker {
-  margin: 0 0 23px;
+  margin: 0 0 30px;
   color: #a96f2d;
   font: 600 19px/1.25 var(--sans);
   letter-spacing: .045em;
@@ -210,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 36px;
-  row-gap: 19px;
+  row-gap: 24px;
 }
 
 .signal-item {
@@ -236,12 +59,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 46px;
+  padding-left: 52px;
   border-left: 1px solid #caa16a;
 }
 
 .emotional-copy h2 {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   color: var(--ink);
   font: 500 clamp(34px, 2.75vw, 42px)/1.08 var(--serif);
   letter-spacing: -.015em;
@@ -252,7 +75,7 @@
 }
 
 .emotional-copy p {
-  margin: 0 0 19px;
+  margin: 0 0 24px;
   color: #2f413c;
   font-size: 15.5px;
   line-height: 1.58;
@@ -262,7 +85,7 @@
   width: min(100%, 560px);
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   padding: 12px 16px;
   border: 1px solid #c58e49;
   border-radius: 9px;
@@ -281,7 +104,7 @@
 
 /* Benefícios */
 .benefits-strip {
-  padding: 36px 0;
+  padding: 44px 0;
   color: #fff;
   background: linear-gradient(90deg, #073832 0%, #062f2b 58%, #052a26 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.55);
@@ -309,6 +132,11 @@
   gap: 12px;
   padding: 0 18px;
   border-left: 1px solid rgba(194, 145, 72, .67);
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1);
+}
+
+.benefit-item:hover {
+  transform: translateY(-3px);
 }
 
 .benefit-item svg {
@@ -316,6 +144,11 @@
   width: 34px;
   height: 34px;
   color: var(--gold-light);
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1);
+}
+
+.benefit-item:hover svg {
+  transform: scale(1.045);
 }
 
 .benefit-item h3 {
@@ -335,7 +168,7 @@
 
 /* Especialista */
 .doctor-section {
-  min-height: 450px;
+  min-height: 510px;
   display: grid;
   grid-template-columns: 39% 61%;
   background: var(--cream-light);
@@ -343,7 +176,7 @@
 
 .doctor-photo-panel {
   position: relative;
-  min-height: 450px;
+  min-height: 510px;
   overflow: hidden;
   background: #1f332f;
 }
@@ -391,11 +224,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 42px clamp(36px, 4.3vw, 70px);
+  padding: clamp(60px, 6vw, 88px) clamp(36px, 4.3vw, 70px);
 }
 
 .doctor-content > h2 {
-  margin: 0 0 27px;
+  margin: 0 0 34px;
   color: var(--ink);
   font: 500 clamp(28px, 2.45vw, 36px)/1.16 var(--serif);
 }
@@ -410,16 +243,26 @@
   padding: 0 11px;
   text-align: center;
   border-left: 1px solid #d2b58b;
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1);
 }
 
 .credential-card:first-child {
   border-left: 0;
 }
 
+.credential-card:hover {
+  transform: translateY(-3px);
+}
+
 .credential-card svg {
   width: 43px;
   height: 43px;
   color: var(--gold);
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1);
+}
+
+.credential-card:hover svg {
+  transform: scale(1.045);
 }
 
 .credential-card h3 {
@@ -454,7 +297,7 @@
 }
 
 .doctor-callout {
-  margin-top: 24px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -469,7 +312,7 @@
 
 /* Como é a consulta */
 .process-section {
-  min-height: 370px;
+  min-height: 440px;
   display: grid;
   grid-template-columns: 70% 30%;
   align-items: stretch;
@@ -480,11 +323,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 42px 48px 42px max(32px, calc((100vw - var(--shell)) / 2));
+  padding: clamp(62px, 6vw, 84px) 48px clamp(66px, 6.4vw, 90px) max(32px, calc((100vw - var(--shell)) / 2));
 }
 
 .process-copy > h2 {
-  margin: 0 0 26px;
+  margin: 0 0 34px;
   color: var(--ink);
   font: 500 26px var(--serif);
 }
@@ -512,6 +355,11 @@
   min-width: 0;
   padding: 0 6px;
   text-align: center;
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1);
+}
+
+.process-step:hover {
+  transform: translateY(-3px);
 }
 
 .step-number {
@@ -532,6 +380,11 @@
   width: 36px;
   height: 36px;
   color: var(--gold);
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1);
+}
+
+.process-step:hover svg {
+  transform: scale(1.045);
 }
 
 .process-step h3 {
@@ -566,19 +419,19 @@
 
 .process-image {
   height: 100%;
-  min-height: 370px;
+  min-height: 440px;
   object-fit: cover;
   object-position: center;
 }
 
 /* Ambiente */
 .comfort-section {
-  padding: 38px 0 30px;
+  padding: clamp(58px, 5vw, 76px) 0 clamp(52px, 4.6vw, 70px);
   background: var(--cream-light);
 }
 
 .comfort-section > h2 {
-  margin: 0 0 24px;
+  margin: 0 0 34px;
   padding-inline: 20px;
   color: var(--ink);
   text-align: center;
@@ -589,7 +442,7 @@
 .comfort-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .comfort-card {
@@ -601,11 +454,23 @@
   background: #faf7f1;
   border: 1px solid #dbc49e;
   border-radius: 10px;
+  transition: transform .55s cubic-bezier(.45, 0, .25, 1),
+              box-shadow .55s cubic-bezier(.45, 0, .25, 1);
+}
+
+.comfort-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px rgba(20, 34, 30, .12);
 }
 
 .comfort-card > img {
   height: 100%;
   object-fit: cover;
+  transition: transform .8s cubic-bezier(.45, 0, .25, 1);
+}
+
+.comfort-card:hover > img {
+  transform: scale(1.035);
 }
 
 .comfort-card > div {
@@ -653,7 +518,7 @@
 
 /* Avaliações */
 .reviews-section {
-  padding: 24px 0 22px;
+  padding: clamp(44px, 3.8vw, 58px) 0 clamp(48px, 4.2vw, 64px);
   background: var(--cream-light);
 }
 
@@ -661,7 +526,7 @@
   display: grid;
   grid-template-columns: 1.02fr .72fr repeat(3, 1.25fr);
   align-items: stretch;
-  gap: 14px;
+  gap: 16px;
 }
 
 .reviews-grid > h2 {
@@ -696,6 +561,12 @@
   height: 22px;
 }
 
+.rating-stars svg:nth-child(1) { --star-delay: 0ms; }
+.rating-stars svg:nth-child(2) { --star-delay: 80ms; }
+.rating-stars svg:nth-child(3) { --star-delay: 160ms; }
+.rating-stars svg:nth-child(4) { --star-delay: 240ms; }
+.rating-stars svg:nth-child(5) { --star-delay: 320ms; }
+
 .rating-card small {
   font-size: 11px;
   font-weight: 500;
@@ -713,6 +584,15 @@
   background: rgba(255, 253, 249, .48);
   border: 1px solid #ded0bb;
   border-radius: 8px;
+  transition: transform .5s cubic-bezier(.45, 0, .25, 1),
+              background .5s ease,
+              border-color .5s ease;
+}
+
+.reviews-grid blockquote:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 253, 249, .8);
+  border-color: #c58e49;
 }
 
 .reviews-grid blockquote b {
@@ -743,10 +623,10 @@
 
 /* CTA final */
 .final-cta-section {
-  min-height: 195px;
+  min-height: 215px;
   display: flex;
   align-items: center;
-  padding: 31px 0;
+  padding: 42px 0;
   color: #fff;
   background: linear-gradient(90deg, #073832 0%, #062f2b 58%, #052a26 100%);
 }
@@ -782,6 +662,11 @@
   width: 25px;
   height: 25px;
   color: var(--gold-light);
+  transition: transform .45s cubic-bezier(.45, 0, .25, 1);
+}
+
+.final-points > div:hover svg {
+  transform: scale(1.045);
 }
 
 .final-middle {

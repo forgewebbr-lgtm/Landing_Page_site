@@ -1,0 +1,509 @@
+/*
+ * HERO — iluminação cinematográfica e integração fotográfica
+ *
+ * Este arquivo atua depois de src/styles/hero.css.
+ * A luz quente e a sombra são aplicadas sobre a própria silhueta PNG/WebP
+ * do médico, evitando o efeito de gradiente retangular sobre o cenário.
+ */
+
+.hero-section--refined {
+  --hero-warm-light: rgba(236, 160, 78, .18);
+  --hero-warm-highlight: rgba(255, 220, 165, .12);
+  --hero-petrol-shadow: rgba(0, 25, 21, .28);
+  --hero-parallax: 0px;
+
+  /* Painel estrutural do médico. */
+  --hero-doctor-right: -45px;
+  --hero-doctor-width: clamp(720px, 46vw, 880px);
+  --hero-doctor-height: clamp(560px, 39vw, 675px);
+  --hero-doctor-photo-height: 112%;
+}
+
+.hero-section--refined .hero-copy {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-section--refined .hero-copy h1 {
+  text-wrap: balance;
+  text-shadow: 0 2px 18px rgba(0, 18, 15, .14);
+}
+
+.hero-section--refined .hero-copy > p {
+  color: rgba(255, 255, 255, .95);
+  text-wrap: pretty;
+}
+
+.hero-section--refined .hero-trust {
+  gap: 18px 21px;
+  margin-bottom: 20px;
+}
+
+.hero-section--refined .trust-item {
+  gap: 8px;
+  color: rgba(255, 255, 255, .94);
+  font-size: 12.5px;
+  line-height: 1.28;
+}
+
+.hero-section--refined .trust-item svg {
+  width: 26px;
+  height: 26px;
+  opacity: .94;
+}
+
+.hero-section--refined .hero-action {
+  width: max-content;
+  max-width: 100%;
+}
+
+.hero-section--refined .hero-action .cta-button {
+  min-width: min(100%, 342px);
+  box-shadow:
+    0 14px 30px rgba(31, 18, 4, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+
+.hero-section--refined .hero-action .cta-button:hover {
+  box-shadow:
+    0 17px 34px rgba(31, 18, 4, .27),
+    inset 0 1px 0 rgba(255, 255, 255, .18);
+}
+
+.hero-section--refined .hero-action small {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, .96);
+  font-size: 12.25px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: .005em;
+  text-align: center;
+}
+
+/* Tratamento global do ambiente, sem criar névoa âmbar uniforme. */
+.hero-section--refined .hero-bg {
+  filter:
+    brightness(1.005)
+    contrast(1.055)
+    saturate(.94)
+    sepia(.018)
+    hue-rotate(-2deg);
+}
+
+.hero-section--refined .hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(1, 37, 32, .995) 0%,
+      rgba(1, 37, 32, .97) 18%,
+      rgba(1, 37, 32, .78) 30%,
+      rgba(1, 30, 26, .28) 42%,
+      rgba(0, 16, 14, .035) 56%,
+      rgba(0, 13, 11, .07) 70%,
+      rgba(0, 12, 10, .19) 86%,
+      rgba(0, 10, 9, .32) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 17, 14, .61) 0%,
+      rgba(0, 20, 17, .18) 35%,
+      transparent 67%
+    );
+}
+
+/* Camadas fotográficas acima do fundo e abaixo do conteúdo. */
+.hero-section--refined .hero-lighting {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Fonte principal localizada na luminária. */
+.hero-section--refined .hero-lighting--lamp {
+  background:
+    radial-gradient(
+      circle at 70.5% 18%,
+      rgba(255, 230, 183, .25) 0%,
+      rgba(250, 194, 115, .12) 8%,
+      rgba(228, 143, 57, .04) 19%,
+      transparent 31%
+    ),
+    radial-gradient(
+      ellipse at 61% 40%,
+      rgba(231, 151, 68, .06) 0%,
+      rgba(202, 112, 34, .018) 27%,
+      transparent 50%
+    );
+  mix-blend-mode: screen;
+  opacity: .60;
+  transform: translate3d(0, calc(var(--hero-parallax) * .6), 0);
+}
+
+/* Luz seletiva pequena nos rostos, mãos e ombros do casal. */
+.hero-section--refined .hero-lighting--couple {
+  background:
+    radial-gradient(
+      circle at 53.4% 30.5%,
+      rgba(255, 226, 183, .18) 0%,
+      rgba(241, 179, 105, .06) 3.5%,
+      transparent 9%
+    ),
+    radial-gradient(
+      circle at 59.2% 29.5%,
+      rgba(255, 221, 171, .18) 0%,
+      rgba(236, 166, 90, .06) 4%,
+      transparent 9.5%
+    ),
+    radial-gradient(
+      ellipse at 57.8% 50.5%,
+      rgba(250, 195, 126, .11) 0%,
+      rgba(225, 144, 68, .035) 5%,
+      transparent 12%
+    ),
+    radial-gradient(
+      ellipse at 54% 42%,
+      rgba(233, 163, 86, .055) 0%,
+      transparent 17%
+    );
+  mix-blend-mode: screen;
+  opacity: .72;
+  transform: translate3d(0, var(--hero-parallax), 0);
+}
+
+/* Profundidade nas extremidades sem fechar o centro da composição. */
+.hero-section--refined .hero-lighting--vignette {
+  background:
+    radial-gradient(
+      ellipse at 57% 45%,
+      transparent 0%,
+      transparent 48%,
+      rgba(0, 21, 18, .075) 63%,
+      rgba(0, 14, 12, .34) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 15, 13, .09) 0%,
+      transparent 24%,
+      transparent 72%,
+      rgba(0, 18, 15, .19) 100%
+    );
+  opacity: .82;
+}
+
+/* Integração do retrato com o ambiente. */
+.hero-section--refined .hero-doctor-card__portrait {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.hero-section--refined .hero-doctor-card__portrait::before {
+  content: '';
+  position: absolute;
+  top: 1%;
+  right: 0;
+  width: 69%;
+  height: 99%;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 14% 34%,
+      var(--hero-warm-light) 0%,
+      rgba(217, 137, 58, .075) 25%,
+      rgba(173, 91, 27, .022) 43%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse at 78% 66%,
+      var(--hero-petrol-shadow) 0%,
+      rgba(2, 22, 19, .08) 48%,
+      transparent 72%
+    );
+
+  filter: blur(19px);
+  opacity: .88;
+}
+
+/* Véu atmosférico mínimo; não substitui as camadas da silhueta. */
+.hero-section--refined .hero-doctor-card__portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 244, 220, .012) 0%,
+      transparent 43%,
+      rgba(1, 20, 17, .12) 100%
+    );
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, .56) 26%,
+    #000 55%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, .56) 26%,
+    #000 55%,
+    #000 100%
+  );
+}
+
+.hero-section--refined .hero-doctor-card__photo {
+  z-index: 3;
+
+  filter:
+    brightness(.948)
+    contrast(.952)
+    saturate(.94)
+    sepia(.055)
+    hue-rotate(-4deg)
+    drop-shadow(-18px 22px 30px rgba(0, 8, 6, .32))
+    drop-shadow(-3px 0 5px rgba(233, 162, 83, .08));
+}
+
+/*
+ * A mesma imagem transparente recebe luz quente somente no lado esquerdo.
+ * Como a transparência da foto é preservada, a luz segue o rosto, cabelo,
+ * ombro e terno, sem iluminar o retângulo ao redor.
+ */
+.hero-section--refined .hero-doctor-card__photo--warm {
+  z-index: 4;
+  opacity: .25;
+  mix-blend-mode: screen;
+
+  filter:
+    brightness(.73)
+    contrast(1.07)
+    saturate(1.48)
+    sepia(.82)
+    hue-rotate(-9deg);
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    rgba(0, 0, 0, .92) 28%,
+    rgba(0, 0, 0, .38) 53%,
+    transparent 74%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    rgba(0, 0, 0, .92) 28%,
+    rgba(0, 0, 0, .38) 53%,
+    transparent 74%
+  );
+}
+
+/* Segunda silhueta cria a queda de luz no lado direito do retrato. */
+.hero-section--refined .hero-doctor-card__photo--shade {
+  z-index: 5;
+  opacity: .17;
+  mix-blend-mode: multiply;
+
+  filter:
+    brightness(.48)
+    contrast(1.10)
+    saturate(.72)
+    hue-rotate(7deg);
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 37%,
+    rgba(0, 0, 0, .28) 58%,
+    rgba(0, 0, 0, .82) 79%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 37%,
+    rgba(0, 0, 0, .28) 58%,
+    rgba(0, 0, 0, .82) 79%,
+    #000 100%
+  );
+}
+
+.hero-section--refined .hero-doctor-card__base-fade {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 7;
+
+  width: 50%;
+  height: 104px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(2, 29, 25, .055) 24%,
+    rgba(2, 29, 25, .20) 64%,
+    rgba(2, 29, 25, .39) 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, .64) 23%,
+    #000 48%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, .64) 23%,
+    #000 48%,
+    #000 100%
+  );
+}
+
+/*
+ * A largura é definida diretamente, sem depender da porcentagem limitada
+ * pelo card pai. Assim a placa cresce de verdade em desktop.
+ */
+@media (min-width: 1200px) {
+  .hero-section--refined .hero-doctor-card__plate {
+    left: -64px;
+    bottom: 24px;
+    z-index: 8;
+
+    width: 280px;
+    max-width: 280px;
+    min-width: 0;
+
+    transform: none;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, .25));
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero-section--refined .hero-doctor-card__plate {
+    left: 20px;
+    bottom: 26px;
+
+    width: 340px;
+    max-width: 340px;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 921px) and (max-width: 1199px) {
+  .hero-section--refined {
+    --hero-doctor-right: -38px;
+    --hero-doctor-width: 720px;
+    --hero-doctor-height: 570px;
+  }
+
+  .hero-section--refined .hero-doctor-card__plate {
+    left: -38px;
+    bottom: 24px;
+    z-index: 8;
+
+    width: clamp(390px, 35vw, 430px);
+    transform: none;
+    filter: drop-shadow(0 12px 21px rgba(0, 0, 0, .24));
+  }
+
+  .hero-section--refined .hero-trust {
+    gap: 15px;
+  }
+
+  .hero-section--refined .trust-item {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 920px) {
+  .hero-section--refined .hero-doctor-card__base-fade {
+    display: none;
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--warm {
+    opacity: .16;
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--shade {
+    opacity: .10;
+  }
+
+  .hero-section--refined .hero-lighting--couple {
+    opacity: .42;
+  }
+
+  .hero-section--refined .hero-lighting--vignette {
+    opacity: .68;
+  }
+
+  .hero-section--refined .hero-action small {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section--refined .hero-bg {
+    filter:
+      brightness(.98)
+      contrast(1.025)
+      saturate(.94)
+      sepia(.012);
+  }
+
+  .hero-section--refined .hero-lighting--lamp {
+    opacity: .38;
+  }
+
+  .hero-section--refined .hero-lighting--couple {
+    display: none;
+  }
+
+  .hero-section--refined .hero-trust {
+    gap: 14px 12px;
+  }
+
+  .hero-section--refined .trust-item {
+    font-size: 11.5px;
+  }
+
+  .hero-section--refined .trust-item svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero-section--refined .hero-action,
+  .hero-section--refined .hero-action .cta-button {
+    width: 100%;
+  }
+
+  .hero-section--refined .hero-action .cta-button {
+    min-width: 0;
+  }
+
+  .hero-section--refined .hero-action small {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section--refined .hero-action .cta-button {
+    transition: none;
+  }
+
+  .hero-section--refined .hero-lighting--lamp,
+  .hero-section--refined .hero-lighting--couple {
+    transform: none !important;
+  }
+}

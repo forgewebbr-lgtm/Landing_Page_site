@@ -1,10 +1,21 @@
 import { loadProjectEnv, normalizeSiteUrl } from './env-utils.mjs'
+import { SITE } from '../src/config/site.js'
 
 const env = loadProjectEnv(process.cwd())
 const strict = process.argv.includes('--strict')
 const errors = []
 const warnings = []
 const siteUrl = normalizeSiteUrl(env.VITE_SITE_URL)
+
+if (!SITE.doctorName?.trim()) errors.push('Defina SITE.doctorName em src/config/site.js.')
+if (!SITE.crm?.trim()) errors.push('Defina SITE.crm em src/config/site.js.')
+if (!SITE.rqe?.trim()) errors.push('Defina SITE.rqe em src/config/site.js.')
+if (!/^55\d{10,11}$/.test(SITE.whatsappNumber || '')) {
+  errors.push('SITE.whatsappNumber deve conter somente dígitos no formato internacional, começando por 55.')
+}
+if (!SITE.whatsappMessage?.includes(SITE.doctorName)) {
+  errors.push('SITE.whatsappMessage deve usar o mesmo nome definido em SITE.doctorName.')
+}
 
 if (!/^https:\/\//.test(siteUrl) || siteUrl.includes('SEU-DOMINIO')) {
   errors.push('Defina VITE_SITE_URL com o domínio HTTPS definitivo.')

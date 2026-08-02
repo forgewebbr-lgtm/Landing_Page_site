@@ -1,1 +1,1 @@
-export { default } from "./DoctorPlaque";
+export { default } from './DoctorPlaque.jsx'

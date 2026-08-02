@@ -1,45 +1,39 @@
 import { SITE } from '../../config/site'
 import './DoctorPlaque.css'
 
+const FASTENER_POSITIONS = [
+  'top-left',
+  'top-right',
+  'bottom-left',
+  'bottom-right',
+]
+
 export default function DoctorPlaque() {
   return (
     <article
       className="doctor-plaque"
-      aria-labelledby="doctor-plaque-name"
+      aria-label={`${SITE.doctorName}. ${SITE.specialty}. ${SITE.roboticSurgery}. ${SITE.crm}. ${SITE.rqe}.`}
     >
-      {/* Reflexo suave sobre o vidro */}
       <span
         className="doctor-plaque__reflection"
         aria-hidden="true"
       />
 
-      {/* Fixadores decorativos */}
-      <span
-        className="doctor-plaque__fastener doctor-plaque__fastener--top-left"
-        aria-hidden="true"
-      />
-
-      <span
-        className="doctor-plaque__fastener doctor-plaque__fastener--top-right"
-        aria-hidden="true"
-      />
-
-      <span
-        className="doctor-plaque__fastener doctor-plaque__fastener--bottom-left"
-        aria-hidden="true"
-      />
-
-      <span
-        className="doctor-plaque__fastener doctor-plaque__fastener--bottom-right"
-        aria-hidden="true"
-      />
+      {FASTENER_POSITIONS.map((position) => (
+        <span
+          className={`doctor-plaque__fastener doctor-plaque__fastener--${position}`}
+          aria-hidden="true"
+          key={position}
+        />
+      ))}
 
       <div className="doctor-plaque__content">
-        <h2
-          id="doctor-plaque-name"
-          className="doctor-plaque__name"
-        >
-          {SITE.doctorName}
+        <h2 className="doctor-plaque__name">
+          {SITE.doctorPlaqueNameLines.map((line) => (
+            <span className="doctor-plaque__name-line" key={line}>
+              {line}
+            </span>
+          ))}
         </h2>
 
         <div
@@ -56,8 +50,14 @@ export default function DoctorPlaque() {
         </p>
 
         <p className="doctor-plaque__robotic">
-          Cirurgia Robótica
+          {SITE.roboticSurgery}
         </p>
+
+        <div className="doctor-plaque__registration">
+          <span>{SITE.crm}</span>
+          <i aria-hidden="true" />
+          <span>{SITE.rqe}</span>
+        </div>
       </div>
     </article>
   )

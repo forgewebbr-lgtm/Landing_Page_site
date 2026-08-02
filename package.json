@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "npm run generate:seo",
     "dev": "vite",
     "generate:seo": "node scripts/generate-seo.mjs",
     "validate": "node scripts/validate-config.mjs",

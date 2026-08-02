@@ -32,10 +32,38 @@
 }
 
 .cta-button--gold {
+  position: relative;
+  overflow: hidden;
   color: #fff;
   background: linear-gradient(180deg, #d9ad69 0%, #b97d34 100%);
   border-color: #c9944d;
   box-shadow: 0 10px 26px rgba(48, 31, 12, .22);
+}
+
+/* Brilho sutil que atravessa o botão ao passar o mouse — reforça a
+   sensação premium sem virar um efeito chamativo de banner. */
+.cta-button--gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255, 255, 255, .35) 50%,
+    transparent 65%
+  );
+  transform: translateX(-130%);
+  transition: transform .7s ease;
+}
+
+.cta-button--gold:hover::after {
+  transform: translateX(130%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-button--gold::after {
+    display: none;
+  }
 }
 
 .cta-button--outline {
@@ -83,8 +111,8 @@
   display: block;
   flex: 0 0 auto;
 
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
 
   object-fit: contain;
 
@@ -112,13 +140,13 @@
 }
 
 .brand-copy strong {
-  font: 600 17px/1.08 var(--serif);
+  font: 600 19px/1.08 var(--serif);
 }
 
 .brand-copy small {
   margin-top: 5px;
   color: var(--gold-light);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -133,9 +161,9 @@
 
 .desktop-nav a {
   position: relative;
-  padding: 28px 0 23px;
+  padding: 31px 0 27px;
   color: rgba(255, 255, 255, .92);
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -162,9 +190,9 @@
 }
 
 .header-cta {
-  min-height: 42px;
-  padding-inline: 17px;
-  font-size: 12.5px;
+  min-height: 48px;
+  padding-inline: 21px;
+  font-size: 13.5px;
   box-shadow: none;
 }
 
@@ -426,4 +454,11 @@
 
 .consent-option input:checked + .consent-switch::after {
   transform: translateX(20px);
+}
+
+/* Cabeçalho alinhado ao Hero em desktops largos. */
+@media (min-width: 1500px) {
+  .site-header .header-inner {
+    width: min(calc(100% - 96px), 1824px);
+  }
 }
