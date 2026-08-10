@@ -467,3 +467,15 @@
     transform: none !important;
   }
 }
+
+/* Diferenciais do Hero — desktop mostra o texto completo.
+   O responsive.css troca para a versão curta em telas menores. */
+.hero-section--refined .trust-item__full {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.hero-section--refined .trust-item__short {
+  display: none;
+}
+

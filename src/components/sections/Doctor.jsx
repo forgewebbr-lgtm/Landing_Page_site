@@ -1,5 +1,4 @@
-import doctorImage from '../../assets/web/dr-antonio-real-sem-fundo.webp'
-import officeImage from '../../assets/web/office-consultation.webp'
+import doctorOfficeImage from '../../assets/web/doctor-office-section.webp'
 import doctorDivider from '../../assets/web/doctor-divider.svg'
 import Icon from '../ui/Icon'
 import Reveal from '../ui/Reveal'
@@ -18,17 +17,8 @@ export default function Doctor() {
   return (
     <section className="doctor-section" id="especialista" data-track-section="doctor">
       <Reveal className="doctor-photo-panel" variant="scale" duration={1520} distance={12}>
-        <img className="doctor-office-bg" src={officeImage} alt="Consultório particular" width="1200" height="734" loading="lazy" decoding="async" />
+        <img className="doctor-office-bg" src={doctorOfficeImage} alt={`${SITE.doctorName} em consultório particular`} width="1200" height="734" loading="lazy" decoding="async" />
         <div className="doctor-office-shade" aria-hidden="true" />
-        <img
-          className="doctor-portrait-integrated"
-          src={doctorImage}
-          alt={SITE.doctorName}
-          width="900"
-          height="1350"
-          loading="lazy"
-          decoding="async"
-        />
         <div className="doctor-photo-vignette" aria-hidden="true" />
       </Reveal>
 
