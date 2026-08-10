@@ -1835,9 +1835,9 @@
     --hero-doctor-height: 290px;
     --hero-doctor-photo-height: 104%;
 
-    --hero-plate-left: -92px;
-    --hero-plate-bottom: 52px;
-    --hero-plate-width: 160px;
+    --hero-plate-left: -80px;
+    --hero-plate-bottom: 40px;
+    --hero-plate-width: 215px;
   }
 
   .hero-section--refined .hero-media {
@@ -1956,9 +1956,7 @@
   }
 
   .hero-section--refined .hero-action {
-    order: 3;
-    width: min(62vw, 242px);
-    max-width: none;
+    display: none;
   }
 
   .hero-section--refined .hero-action .cta-button {
@@ -2098,7 +2096,7 @@
     --hero-doctor-height: 274px;
     --hero-plate-left: -83px;
     --hero-plate-bottom: 49px;
-    --hero-plate-width: 150px;
+    --hero-plate-width: 195px;
   }
 
   .hero-section--refined .hero-copy {
@@ -2349,38 +2347,6 @@
         transparent 73%
       );
     opacity: .92;
-  }
-
-  /* Placa: somente acabamento visual; geometria permanece intacta. */
-  .hero-section--refined .doctor-plaque {
-    --plaque-gold-dark: #8f5f20;
-    --plaque-gold-light: #edcf8d;
-    --plaque-gold-mid: #c99951;
-    --plaque-gold-highlight: #f8df9f;
-    --plaque-gold-deep: #9a6826;
-
-    background:
-      linear-gradient(
-        145deg,
-        rgba(255, 255, 255, .055) 0%,
-        rgba(255, 255, 255, .016) 36%,
-        rgba(255, 255, 255, .003) 68%,
-        rgba(201, 153, 81, .022) 100%
-      ),
-      rgba(0, 18, 15, .30);
-
-    border-color: rgba(245, 225, 183, .54);
-    box-shadow:
-      0 18px 34px rgba(0, 7, 6, .31),
-      0 4px 11px rgba(0, 7, 6, .16),
-      inset 2px 2px 0 rgba(255, 255, 255, .28),
-      inset -2px -2px 0 rgba(82, 48, 8, .18),
-      inset 0 0 0 1px rgba(255, 255, 255, .05),
-      0 0 0 1px rgba(96, 56, 9, .15);
-  }
-
-  .hero-section--refined .doctor-plaque::before {
-    border-color: rgba(201, 153, 81, .86);
   }
 
   /* A curva continua no mesmo lugar; apenas ganha leitura metálica. */
@@ -2634,38 +2600,6 @@
     opacity: .90;
   }
 
-  /* Placa: vidro mais escuro e ouro coerente com o restante do Hero. */
-  .hero-section--refined .doctor-plaque {
-    --plaque-gold-dark: #86571d;
-    --plaque-gold-light: #edc679;
-    --plaque-gold-mid: #d09a4b;
-    --plaque-gold-highlight: #f6d991;
-    --plaque-gold-deep: #925f20;
-
-    background:
-      linear-gradient(
-        145deg,
-        rgba(255, 255, 255, .048) 0%,
-        rgba(255, 255, 255, .012) 37%,
-        rgba(255, 255, 255, .002) 68%,
-        rgba(208, 154, 75, .018) 100%
-      ),
-      rgba(0, 15, 13, .38);
-
-    border-color: rgba(239, 214, 166, .51);
-    box-shadow:
-      0 18px 34px rgba(0, 6, 5, .34),
-      0 4px 11px rgba(0, 6, 5, .18),
-      inset 2px 2px 0 rgba(255, 255, 255, .25),
-      inset -2px -2px 0 rgba(77, 43, 7, .20),
-      inset 0 0 0 1px rgba(255, 255, 255, .045),
-      0 0 0 1px rgba(90, 50, 8, .16);
-  }
-
-  .hero-section--refined .doctor-plaque::before {
-    border-color: rgba(208, 154, 75, .84);
-  }
-
   .hero-section--refined .hero-bottom-divider {
     filter:
       brightness(.98)
@@ -2673,5 +2607,18 @@
       saturate(.98)
       sepia(.03)
       drop-shadow(0 -1px 2px rgba(75, 42, 7, .18));
+  }
+}
+
+/* ========================================================================== 
+   HERO MOBILE — trava final do CTA antigo
+   --------------------------------------------------------------------------
+   No mobile, a placa do médico é o CTA principal. Esta regra fica no final
+   do arquivo para impedir que regras anteriores reexibam o botão do Hero.
+   ========================================================================== */
+@media (max-width: 600px) {
+  .hero-section.hero-section--refined .hero-copy .hero-action,
+  .hero-section--refined .hero-action {
+    display: none !important;
   }
 }

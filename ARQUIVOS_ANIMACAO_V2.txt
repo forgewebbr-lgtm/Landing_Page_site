@@ -1,7 +1,0 @@
-ARQUIVOS ALTERADOS NA CORRECAO DAS ANIMACOES V2
-
-index.html
-src/main.jsx
-src/components/ui/Reveal.jsx
-src/styles/animations.css
-CORRECAO_ANIMACOES_V2.md

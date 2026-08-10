@@ -1,4 +1,6 @@
-import { SITE } from '../../config/site'
+import { SITE, getWhatsAppUrl } from '../../config/site'
+import { appendCampaignCode, getSafeAttributionParameters } from '../../lib/campaign'
+import { trackEvent } from '../../lib/tracking'
 import './DoctorPlaque.css'
 
 const FASTENER_POSITIONS = [
@@ -9,6 +11,16 @@ const FASTENER_POSITIONS = [
 ]
 
 export default function DoctorPlaque() {
+  const mobileHref = getWhatsAppUrl(appendCampaignCode(SITE.whatsappMessage))
+
+  const handleMobileClick = () => {
+    trackEvent('whatsapp_click', {
+      cta_location: 'hero_plaque',
+      link_domain: 'wa.me',
+      ...getSafeAttributionParameters(),
+    }, { category: 'conversion' })
+  }
+
   return (
     <article
       className="doctor-plaque"
@@ -60,13 +72,18 @@ export default function DoctorPlaque() {
         </div>
       </div>
 
-      <div
-        className="doctor-plaque__content doctor-plaque__content--mobile"
-        aria-hidden="true"
+      <a
+        className="doctor-plaque__content doctor-plaque__content--mobile doctor-plaque__mobile-link"
+        href={mobileHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Verificar disponibilidade pelo WhatsApp"
+        data-cta-location="hero_plaque"
+        onClick={handleMobileClick}
       >
         <p className="doctor-plaque__availability">
           <span>Verificar disponibilidade</span>
-          <i aria-hidden="true">›</i>
+          <i aria-hidden="true">→</i>
         </p>
 
         <div
@@ -85,7 +102,7 @@ export default function DoctorPlaque() {
         <p className="doctor-plaque__mobile-specialties">
           {SITE.specialty}
         </p>
-      </div>
+      </a>
     </article>
   )
 }
