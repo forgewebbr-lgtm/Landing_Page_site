@@ -8,40 +8,55 @@
  * visual do Hero, evitando que fiquem gigantes apenas porque a tela é larga.
  */
 .hero-section {
-  --hero-height: clamp(620px, 42vw, 680px);
+  --hero-height: clamp(580px, 40vw, 630px);
+  /* Espaço extra reservado SOMENTE para a borda curva.
+   * O conteúdo do Hero continua com a altura original; assim texto, casal,
+   * médico e placa não mudam de posição. A borda é empurrada para baixo. */
+  --hero-divider-drop: clamp(90px, 6.4vw, 110px);
 
   /* Casal e ambiente */
   --hero-couple-x: 52%;
   --hero-couple-y: 50%;
-  --hero-couple-scale: 0.90;
+  --hero-couple-scale: 0.94;
   --hero-couple-shift-x: -0px;
-  --hero-couple-shift-y: 10px;
+  --hero-couple-shift-y: 14px;
   --hero-couple-origin-x: right;
   --hero-couple-origin-y: 100%;
 
-  /* Bloco de texto */
-  --hero-copy-x: 50px;
-  --hero-copy-y: 10px;
+  /* Bloco de texto — deslocamento contínuo, sem salto em breakpoint */
+  --hero-copy-x: clamp(0px, calc((100vw - 1200px) * .08), 50px);
+  --hero-copy-y: -14px;
 
-  /* Médico — mais inserido na junção da composição */
-  --hero-doctor-right: -8px;
+  /* Médico — escala fluida para resistir ao zoom do navegador */
+  --hero-doctor-right: clamp(-45px, -2.4vw, -20px);
   --hero-doctor-bottom: -4px;
-  --hero-doctor-width: clamp(650px, 42vw, 820px);
-  --hero-doctor-height: clamp(540px, 38vw, 650px);
-  --hero-doctor-photo-height: 105%;
+  --hero-doctor-width: clamp(560px, 46vw, 880px);
+  --hero-doctor-height: clamp(500px, 39vw, 675px);
+  --hero-doctor-photo-height: 112%;
 
-  /* Placa */
-  --hero-plate-left: -38px;
-  --hero-plate-bottom: 28px;
-  --hero-plate-width: min(54%, 395px);
-  --hero-plate-scale: 0.96;
+  /* Placa — posição e largura contínuas; nunca cresce quando a tela diminui */
+  --hero-plate-left: clamp(-12px, calc((100vw - 1000px) * .08 - 12px), 20px);
+  --hero-plate-bottom: clamp(54px, 3.2vw, 62px);
+  --hero-plate-width: clamp(250px, 20.5vw, 340px);
+  --hero-plate-scale: 1;
 
   position: relative;
-  min-height: var(--hero-height);
+  min-height: calc(var(--hero-height) + var(--hero-divider-drop));
   overflow: hidden;
   color: #fff;
   background: #052b27;
   isolation: isolate;
+}
+
+/* Desktop: aproveita a nova altura do Hero sem alterar texto ou navegação.
+ * A foto mostra mais da parte inferior do ambiente e o conjunto médico + placa
+ * desce para acompanhar a nova curva. */
+@media (min-width: 921px) {
+  .hero-section {
+    --hero-couple-y: 68%;
+    --hero-couple-scale: 0.94;
+    --hero-doctor-bottom: calc(-4px - clamp(56px, 4vw, 68px));
+  }
 }
 
 .hero-media {
@@ -94,7 +109,7 @@
 
 .hero-inner {
   position: relative;
-  width: min(calc(100% - 96px), 1824px);
+  width: min(calc(100% - clamp(48px, 5vw, 96px)), 1824px);
   min-height: var(--hero-height);
   display: flex;
   align-items: center;
@@ -105,20 +120,22 @@
 .hero-copy {
   position: relative;
   z-index: 6;
-  width: min(34vw, 650px);
+  width: clamp(360px, 34vw, 650px);
+  max-width: calc(100% - 24px);
   padding-bottom: 3px;
+  transform: translate(var(--hero-copy-x), var(--hero-copy-y));
 }
 
 .hero-copy h1 {
   margin: 0 0 26px;
   color: #fff;
-  font: 500 clamp(66px, 4.3vw, 74px)/.99 var(--serif);
+  font: 500 clamp(44px, 4.3vw, 74px)/.99 var(--serif);
   letter-spacing: -.034em;
 }
 
 .hero-copy h1 > span {
   display: block;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .hero-copy h1 em {
@@ -164,7 +181,8 @@
 }
 
 .hero-copy .cta-button {
-  min-width: 385px;
+  width: min(100%, 400px);
+  min-width: 0;
   min-height: 62px;
   padding-inline: 32px;
   font-size: 16px;
@@ -233,37 +251,34 @@
   user-select: none;
 }
 
-.hero-bottom-accent {
+/*
+ * Divisor do Hero reproduzido a partir da referência fornecida.
+ * A própria faixa visual é usada como asset para não aproximar a curva
+ * com border-radius ou Bézier desenhada manualmente.
+ */
+.hero-bottom-divider {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
-  z-index: 7;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(207, 160, 81, .38) 9%,
-    rgba(207, 160, 81, .78) 50%,
-    rgba(207, 160, 81, .38) 91%,
-    transparent 100%
-  );
+  z-index: 9;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
 }
 
-.hero-bottom-accent::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background: #d5a55b;
-  box-shadow: 0 0 16px rgba(213, 165, 91, .38);
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+@media (max-width: 600px) {
+  .hero-section {
+    --hero-divider-drop: 48px;
+  }
 
-@media (min-width: 1200px) {
-  .hero-copy {
-    transform: translate(var(--hero-copy-x), var(--hero-copy-y));
+  .hero-bottom-divider {
+    width: 100%;
+    height: clamp(44px, 8.55vw, 58px);
+    object-fit: fill;
   }
 }
+

@@ -1,0 +1,23 @@
+{
+  "name": "landing-page-dr-antonio-flavio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "npm run generate:seo",
+    "dev": "vite",
+    "generate:seo": "node scripts/generate-seo.mjs",
+    "validate": "node scripts/validate-config.mjs",
+    "validate:production": "node scripts/validate-config.mjs --strict",
+    "prebuild": "npm run generate:seo",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "vite": "6.1.0"
+  }
+}

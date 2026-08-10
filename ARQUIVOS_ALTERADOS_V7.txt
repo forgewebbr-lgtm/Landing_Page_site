@@ -1,0 +1,19 @@
+V7 — correção focada no zoom
+
+Arquivos alterados:
+- src/styles/base.css
+- src/styles/components.css
+- src/styles/hero.css
+- src/styles/responsive.css
+- src/components/sections/Hero.css
+- src/components/layout/Header.jsx
+- src/main.jsx
+
+Documentação adicionada:
+- CORRECAO_ZOOM_V7.md
+
+Objetivo:
+- eliminar saltos da placa e da copy nos breakpoints;
+- adaptar header e grids antes de ocorrer colisão;
+- evitar overflow/cortes em zoom elevado;
+- preservar a identidade visual da V6.

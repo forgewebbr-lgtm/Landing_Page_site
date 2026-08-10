@@ -1,0 +1,13 @@
+src/components/ui/Reveal.jsx
+src/styles/animations.css
+src/styles/sections.css
+src/components/sections/Hero.jsx
+src/components/sections/Signals.jsx
+src/components/sections/BenefitsStrip.jsx
+src/components/sections/Doctor.jsx
+src/components/sections/Process.jsx
+src/components/sections/Comfort.jsx
+src/components/sections/Reviews.jsx
+src/components/sections/FinalCTA.jsx
+src/main.jsx
+REFINAMENTOS_PREMIUM_V6.md

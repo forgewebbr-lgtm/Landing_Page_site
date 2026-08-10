@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 
 import heroImage from '../../assets/web/hero-casal.png'
-import heroMobileImage from '../../assets/web/hero-casal-mobile.webp'
+import heroMobileScene from '../../assets/web/hero-mobile-scene.webp'
 import doctorImage from '../../assets/web/dr-antonio-real-sem-fundo.webp'
+import heroDividerReference from '../../assets/web/hero-divider-reference.png'
 
 import Icon from '../ui/Icon'
 import WhatsAppButton from '../ui/WhatsAppButton'
@@ -16,14 +17,17 @@ const trustItems = [
   {
     icon: 'shield',
     lines: ['Atendimento', 'particular'],
+    short: 'Particular',
   },
   {
     icon: 'lock',
     lines: ['Discrição e', 'confidencialidade'],
+    short: 'Discrição',
   },
   {
-    icon: 'pin',
+    icon: 'stethoscope',
     lines: SITE.serviceLocationLines,
+    short: 'Telemedicina',
   },
 ]
 
@@ -73,7 +77,7 @@ export default function Hero() {
       <picture className="hero-media" aria-hidden="true">
         <source
           media="(max-width: 600px)"
-          srcSet={heroMobileImage}
+          srcSet={heroMobileScene}
         />
 
         <img
@@ -105,12 +109,12 @@ export default function Hero() {
       <div className="page-shell hero-inner">
         <div className="hero-copy">
           <h1 className="hero-intro hero-intro--title">
-            <span>Quando algo</span>
+            <span>Quando algo muda,</span>
             <span>
-              muda, <em>você é</em>
+              <em>você é a primeira</em>
             </span>
             <span>
-              <em>a primeira a perceber.</em>
+              <em>a perceber.</em>
             </span>
           </h1>
 
@@ -126,15 +130,16 @@ export default function Hero() {
             className="hero-trust hero-intro hero-intro--trust"
             aria-label="Diferenciais do atendimento"
           >
-            {trustItems.map(({ icon, lines }) => (
+            {trustItems.map(({ icon, lines, short }) => (
               <div className="trust-item" key={icon}>
                 <Icon name={icon} size={28} />
 
-                <span>
+                <span className="trust-item__full">
                   {lines.map((text) => (
                     <span key={text}>{text}</span>
                   ))}
                 </span>
+                <span className="trust-item__short">{short}</span>
               </div>
             ))}
           </div>
@@ -191,7 +196,13 @@ export default function Hero() {
         </aside>
       </div>
 
-      <span className="hero-bottom-accent" aria-hidden="true" />
+      <img
+        className="hero-bottom-divider"
+        src={heroDividerReference}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+      />
     </section>
   )
 }

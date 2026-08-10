@@ -1,5 +1,6 @@
 import doctorImage from '../../assets/web/dr-antonio-real-sem-fundo.webp'
 import officeImage from '../../assets/web/office-consultation.webp'
+import doctorDivider from '../../assets/web/doctor-divider.svg'
 import Icon from '../ui/Icon'
 import Reveal from '../ui/Reveal'
 import TextLines from '../ui/TextLines'
@@ -18,10 +19,17 @@ export default function Doctor() {
     <section className="doctor-section" id="especialista" data-track-section="doctor">
       <Reveal className="doctor-photo-panel" variant="scale" duration={1520} distance={12}>
         <img className="doctor-office-bg" src={officeImage} alt="Consultório particular" width="1200" height="734" loading="lazy" decoding="async" />
-        <div className="doctor-office-shade" />
-        <div className="doctor-portrait-frame">
-          <img src={doctorImage} alt={SITE.doctorName} width="486" height="486" loading="lazy" decoding="async" />
-        </div>
+        <div className="doctor-office-shade" aria-hidden="true" />
+        <img
+          className="doctor-portrait-integrated"
+          src={doctorImage}
+          alt={SITE.doctorName}
+          width="900"
+          height="1350"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="doctor-photo-vignette" aria-hidden="true" />
       </Reveal>
 
       <div className="doctor-content">
@@ -50,6 +58,14 @@ export default function Doctor() {
           <small>Tire dúvidas iniciais e verifique a disponibilidade para atendimento particular.</small>
         </Reveal>
       </div>
+
+      <img
+        className="doctor-section-divider"
+        src={doctorDivider}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+      />
     </section>
   )
 }

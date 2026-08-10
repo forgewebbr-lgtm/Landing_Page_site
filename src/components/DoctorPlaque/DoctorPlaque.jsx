@@ -27,7 +27,7 @@ export default function DoctorPlaque() {
         />
       ))}
 
-      <div className="doctor-plaque__content">
+      <div className="doctor-plaque__content doctor-plaque__content--desktop">
         <h2 className="doctor-plaque__name">
           {SITE.doctorPlaqueNameLines.map((line) => (
             <span className="doctor-plaque__name-line" key={line}>
@@ -58,6 +58,33 @@ export default function DoctorPlaque() {
           <i aria-hidden="true" />
           <span>{SITE.rqe}</span>
         </div>
+      </div>
+
+      <div
+        className="doctor-plaque__content doctor-plaque__content--mobile"
+        aria-hidden="true"
+      >
+        <p className="doctor-plaque__availability">
+          <span>Verificar disponibilidade</span>
+          <i aria-hidden="true">›</i>
+        </p>
+
+        <div
+          className="doctor-plaque__divider doctor-plaque__divider--mobile"
+          aria-hidden="true"
+        >
+          <span />
+          <i />
+          <span />
+        </div>
+
+        <p className="doctor-plaque__signature">
+          Dr. Antonio Flávio
+        </p>
+
+        <p className="doctor-plaque__mobile-specialties">
+          {SITE.specialty}
+        </p>
       </div>
     </article>
   )

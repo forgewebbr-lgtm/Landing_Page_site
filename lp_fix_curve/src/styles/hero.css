@@ -1,0 +1,284 @@
+/* Hero — desktop base
+ *
+ * PAINEL DE AJUSTE
+ * Altere somente estas variáveis para reposicionar os elementos principais.
+ * Ajustes locais podem sobrescrever somente estas variáveis em Hero.css.
+ *
+ * Em telas ultrawide, personagens e placa são dimensionados pela altura
+ * visual do Hero, evitando que fiquem gigantes apenas porque a tela é larga.
+ */
+.hero-section {
+  --hero-height: clamp(580px, 40vw, 630px);
+  /* Espaço extra reservado SOMENTE para a borda curva.
+   * O conteúdo do Hero continua com a altura original; assim texto, casal,
+   * médico e placa não mudam de posição. A borda é empurrada para baixo. */
+  --hero-divider-drop: clamp(90px, 6.4vw, 110px);
+
+  /* Casal e ambiente */
+  --hero-couple-x: 52%;
+  --hero-couple-y: 50%;
+  --hero-couple-scale: 0.94;
+  --hero-couple-shift-x: -0px;
+  --hero-couple-shift-y: 14px;
+  --hero-couple-origin-x: right;
+  --hero-couple-origin-y: 100%;
+
+  /* Bloco de texto — deslocamento contínuo, sem salto em breakpoint */
+  --hero-copy-x: clamp(0px, calc((100vw - 1200px) * .08), 50px);
+  --hero-copy-y: -14px;
+
+  /* Médico — escala fluida para resistir ao zoom do navegador */
+  --hero-doctor-right: clamp(-20px, -1vw, 5px);
+  --hero-doctor-bottom: -117px;
+  --hero-doctor-width: clamp(560px, 46vw, 880px);
+  --hero-doctor-height: clamp(500px, 39vw, 675px);
+  --hero-doctor-photo-height: 112%;
+
+  /* Placa — posição e largura contínuas; nunca cresce quando a tela diminui */
+  --hero-plate-left: clamp(-12px, calc((100vw - 1000px) * .08 - 12px), 100px);
+  --hero-plate-bottom: clamp(30px, 6.5vw, -50px);
+  --hero-plate-width: clamp(280px, 23vw, 380px);
+  --hero-plate-scale: 1.05;
+
+  position: relative;
+  min-height: calc(var(--hero-height) + var(--hero-divider-drop));
+  overflow: hidden;
+  color: #fff;
+  background: #052b27;
+  isolation: isolate;
+}
+
+/* Desktop: aproveita a nova altura do Hero sem alterar texto ou navegação.
+ * A foto mostra mais da parte inferior do ambiente e o conjunto médico + placa
+ * desce para acompanhar a nova curva. */
+@media (min-width: 921px) {
+  .hero-section {
+    --hero-couple-y: 68%;
+    --hero-couple-scale: 0.94;
+    --hero-doctor-bottom: calc(-3px - clamp(56px, 4vw, 68px));
+  }
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  display: block;
+  overflow: hidden;
+}
+
+.hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-couple-x) var(--hero-couple-y);
+  transform:
+    translate(
+      var(--hero-couple-shift-x),
+      var(--hero-couple-shift-y)
+    )
+    scale(var(--hero-couple-scale));
+  transform-origin:
+    var(--hero-couple-origin-x)
+    var(--hero-couple-origin-y);
+  filter: brightness(.95) contrast(1.03) saturate(.96);
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 42, 37, .99) 0%,
+      rgba(3, 42, 37, .97) 19%,
+      rgba(3, 42, 37, .88) 29%,
+      rgba(3, 42, 37, .40) 41%,
+      rgba(3, 42, 37, .08) 55%,
+      rgba(3, 42, 37, .06) 72%,
+      rgba(3, 42, 37, .02) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(1, 19, 17, .45) 0%,
+      rgba(1, 19, 17, .14) 38%,
+      rgba(1, 19, 17, 0) 66%
+    );
+}
+
+.hero-inner {
+  position: relative;
+  width: min(calc(100% - clamp(48px, 5vw, 96px)), 1824px);
+  min-height: var(--hero-height);
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-height) + 8px);
+  padding-bottom: 18px;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 6;
+  width: clamp(360px, 34vw, 650px);
+  max-width: calc(100% - 24px);
+  padding-bottom: 3px;
+  transform: translate(var(--hero-copy-x), var(--hero-copy-y));
+}
+
+.hero-copy h1 {
+  margin: 0 0 26px;
+  color: #fff;
+  font: 500 clamp(44px, 4.3vw, 74px)/.99 var(--serif);
+  letter-spacing: -.034em;
+}
+
+.hero-copy h1 > span {
+  display: block;
+  white-space: normal;
+}
+
+.hero-copy h1 em {
+  color: var(--gold-light);
+  font-style: normal;
+}
+
+.hero-copy > p {
+  margin: 0 0 46px;
+  color: rgba(255, 255, 255, .95);
+  font-size: clamp(17px, 1.05vw, 19px);
+  line-height: 1.58;
+}
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  margin-bottom: 51px;
+  }
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, .94);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.trust-item > span,
+.trust-item > span > span {
+  display: block;
+}
+
+.trust-item svg {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  color: var(--gold-light);
+}
+
+.hero-copy .cta-button {
+  width: min(100%, 400px);
+  min-width: 0;
+  min-height: 62px;
+  padding-inline: 32px;
+  font-size: 16px;
+}
+
+.hero-copy small {
+  display: block;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.hero-doctor-card {
+  position: absolute;
+  right: var(--hero-doctor-right);
+  bottom: var(--hero-doctor-bottom);
+  z-index: 4;
+  width: var(--hero-doctor-width);
+  height: var(--hero-doctor-height);
+  pointer-events: none;
+}
+
+.hero-doctor-card::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 58%;
+  height: 88%;
+  background: radial-gradient(
+    ellipse at 58% 64%,
+    rgba(0, 0, 0, .13) 0%,
+    rgba(0, 0, 0, .06) 46%,
+    transparent 72%
+  );
+}
+
+.hero-doctor-card__photo {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  z-index: 3;
+  display: block;
+  width: auto;
+  height: var(--hero-doctor-photo-height);
+  max-width: none;
+  object-fit: contain;
+  object-position: right bottom;
+  filter:
+    brightness(1.025)
+    contrast(1.02)
+    drop-shadow(-18px 18px 25px rgba(0, 0, 0, .31));
+  user-select: none;
+}
+
+.hero-doctor-card__plate {
+  position: absolute;
+  left: var(--hero-plate-left);
+  bottom: var(--hero-plate-bottom);
+  z-index: 4;
+  width: var(--hero-plate-width);
+  transform: scale(var(--hero-plate-scale));
+  transform-origin: left bottom;
+  user-select: none;
+}
+
+/*
+ * Divisor do Hero reproduzido a partir da referência fornecida.
+ * A própria faixa visual é usada como asset para não aproximar a curva
+ * com border-radius ou Bézier desenhada manualmente.
+ */
+.hero-bottom-divider {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 9;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    --hero-divider-drop: 48px;
+  }
+
+  .hero-bottom-divider {
+    width: 100%;
+    height: clamp(44px, 8.55vw, 58px);
+    object-fit: fill;
+  }
+}
+

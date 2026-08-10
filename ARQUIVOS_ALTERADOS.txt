@@ -1,0 +1,18 @@
+ARQUIVOS ALTERADOS NESTA REFATORAÇÃO
+
+.env
+README.md
+public/og-image.jpg
+public/politica-de-privacidade.html
+public/robots.txt
+public/sitemap.xml
+src/assets/logos/logo-dr-antonio.svg
+src/components/DoctorPlaque/DoctorPlaque.css
+src/components/DoctorPlaque/DoctorPlaque.jsx
+src/components/layout/Header.jsx
+src/components/sections/FinalCTA.jsx
+src/components/sections/Hero.css
+src/components/sections/Hero.jsx
+src/config/site.js
+src/styles/hero.css
+RELATORIO_REFATORACAO_PLACA_E_CODIGO.md

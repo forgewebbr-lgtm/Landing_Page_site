@@ -25,7 +25,7 @@
   container-type: inline-size;
 
   width: 100%;
-  aspect-ratio: 1.66 / 1;
+  aspect-ratio: 1.48 / 1;
   min-height: 0;
   overflow: hidden;
 
@@ -33,7 +33,7 @@
   place-items: center;
 
   padding:
-    clamp(27px, 2.15vw, 35px)
+    clamp(25px, 1.95vw, 32px)
     clamp(28px, 2.3vw, 38px);
 
   background:
@@ -169,10 +169,16 @@
   grid-template-rows: auto auto auto auto auto;
   place-items: center;
   align-content: center;
-  row-gap: clamp(5px, 1.25cqw, 9px);
+  row-gap: clamp(6px, 1.25cqw, 10px);
 
   margin: 0;
   text-align: center;
+}
+
+/* A composição CTA é exclusiva do mobile; o desktop continua usando
+   exatamente o conteúdo original da placa. */
+.doctor-plaque__content--mobile {
+  display: none;
 }
 
 .doctor-plaque__name {
@@ -192,7 +198,7 @@
   font-family: var(--serif);
   font-size: clamp(27px, 8.7cqw, 40px);
   font-weight: 500;
-  line-height: .96;
+  line-height: 1;
   letter-spacing: -.015em;
 
   filter: drop-shadow(0 1px 1px rgba(35, 18, 2, .30));
@@ -301,8 +307,8 @@
   justify-content: center;
   gap: clamp(8px, 2.5cqw, 12px);
 
-  margin: 1px 0 0;
-  padding-top: clamp(5px, 1.5cqw, 7px);
+  margin: 3px 0 0;
+  padding-top: clamp(7px, 1.7cqw, 9px);
   border-top: 1px solid rgba(225, 181, 91, .42);
 
   font-family: var(--sans);
@@ -417,46 +423,534 @@
   }
 }
 
-@media (max-width: 520px) {
+@keyframes doctorPlaqueMobileSweep {
+  0%,
+  66% {
+    opacity: 0;
+    transform: translateX(-210%) skewX(-15deg);
+  }
+
+  71% {
+    opacity: .08;
+  }
+
+  76% {
+    opacity: .22;
+  }
+
+  82% {
+    opacity: .07;
+  }
+
+  88%,
+  100% {
+    opacity: 0;
+    transform: translateX(720%) skewX(-15deg);
+  }
+}
+
+/* Respiração luminosa: a placa não aumenta; somente a luz do CTA ganha presença. */
+@keyframes doctorPlaqueGoldBreath {
+  0%,
+  58%,
+  100% {
+    filter:
+      drop-shadow(0 1px 1px rgba(28, 20, 4, .52))
+      drop-shadow(0 0 3px rgba(239, 216, 137, .10));
+  }
+
+  66% {
+    filter:
+      drop-shadow(0 1px 1px rgba(28, 20, 4, .48))
+      drop-shadow(0 0 5px rgba(248, 226, 153, .30))
+      drop-shadow(0 0 11px rgba(211, 178, 83, .18));
+  }
+
+  73% {
+    filter:
+      drop-shadow(0 1px 1px rgba(28, 20, 4, .44))
+      drop-shadow(0 0 7px rgba(255, 239, 181, .43))
+      drop-shadow(0 0 15px rgba(218, 188, 97, .21));
+  }
+
+  82% {
+    filter:
+      drop-shadow(0 1px 1px rgba(28, 20, 4, .49))
+      drop-shadow(0 0 4px rgba(244, 221, 145, .20));
+  }
+}
+
+@keyframes doctorPlaqueGoldHalo {
+  0%,
+  58%,
+  100% {
+    opacity: .12;
+    transform: scale(.94);
+  }
+
+  68% {
+    opacity: .33;
+    transform: scale(1.01);
+  }
+
+  74% {
+    opacity: .47;
+    transform: scale(1.055);
+  }
+
+  84% {
+    opacity: .16;
+    transform: scale(.98);
+  }
+}
+
+@keyframes doctorPlaqueGoldShimmer {
+  0%,
+  60% {
+    background-position: 0% 50%;
+  }
+
+  76% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes doctorPlaqueFrameGlow {
+  0%,
+  60%,
+  100% {
+    border-color: rgba(210, 181, 104, .78);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 244, 207, .045),
+      0 0 6px rgba(226, 197, 117, .035);
+  }
+
+  73% {
+    border-color: rgba(242, 220, 157, .96);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 248, 219, .085),
+      0 0 10px rgba(239, 216, 145, .13);
+  }
+}
+
+@media (max-width: 600px) {
+  /*
+   * PLACA MOBILE — OURO + VIDRO + PULSO DE LUZ
+   * A geometria e a versão desktop permanecem intactas.
+   * O destaque vem de ouro/champagne e luz, nunca de laranja.
+   */
   .doctor-plaque {
-    padding: 23px 19px;
-    border-radius: 7px;
+    --plaque-gold-dark: #80651f;
+    --plaque-gold-mid: #c6a451;
+    --plaque-gold-light: #efd98c;
+    --plaque-gold-highlight: #fff0b4;
+    --plaque-gold-deep: #6e5719;
+
+    aspect-ratio: 2.02 / 1;
+    padding: 11px 14px 10px;
+    cursor: pointer;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, .105) 0%,
+        rgba(255, 255, 255, .032) 21%,
+        rgba(255, 255, 255, .009) 52%,
+        rgba(239, 217, 145, .010) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(7, 50, 44, .30) 0%,
+        rgba(2, 34, 30, .25) 48%,
+        rgba(0, 22, 19, .31) 100%
+      );
+
+    border: 1px solid rgba(224, 203, 145, .66);
+    border-radius: 8px;
+
+    -webkit-backdrop-filter: blur(5px) saturate(106%) brightness(.94);
+    backdrop-filter: blur(5px) saturate(106%) brightness(.94);
+
+    box-shadow:
+      0 10px 22px rgba(0, 7, 6, .28),
+      0 2px 7px rgba(0, 7, 6, .15),
+      0 0 12px rgba(227, 205, 136, .045),
+      inset 1px 1px 0 rgba(255, 255, 255, .27),
+      inset -1px -1px 0 rgba(72, 57, 15, .17),
+      inset 0 0 18px rgba(255, 241, 196, .018);
+
+    transition:
+      transform .14s ease,
+      border-color .18s ease,
+      box-shadow .18s ease,
+      filter .18s ease;
   }
 
   .doctor-plaque::before {
-    inset: 7px;
-    border-radius: 3px;
+    inset: 6px;
+    border-color: rgba(210, 181, 104, .78);
+    border-radius: 4px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 244, 207, .045),
+      0 0 6px rgba(226, 197, 117, .035);
+    animation: doctorPlaqueFrameGlow 5.4s ease-in-out infinite;
   }
 
-  .doctor-plaque__content {
-    row-gap: 4px;
+  .doctor-plaque::after {
+    background:
+      linear-gradient(
+        128deg,
+        rgba(255, 255, 255, .22) 0%,
+        rgba(255, 255, 255, .060) 10%,
+        rgba(255, 255, 255, .010) 23%,
+        transparent 39%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 247, 216, .060) 0%,
+        transparent 14%,
+        transparent 84%,
+        rgba(236, 214, 143, .025) 100%
+      ),
+      radial-gradient(
+        ellipse at 50% 28%,
+        rgba(247, 227, 163, .065) 0%,
+        rgba(224, 202, 132, .018) 38%,
+        transparent 68%
+      );
+  }
+
+  /* Reflexo lento: uma pequena incidência de luz champagne atravessa o CTA. */
+  .doctor-plaque__reflection {
+    top: 14%;
+    left: -30%;
+    z-index: 3;
+    width: 18%;
+    height: 29%;
+    opacity: 0;
+    background: linear-gradient(
+      104deg,
+      transparent 0%,
+      rgba(255, 239, 184, .020) 30%,
+      rgba(255, 244, 199, .13) 45%,
+      rgba(255, 251, 226, .27) 50%,
+      rgba(247, 228, 169, .11) 57%,
+      transparent 76%
+    );
+    filter: blur(4px);
+    mix-blend-mode: screen;
+    animation: doctorPlaqueMobileSweep 9.2s cubic-bezier(.45, 0, .2, 1) infinite;
+  }
+
+  .doctor-plaque__content--desktop {
+    display: none;
+  }
+
+  .doctor-plaque__content--mobile {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 3px;
+    align-content: center;
+    padding: 12px 15px 10px;
+  }
+
+  .doctor-plaque__mobile-link {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+
+  .doctor-plaque__mobile-link:focus-visible {
+    outline: 2px solid rgba(247, 226, 163, .94);
+    outline-offset: -4px;
+    border-radius: 8px;
+  }
+
+  .doctor-plaque__availability {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0;
+    white-space: nowrap;
+
+    font-family: var(--serif);
+    font-size: clamp(10.8px, 7.4cqw, 12.8px);
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: -.012em;
+
+    animation: doctorPlaqueGoldBreath 5.4s ease-in-out infinite;
+  }
+
+  /* Halo respirando apenas atrás da chamada; o vidro e a placa não pulsam. */
+  .doctor-plaque__availability::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -7px -12px -8px;
+    border-radius: 999px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(249, 229, 165, .26) 0%,
+      rgba(225, 200, 127, .095) 46%,
+      transparent 76%
+    );
+    opacity: .12;
+    transform: scale(.94);
+    transform-origin: center;
+    pointer-events: none;
+    animation: doctorPlaqueGoldHalo 5.4s ease-in-out infinite;
+  }
+
+  .doctor-plaque__availability span {
+    color: var(--plaque-gold-light);
+    background-image: linear-gradient(
+      110deg,
+      #7d631e 0%,
+      #b99745 24%,
+      #ead584 40%,
+      #fff1ba 50%,
+      #ecd889 60%,
+      #b89948 78%,
+      #735b1b 100%
+    );
+    background-size: 230% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: doctorPlaqueGoldShimmer 5.4s ease-in-out infinite;
+  }
+
+  .doctor-plaque__availability i {
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    color: #eed98e;
+    -webkit-text-fill-color: #eed98e;
+    font-family: var(--serif);
+    font-size: 1.18em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: .7;
+    filter:
+      drop-shadow(0 0 3px rgba(250, 233, 176, .18));
+  }
+
+  .doctor-plaque__divider--mobile {
+    width: 58%;
+    height: 6px;
+    grid-template-columns: 1fr 5px 1fr;
+    gap: 6px;
+    opacity: .70;
+  }
+
+  .doctor-plaque__divider--mobile span {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(225, 202, 132, .78)
+    );
+  }
+
+  .doctor-plaque__divider--mobile span:last-child {
+    background: linear-gradient(
+      90deg,
+      rgba(225, 202, 132, .78),
+      transparent
+    );
+  }
+
+  .doctor-plaque__divider--mobile i {
+    width: 4px;
+    height: 4px;
+    border-color: rgba(233, 210, 139, .90);
+  }
+
+  /* Rubrica com ouro mais fechado: elegante, mas secundária ao CTA. */
+  .doctor-plaque__signature {
+    position: relative;
+    width: 100%;
+    margin: 0;
+
+    color: #c6aa63;
+    background-image: linear-gradient(
+      112deg,
+      #75601f 0%,
+      #aa8d3e 28%,
+      #ddc67c 52%,
+      #a98b3c 76%,
+      #6b551a 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-family:
+      "Segoe Script",
+      "Snell Roundhand",
+      "Apple Chancery",
+      "Brush Script MT",
+      cursive;
+    font-size: clamp(12.2px, 8.35cqw, 14.6px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: .95;
+    letter-spacing: -.04em;
+    white-space: nowrap;
+
+    filter: drop-shadow(0 1px 1px rgba(31, 23, 5, .32));
+    opacity: .82;
+  }
+
+  .doctor-plaque__signature::after {
+    content: '';
+    position: absolute;
+    left: 27%;
+    right: 22%;
+    bottom: -2px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(217, 195, 128, .48) 25%,
+      rgba(168, 140, 67, .36) 78%,
+      transparent
+    );
+    transform: rotate(-2deg);
+    transform-origin: center;
+  }
+
+  .doctor-plaque__mobile-specialties {
+    width: 100%;
+    margin: 1px 0 0;
+
+    color: #d7c79d;
+    background-image: linear-gradient(
+      180deg,
+      #e6d8b0 0%,
+      #bda66d 58%,
+      #7d6b3b 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-family: var(--sans);
+    font-size: clamp(7px, 4.55cqw, 8.2px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: .005em;
+    white-space: nowrap;
+
+    filter: drop-shadow(0 1px 1px rgba(26, 19, 4, .22));
+    opacity: .72;
+  }
+
+  .doctor-plaque__fastener {
+    width: 9px;
+    border-color: rgba(244, 226, 170, .90);
+    background: radial-gradient(
+      circle at 31% 27%,
+      #fff6ce 0%,
+      #ebd58d 19%,
+      #b99846 44%,
+      #78601d 75%,
+      #4e3c10 100%
+    );
+    box-shadow:
+      0 1px 4px rgba(0, 0, 0, .34),
+      0 0 4px rgba(232, 210, 143, .08),
+      inset 0 1px 1px rgba(255, 255, 255, .70),
+      inset 0 -1px 1px rgba(62, 48, 12, .45);
   }
 
   .doctor-plaque__fastener--top-left {
-    top: 9px;
-    left: 9px;
+    top: 7px;
+    left: 7px;
   }
 
   .doctor-plaque__fastener--top-right {
-    top: 9px;
-    right: 9px;
+    top: 7px;
+    right: 7px;
   }
 
   .doctor-plaque__fastener--bottom-left {
-    bottom: 9px;
-    left: 9px;
+    bottom: 7px;
+    left: 7px;
   }
 
   .doctor-plaque__fastener--bottom-right {
-    right: 9px;
-    bottom: 9px;
+    right: 7px;
+    bottom: 7px;
+  }
+
+  /* Resposta ao toque somente no clique — nunca como animação contínua. */
+  .doctor-plaque:active {
+    transform: scale(.985);
+    border-color: rgba(246, 225, 159, .84);
+    box-shadow:
+      0 7px 16px rgba(0, 7, 6, .30),
+      0 2px 6px rgba(0, 7, 6, .16),
+      0 0 14px rgba(238, 217, 151, .11),
+      inset 1px 1px 0 rgba(255, 255, 255, .31),
+      inset -1px -1px 0 rgba(72, 57, 15, .16),
+      inset 0 0 20px rgba(255, 242, 198, .03);
+    filter: brightness(1.018);
+  }
+
+  .doctor-plaque:active::before {
+    border-color: rgba(247, 227, 166, .97);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 248, 218, .07),
+      0 0 10px rgba(240, 218, 150, .13);
+  }
+}
+
+@media (max-width: 370px) {
+  .doctor-plaque {
+    aspect-ratio: 1.96 / 1;
+    padding-inline: 12px;
+  }
+
+  .doctor-plaque__availability {
+    font-size: clamp(9.8px, 7cqw, 11px);
+  }
+
+  .doctor-plaque__signature {
+    font-size: clamp(11.8px, 8.5cqw, 14px);
+  }
+
+  .doctor-plaque__mobile-specialties {
+    font-size: clamp(6.8px, 4.6cqw, 8px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .doctor-plaque__reflection,
+  .doctor-plaque::before,
+  .doctor-plaque__availability,
+  .doctor-plaque__availability::before,
+  .doctor-plaque__availability span {
+    animation: none !important;
+  }
+
   .doctor-plaque__reflection {
-    animation: none;
-    opacity: .035;
-    transform: translateX(120%) skewX(-15deg) rotate(4deg);
+    opacity: .025;
+    transform: translateX(120%) skewX(-15deg);
   }
 }

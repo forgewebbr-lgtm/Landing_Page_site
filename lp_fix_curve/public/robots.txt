@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://landing-page-dr-antonio-flavio.pages.dev/sitemap.xml
