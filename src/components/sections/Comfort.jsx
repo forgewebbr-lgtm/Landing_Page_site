@@ -13,8 +13,8 @@ const resources = [
     width: 805,
     height: 700,
     icon: 'monitor',
-    title: 'Tecnologia\ne precisão',
-    text: 'Equipamentos modernos para diagnósticos\ne tratamentos mais seguros.',
+    title: 'Estrutura de \natendimento',
+    text: 'Ambientes planejados para oferecer organização, privacidade e conforto.',
   },
   {
     img: privateRoomImage,
