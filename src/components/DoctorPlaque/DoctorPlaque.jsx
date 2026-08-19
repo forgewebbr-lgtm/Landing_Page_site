@@ -1,5 +1,5 @@
 import { SITE, getWhatsAppUrl } from '../../config/site'
-import { appendCampaignCode, getSafeAttributionParameters } from '../../lib/campaign'
+import { appendCampaignCode } from '../../lib/campaign'
 import { trackEvent } from '../../lib/tracking'
 import './DoctorPlaque.css'
 
@@ -17,7 +17,6 @@ export default function DoctorPlaque() {
     trackEvent('whatsapp_click', {
       cta_location: 'hero_plaque',
       link_domain: 'wa.me',
-      ...getSafeAttributionParameters(),
     }, { category: 'conversion' })
   }
 

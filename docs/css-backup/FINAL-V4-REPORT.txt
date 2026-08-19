@@ -1,0 +1,19 @@
+CSS Final v4 — consolidação real da cascata responsiva
+
+Objetivo: remover as correções históricas V8/V9/V10 que já eram substituídas, sem mudar o resultado visual aprovado na v3.
+
+Garantias aplicadas nesta etapa:
+- nenhuma regra sobrevivente foi movida através de outro breakpoint;
+- wrappers @media só foram unidos quando eram imediatamente adjacentes e idênticos;
+- para o mesmo seletor + mesma propriedade + mesmo contexto @media, declarações antigas foram removidas somente quando outra declaração desse mesmo seletor/propriedade é a vencedora da cascata;
+- declarações repetidas dentro da mesma regra foram preservadas para não quebrar eventuais fallbacks;
+- a assinatura de TODAS as propriedades vencedoras por seletor/contexto foi comparada antes/depois e permaneceu idêntica;
+- 0 erros de parsing CSS.
+
+Declarações históricas efetivamente removidas: 57
+Grupos seletor/propriedade consolidados: 57
+Wrappers @media adjacentes unidos: 5
+responsive.css: 2107 -> 1845 linhas
+Tamanho: 48169 -> 41877 bytes
+
+Backup integral: docs/css-backup/final-v4/responsive-before-v4.css

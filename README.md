@@ -32,6 +32,12 @@ npm run validate:production
 npm run build
 ```
 
+Quando GTM/GA4 já estiverem configurados, use a etapa rígida de produção:
+
+```bash
+npm run build:production
+```
+
 Antes do build, o projeto gera automaticamente `robots.txt` e `sitemap.xml` usando o domínio configurado.
 
 ## Tecnologias implantadas
@@ -88,11 +94,21 @@ scripts/
 
 ## Documentação operacional
 
-- `IMPLEMENTACAO_TECNOLOGIAS.md`: arquitetura e eventos implantados;
-- `GTM_CONFIGURACAO.md`: configuração exata recomendada no Google Tag Manager;
-- `CHECKLIST_PUBLICACAO.md`: pendências antes de colocar a página no ar;
-- `RELATORIO_LIMPEZA.md`: limpeza estrutural anterior.
+- `docs/TRACKING-V5.md`: arquitetura, eventos e consentimento da versão V5;
+- `docs/GTM_CONFIGURACAO.md`: configuração recomendada no Google Tag Manager;
+- `docs/CHECKLIST_PUBLICACAO.md`: pendências antes de colocar a página no ar;
+- `docs/CSS-REFATORACAO-SEGURA.md`: histórico da refatoração visual/CSS.
 
 ## Antes de publicar
 
 Confirme número do WhatsApp, CRM, RQE, credenciais, telemedicina, avaliações, controlador de dados e texto jurídico. Depoimentos devem ser reais e utilizados com a autorização necessária.
+
+
+## CSS Aggressive v3
+
+Limpeza acelerada do CSS sem redesenho. Backups e relatório técnico: `docs/css-backup/aggressive-v3/` e `docs/css-backup/AGGRESSIVE-V3-REPORT.txt`.
+
+
+## CSS Final v4
+
+Consolidação da cascata responsiva após validação visual da v3. Relatório e backup: `docs/css-backup/FINAL-V4-REPORT.txt` e `docs/css-backup/final-v4/`.

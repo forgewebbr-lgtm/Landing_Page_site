@@ -1,0 +1,94 @@
+CSS Safe v2 — consolidação desktop sem mudança visual intencional
+
+O que foi feito:
+- removidas somente declarações antigas do primeiro bloco desktop que já eram sobrescritas depois pelo MESMO seletor, no MESMO @media e na MESMA propriedade;
+- regras que ficaram sem nenhuma declaração foram removidas;
+- o conteúdo a partir do bloco V8, incluindo TODO o Hero mobile V8/V9/V10, foi mantido byte a byte;
+- foi criado backup integral do responsive.css da v1.
+
+Declarações antigas removidas: 77
+Seletores afetados: 43
+Linhas responsive.css: 3055 -> 2868
+Erros de parsing CSS: 0
+Assinatura das declarações finais por seletor/contexto/propriedade: IDÊNTICA à v1.
+
+Importante: esta etapa NÃO consolidou o Hero mobile. Ele fica para uma etapa separada após novo teste visual.
+
+Declarações removidas:
+- linha original 823: .signals-section -> padding
+- linha original 848: .benefits-strip -> padding
+- linha original 898: .doctor-office-bg -> object-position
+- linha original 898: .doctor-office-bg -> transform
+- linha original 904: .doctor-office-shade -> background
+- linha original 912: .doctor-photo-vignette -> background
+- linha original 918: .doctor-content -> padding
+- linha original 952: .process-copy -> padding
+- linha original 956: .process-heading -> margin-bottom
+- linha original 1008: .process-image-panel -> margin-left
+- linha original 1008: .process-image-panel -> border-radius
+- linha original 1022: .comfort-section -> background
+- linha original 1026: .comfort-layout -> width
+- linha original 1026: .comfort-layout -> min-height
+- linha original 1026: .comfort-layout -> grid-template-columns
+- linha original 1026: .comfort-layout -> gap
+- linha original 1026: .comfort-layout -> padding
+- linha original 1034: .comfort-story -> min-height
+- linha original 1034: .comfort-story -> grid-template-columns
+- linha original 1034: .comfort-story -> background
+- linha original 1034: .comfort-story -> border
+- linha original 1034: .comfort-story -> border-radius
+- linha original 1034: .comfort-story -> box-shadow
+- linha original 1043: .comfort-story-image -> object-position
+- linha original 1043: .comfort-story-image -> filter
+- linha original 1043: .comfort-story-image -> transform
+- linha original 1049: .comfort-story:hover .comfort-story-image -> transform
+- linha original 1065: .comfort-intro -> padding
+- linha original 1069: .comfort-kicker -> margin-bottom
+- linha original 1069: .comfort-kicker -> font-size
+- linha original 1069: .comfort-kicker -> letter-spacing
+- linha original 1075: .comfort-intro h2 -> margin-bottom
+- linha original 1075: .comfort-intro h2 -> font-size
+- linha original 1075: .comfort-intro h2 -> line-height
+- linha original 1081: .comfort-intro p -> max-width
+- linha original 1081: .comfort-intro p -> font-size
+- linha original 1081: .comfort-intro p -> line-height
+- linha original 1087: .comfort-intro::after -> width
+- linha original 1087: .comfort-intro::after -> margin-top
+- linha original 1095: .comfort-stack -> gap
+- linha original 1099: .comfort-card -> grid-template-columns
+- linha original 1099: .comfort-card -> border-radius
+- linha original 1105: .comfort-card__copy -> gap
+- linha original 1105: .comfort-card__copy -> padding
+- linha original 1115: .comfort-card h3 -> font-size
+- linha original 1121: .comfort-card p -> font-size
+- linha original 1121: .comfort-card p -> line-height
+- linha original 1126: .comfort-card > img -> min-height
+- linha original 1131: .reviews-section -> padding
+- linha original 1135: .reviews-title -> margin-bottom
+- linha original 1135: .reviews-title -> font-size
+- linha original 1144: .reviews-grid -> gap
+- linha original 1149: .rating-card, .review-card -> min-height
+- linha original 1155: .rating-card -> padding
+- linha original 1176: .review-card -> padding
+- linha original 1186: .review-card p -> font-size
+- linha original 1186: .review-card p -> line-height
+- linha original 1197: .final-cta-section -> min-height
+- linha original 1197: .final-cta-section -> padding
+- linha original 1202: .final-grid -> grid-template-columns
+- linha original 1202: .final-grid -> gap
+- linha original 1207: .final-left h2 -> font-size
+- linha original 1207: .final-left h2 -> line-height
+- linha original 1217: .final-middle .cta-button -> min-width
+- linha original 1217: .final-middle .cta-button -> min-height
+- linha original 1217: .final-middle .cta-button -> font-size
+- linha original 1224: .final-middle small -> margin-top
+- linha original 1224: .final-middle small -> font-size
+- linha original 1229: .final-brand -> min-height
+- linha original 1229: .final-brand -> gap
+- linha original 1229: .final-brand -> padding-left
+- linha original 1235: .final-brand .kidney-mark -> width
+- linha original 1235: .final-brand .kidney-mark -> height
+- linha original 1240: .final-brand strong -> font-size
+- linha original 1244: .final-brand span -> font-size
+- linha original 1248: .final-brand small -> font-size
+- linha original 1252: .privacy-footer -> padding

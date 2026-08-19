@@ -49,7 +49,7 @@ export const SITE = Object.freeze({
   // Dados estruturados e documentos
   medicalSpecialtySchema: 'Urologic',
   availableLanguageSchema: 'Portuguese',
-  privacyUpdatedAt: '27 de julho de 2026',
+  privacyUpdatedAt: '18 de agosto de 2026',
 })
 
 export function getWhatsAppUrl(message = SITE.whatsappMessage) {

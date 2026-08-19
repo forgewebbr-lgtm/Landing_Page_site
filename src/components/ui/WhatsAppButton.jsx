@@ -1,6 +1,6 @@
 import Icon from './Icon'
 import { getWhatsAppUrl, SITE } from '../../config/site'
-import { appendCampaignCode, getSafeAttributionParameters } from '../../lib/campaign'
+import { appendCampaignCode } from '../../lib/campaign'
 import { trackEvent } from '../../lib/tracking'
 
 export default function WhatsAppButton({
@@ -16,7 +16,6 @@ export default function WhatsAppButton({
     trackEvent('whatsapp_click', {
       cta_location: location,
       link_domain: 'wa.me',
-      ...getSafeAttributionParameters(),
     }, { category: 'conversion' })
   }
 

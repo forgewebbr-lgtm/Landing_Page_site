@@ -69,15 +69,8 @@ export default function Comfort() {
         </Reveal>
 
         <div className="comfort-stack">
-          {resources.map((resource, index) => (
-            <Reveal
-              as="article"
-              className="comfort-card"
-              delay={240 + index * 110}
-              variant="scale"
-              duration={1320}
-              key={resource.title}
-            >
+          {resources.map((resource) => (
+            <article className="comfort-card" key={resource.title}>
               <div className="comfort-card__copy">
                 <Icon name={resource.icon} size={27} />
                 <div>
@@ -93,7 +86,7 @@ export default function Comfort() {
                 loading="lazy"
                 decoding="async"
               />
-            </Reveal>
+            </article>
           ))}
         </div>
       </div>

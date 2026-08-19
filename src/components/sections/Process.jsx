@@ -21,22 +21,16 @@ export default function Process() {
           <span className="process-heading-line" aria-hidden="true" />
         </Reveal>
 
-        <Reveal className="process-steps" variant="fade" duration={1380}>
+        <div className="process-steps">
           {steps.map(([icon, title, description], index) => (
-            <Reveal
-              as="article"
-              className="process-step"
-              delay={180 + index * 105}
-              distance={18}
-              key={title}
-            >
+            <article className="process-step" key={title}>
               <span className="step-number">{index + 1}</span>
               <Icon name={icon} size={34} />
               <h3><TextLines text={title} /></h3>
               <p><TextLines text={description} /></p>
-            </Reveal>
+            </article>
           ))}
-        </Reveal>
+        </div>
       </div>
 
       <Reveal className="process-image-panel" variant="scale" duration={1520} delay={120} distance={10}>

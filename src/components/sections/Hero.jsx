@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 
-import heroImage from '../../assets/web/hero-casal.png'
+import heroImage from '../../assets/web/hero-casal.webp'
 import heroMobileScene from '../../assets/web/hero-mobile-scene.webp'
 import doctorImage from '../../assets/web/dr-antonio-real-sem-fundo.webp'
-import heroDividerReference from '../../assets/web/hero-divider-reference.png'
+import heroDividerReference from '../../assets/web/hero-divider-reference.webp'
 
 import Icon from '../ui/Icon'
 import WhatsAppButton from '../ui/WhatsAppButton'

@@ -1,58 +1,104 @@
 import Icon from '../ui/Icon'
 import Reveal from '../ui/Reveal'
-import TextLines from '../ui/TextLines'
+import WhatsAppButton from '../ui/WhatsAppButton'
 
-const signals = [
-  ['droplet', 'Dificuldade ou dor ao urinar'],
-  ['moon', 'Acordar várias vezes à noite\npara urinar'],
-  ['target', 'Jato urinário fraco ou interrompido'],
-  ['droplet', 'Sangue na urina'],
-  ['person', 'Dor na região lombar\nou abdominal'],
-  ['heart', 'Queda no desempenho sexual'],
-  ['users', 'Histórico familiar de câncer\nurológico'],
-  ['person', 'Desconforto ou dores na\nregião pélvica'],
+const topics = [
+  {
+    icon: 'male',
+    title: 'Disfunção erétil e saúde sexual',
+    text: 'Dificuldade para obter ou manter uma ereção, redução do desempenho ou mudanças persistentes na vida sexual podem ter diferentes causas. Uma avaliação urológica ajuda a investigar o que está acontecendo e indicar a melhor abordagem.',
+  },
+  {
+    icon: 'bladder',
+    title: 'Alterações urinárias e próstata',
+    text: 'Jato urinário fraco, dificuldade para urinar, aumento da frequência ou necessidade de levantar várias vezes à noite são sintomas que podem justificar avaliação urológica.',
+  },
+  {
+    icon: 'intimate',
+    title: 'Fimose e saúde íntima',
+    text: 'Dor, desconforto, dificuldade para exposição da glande ou alterações recorrentes na região íntima podem ser avaliados pelo urologista, inclusive na vida adulta.',
+  },
+  {
+    icon: 'vasectomy',
+    title: 'Vasectomia e planejamento familiar',
+    text: 'A vasectomia é uma alternativa de contracepção definitiva para homens que já decidiram não ter filhos ou não desejam ampliar a família. A consulta permite entender indicação, procedimento e recuperação.',
+  },
+]
+
+const otherReasons = [
+  'sangue na urina',
+  'dor lombar ou abdominal',
+  'histórico familiar de câncer urológico',
+  'prevenção da próstata',
+  'desconfortos na região íntima',
 ]
 
 export default function Signals() {
   return (
-    <section className="signals-section" id="sinais" data-track-section="signals">
-      <div className="page-shell signals-grid">
-        <div className="signals-content">
-          <Reveal as="h2" className="section-kicker" delay={0}>
-            SINAIS QUE MERECEM ATENÇÃO
+    <section className="signals-section signals-section--hub" id="sinais" data-track-section="signals">
+      <div className="page-shell signals-hub">
+        <header className="signals-hub__header">
+          <Reveal as="p" className="signals-hub__eyebrow" delay={0}>
+            QUANDO VALE PROCURAR UM UROLOGISTA
           </Reveal>
 
-          <div className="signals-list">
-            {signals.map(([icon, text], index) => (
-              <Reveal
-                className="signal-item"
-                delay={100 + index * 75}
-                distance={14}
-                key={text}
-              >
-                <Icon name={icon} size={25} />
-                <span><TextLines text={text} /></span>
-              </Reveal>
+          <Reveal as="h2" className="signals-hub__title" delay={70} distance={14}>
+            Algumas mudanças merecem ser avaliadas com mais atenção.
+          </Reveal>
+
+          <Reveal as="p" className="signals-hub__intro" delay={140} distance={12}>
+            Alterações urinárias, sexuais ou relacionadas à saúde masculina nem sempre significam algo grave.
+            Mas quando persistem, uma avaliação especializada pode trazer clareza e segurança.
+          </Reveal>
+        </header>
+
+        <div className="signals-topic-grid">
+          {topics.map((topic, index) => (
+            <Reveal
+              as="article"
+              className="signals-topic-card"
+              delay={180 + index * 70}
+              distance={14}
+              key={topic.title}
+            >
+              <span className="signals-topic-card__icon" aria-hidden="true">
+                <Icon name={topic.icon} size={43} strokeWidth={1.55} />
+              </span>
+
+              <div className="signals-topic-card__copy">
+                <h3>{topic.title}</h3>
+                <p>{topic.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="signals-other" delay={500} distance={10}>
+          <span className="signals-other__icon" aria-hidden="true">
+            <Icon name="info" size={22} strokeWidth={1.7} />
+          </span>
+          <strong>Também avaliamos:</strong>
+          <div className="signals-other__items">
+            {otherReasons.map((reason) => (
+              <span key={reason}>{reason}</span>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="emotional-copy">
-          <Reveal as="h2" delay={130} distance={18}>
-            <TextLines text={'Você conhece. Você percebe.\nE você pode fazer a diferença.'} />
-          </Reveal>
+        <Reveal className="signals-action" delay={570} distance={12}>
+          <span className="signals-action__icon" aria-hidden="true">
+            <Icon name="heart" size={47} strokeWidth={1.45} />
+          </span>
 
-          <Reveal as="p" delay={260} distance={16}>
-            <TextLines text={'Muitas vezes, os homens ignoram sinais importantes.\nPor isso, seu cuidado e atenção podem ser decisivos\npara a saúde e o futuro dele.'} />
-          </Reveal>
+          <div className="signals-action__copy">
+            <h3>Percebeu alguma mudança?</h3>
+            <p>Buscar orientação pode ser o primeiro passo para entender o que está acontecendo.</p>
+          </div>
 
-          <Reveal className="emotional-note" delay={390} variant="scale">
-            <Icon name="heart" size={34} />
-            <span>
-              <TextLines text={'Cuidar da saúde dele é cuidar de\nquem você ama e de tudo que construíram juntos.'} />
-            </span>
-          </Reveal>
-        </div>
+          <WhatsAppButton className="signals-action__cta" location="signals">
+            Verificar disponibilidade
+          </WhatsAppButton>
+        </Reveal>
       </div>
     </section>
   )

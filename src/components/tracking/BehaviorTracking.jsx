@@ -47,7 +47,7 @@ export default function BehaviorTracking() {
 
     const sendEngagement = () => {
       if (engagementSent || Date.now() - startTime < 30000) return
-      engagementSent = trackEvent('engagement_30s', { engagement_time_seconds: 30 })
+      engagementSent = trackEvent('engaged_30s', { engagement_time_seconds: 30 })
     }
 
     const timer = window.setTimeout(sendEngagement, 30000)

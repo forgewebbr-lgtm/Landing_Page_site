@@ -1,0 +1,18 @@
+CSS Aggressive v3 — limpeza acelerada com preservação da cascata
+
+Estratégia:
+- nenhuma regra foi reordenada entre breakpoints;
+- responsive.css manteve a ordem original dos @media e seletores;
+- foram removidas declarações antigas somente quando o MESMO seletor, no MESMO contexto @media, redefinia depois a MESMA propriedade;
+- foram removidos seletores comprovadamente incompatíveis com o JSX atual (estruturas antigas e classes Reveal que não existem nesses elementos);
+- comentários de histórico V7/V8/V9/V10 e excesso de linhas em branco foram removidos; isso reduz linhas sem alterar renderização;
+- backups integrais dos 3 CSS alterados estão em docs/css-backup/aggressive-v3/.
+
+Declarações responsivas obsoletas removidas: 57
+Regras mortas removidas: 19
+Partes de seletores mortos removidas: 31
+responsive.css: 2868 -> 2107 linhas
+src/styles/sections.css: 1341 -> 1083 linhas
+src/styles/animations.css: 289 -> 195 linhas
+
+Validação: 0 erros de parsing CSS nos arquivos alterados.

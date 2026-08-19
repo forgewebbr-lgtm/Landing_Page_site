@@ -5,7 +5,12 @@ import {
   isValidGtmId,
   isValidMetaPixelId,
 } from '../config/marketing'
-import { captureCampaign, getSafeAttributionParameters } from './campaign'
+import {
+  captureCampaign,
+  clearCampaignPersistence,
+  enableCampaignPersistence,
+  getSafeAttributionParameters,
+} from './campaign'
 import {
   CONSENT_EVENT,
   readConsent,
@@ -48,6 +53,7 @@ function setDefaultConsent() {
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
+    personalization_storage: 'denied',
     functionality_storage: 'granted',
     security_storage: 'granted',
     wait_for_update: 500,
@@ -59,11 +65,22 @@ function updateGoogleConsent(consent) {
   window.gtag('consent', 'update', toGoogleConsent(consent))
 }
 
+function syncCampaignPersistence(consent) {
+  if (consent.analytics || consent.marketing) {
+    enableCampaignPersistence()
+    return
+  }
+  clearCampaignPersistence()
+}
+
 function loadGtm() {
   if (gtmLoaded || !isValidGtmId()) return
   ensureGoogleQueue()
   window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' })
-  loadScript('google-tag-manager', `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(MARKETING.gtmId)}`)
+  loadScript(
+    'google-tag-manager',
+    `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(MARKETING.gtmId)}`,
+  )
   gtmLoaded = true
   log('Google Tag Manager carregado', MARKETING.gtmId)
 }
@@ -154,8 +171,13 @@ function loadAllowedProviders() {
 export function initializeTracking() {
   if (typeof window === 'undefined' || initialized) return
   initialized = true
-  captureCampaign()
+
+  // O estado padrão precisa existir antes de qualquer tag opcional.
   setDefaultConsent()
+
+  // A origem da URL fica somente em memória até existir consentimento opcional.
+  captureCampaign({ persist: false, includeStored: false })
+  syncCampaignPersistence(activeConsent)
 
   if (activeConsent.decided) {
     updateGoogleConsent(activeConsent)
@@ -167,6 +189,7 @@ export function initializeTracking() {
   window.addEventListener(CONSENT_EVENT, (event) => {
     activeConsent = event.detail
     updateGoogleConsent(activeConsent)
+    syncCampaignPersistence(activeConsent)
     loadAllowedProviders()
     syncDirectGooglePrivacySettings()
     updateMetaConsent(activeConsent)
@@ -185,6 +208,10 @@ export function getConsent() {
 
 export function trackEvent(eventName, parameters = {}, options = {}) {
   if (typeof window === 'undefined') return false
+  if (!/^[A-Za-z][A-Za-z0-9_]*$/.test(eventName)) {
+    log('evento ignorado por nome inválido', eventName)
+    return false
+  }
 
   const category = options.category || 'analytics'
   const canSendAnalytics = activeConsent.analytics

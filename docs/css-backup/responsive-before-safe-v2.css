@@ -1,57 +1,88 @@
+/* Responsividade V7 — estabilidade de zoom
+ *
+ * O zoom do navegador reduz a largura em CSS pixels. Estes breakpoints
+ * reorganizam a página progressivamente, em vez de comprimir estruturas
+ * desktop ou trocar tamanhos/posições de forma abrupta.
+ */
+
+/* Desktop intermediário / zoom entre aproximadamente 125% e 150%. */
 @media (max-width: 1360px) {
   .header-inner {
     grid-template-columns: minmax(190px, .9fr) auto minmax(190px, .9fr);
     gap: 16px;
   }
+
   .desktop-nav {
     gap: clamp(14px, 1.45vw, 22px);
   }
+
   .desktop-nav a {
     font-size: 12.5px;
   }
+
   .header-cta {
     padding-inline: 16px;
     font-size: 12.5px;
   }
+
   .hero-copy > p {
     margin-bottom: 34px;
   }
+
+
+
+
+
   .benefits-layout {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     row-gap: 28px;
   }
+
   .benefits-layout > h2 {
     grid-column: 1 / -1;
     padding-right: 0;
   }
+
   .benefit-item:first-of-type {
     border-left: 0;
   }
+
   .reviews-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 18px;
   }
+
   .reviews-grid > h2,
   .reviews-grid > .rating-card {
     grid-column: span 3;
   }
+
   .reviews-grid > blockquote {
     grid-column: span 2;
   }
 }
+
+/* Header compacto e composição desktop reduzida — faixa crítica do zoom. */
 @media (max-width: 1100px) {
+
+
   .header-inner {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 14px;
   }
+
   .desktop-nav {
     display: none;
   }
+
   .header-actions {
     gap: 10px;
   }
+
   .menu-toggle {
     display: grid;
   }
+
   .mobile-nav {
     position: absolute;
     inset: var(--header-height) 0 auto;
@@ -65,16 +96,19 @@
     box-shadow: 0 18px 34px rgba(0, 0, 0, .18);
     transition: max-height .35s ease, opacity .25s ease, visibility .25s ease;
   }
+
   .mobile-nav--open {
     max-height: 520px;
     visibility: visible;
     opacity: 1;
   }
+
   .mobile-nav nav {
     display: grid;
     gap: 0;
     padding-block: 12px 20px;
   }
+
   .mobile-nav a {
     padding: 13px 2px;
     color: rgba(255, 255, 255, .94);
@@ -82,67 +116,101 @@
     font-size: 14px;
     font-weight: 600;
   }
+
   .mobile-nav .cta-button {
     width: 100%;
     margin-top: 14px;
   }
+
   .hero-section {
     --hero-height: clamp(610px, 64vw, 670px);
   }
+
   .hero-copy {
     width: clamp(350px, 34vw, 430px);
   }
+
   .hero-copy h1 {
     margin-bottom: 22px;
     font-size: clamp(42px, 4.7vw, 52px);
   }
+
   .hero-copy > p {
     font-size: 16px;
   }
+
   .hero-copy > p br {
     display: none;
   }
+
   .hero-trust {
     gap: 14px 18px;
     margin-bottom: 28px;
   }
+
   .hero-section--refined .hero-trust {
     gap: 13px 16px;
   }
+
   .hero-section--refined .trust-item {
     font-size: 11.5px;
   }
+
   .hero-doctor-card__plate {
     width: clamp(238px, 24vw, 270px);
     max-width: clamp(238px, 24vw, 270px);
   }
+
+
+
+
+
+
+
   .doctor-section {
     grid-template-columns: minmax(360px, 44%) minmax(0, 56%);
   }
+
+
+
   .doctor-content {
     padding-inline: clamp(28px, 4vw, 46px);
   }
+
+
+
+
+
   .process-section {
     grid-template-columns: minmax(0, 66%) minmax(300px, 34%);
   }
+
   .process-copy {
     padding: 34px 30px 38px max(28px, calc((100vw - var(--shell)) / 2));
   }
+
   .process-heading {
     margin-bottom: 24px;
   }
+
   .process-steps {
     gap: 8px;
   }
+
   .process-step p {
     font-size: 11.25px;
   }
+
   .process-image-panel {
     margin-left: -24px;
   }
+
+
+
   .final-grid {
     grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
   }
+
   .final-brand {
     grid-column: 1 / -1;
     min-height: auto;
@@ -151,23 +219,46 @@
     border-left: 0;
   }
 }
+
+/* Tablet e zoom elevado: a composição passa a empilhar sem cortes. */
 @media (max-width: 920px) {
+
+
   .brand-symbol {
     width: 44px;
     height: 44px;
   }
+
   .brand-copy strong {
     font-size: 17px;
   }
+
   .header-cta {
     min-height: 43px;
     padding-inline: 14px;
   }
+
   .hero-section {
     --hero-height: 700px;
     --hero-copy-x: 0px;
     --hero-copy-y: 0px;
   }
+
+  /*
+   * Médico: ~43% da largura da tela, encostado na borda direita (medido
+   * a partir do modelo). Placa: a largura mínima real é ditada pelo texto
+   * "Flávio Rodrigues" no piso de fonte definido em DoctorPlaque.css
+   * (17px, ~197px mínimo com padding) — por isso o alvo aqui é ~54vw em
+   * vez do ~38vw que a proporção visual do modelo sozinha sugeriria;
+   * abaixo disso o nome ultrapassaria a placa. Usar vw em vez de valores
+   * fixos evita saltos entre os breakpoints de celular/tablet.
+   *
+   * Seletor composto ".hero-section.hero-section--refined" (em vez de só
+   * ".hero-section") de propósito: garante especificidade maior que a regra
+   * incondicional equivalente em Hero.css, então estes valores vencem em
+   * qualquer largura de tela dentro deste breakpoint, independentemente da
+   * ordem de carregamento dos arquivos CSS.
+   */
   .hero-section.hero-section--refined {
     --hero-doctor-right: clamp(-18px, -1.5vw, 0px);
     --hero-doctor-bottom: clamp(-10px, -1vw, -2px);
@@ -176,72 +267,95 @@
     --hero-plate-left: clamp(14px, 4vw, 30px);
     --hero-plate-width: clamp(190px, 54vw, 250px);
   }
+
   .hero-inner {
     align-items: flex-start;
     padding-top: calc(var(--header-height) + 42px);
   }
+
   .hero-copy {
     width: clamp(350px, 39vw, 390px);
     max-width: none;
   }
+
   .hero-copy h1 {
     font-size: clamp(38px, 5vw, 46px);
   }
+
   .hero-copy > p {
     margin-bottom: 26px;
     line-height: 1.5;
   }
+
   .hero-trust {
     max-width: 360px;
   }
+
   .hero-section--refined .hero-action .cta-button {
     width: min(100%, 330px);
   }
+
   .benefits-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .benefit-item:nth-of-type(3) {
     border-left: 0;
   }
+
   .doctor-section {
     grid-template-columns: 1fr;
   }
+
   .doctor-photo-panel {
     min-height: 460px;
   }
+
+
+
   .doctor-photo-vignette {
-    background: linear-gradient(90deg, transparent 0 64%, rgba(250, 247, 240, .08) 78%, rgba(250, 247, 240, .5) 100%),
-            linear-gradient(0deg, rgba(5, 40, 35, .22), transparent 36%);
+    background:
+      linear-gradient(90deg, transparent 0 64%, rgba(250, 247, 240, .08) 78%, rgba(250, 247, 240, .5) 100%),
+      linear-gradient(0deg, rgba(5, 40, 35, .22), transparent 36%);
   }
+
   .doctor-content {
     padding: 64px 32px 72px;
   }
+
   .process-section {
     grid-template-columns: 1fr;
   }
+
   .process-copy {
     padding: 54px 28px 58px;
   }
+
   .process-heading {
     grid-template-columns: minmax(36px, 72px) auto minmax(36px, 72px);
     gap: 13px;
     margin-bottom: 34px;
   }
+
   .process-heading h2 {
     font-size: 24px;
   }
+
   .process-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 38px 18px;
   }
+
   .process-step:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     width: min(100%, 360px);
     justify-self: center;
   }
+
   .process-steps::before {
     display: none;
   }
+
   .process-image-panel {
     width: calc(100% - 36px);
     min-height: 300px;
@@ -250,70 +364,92 @@
     border-top: 2px solid rgba(210, 164, 95, .75);
     border-radius: 120px 0 0 0;
   }
+
   .process-image {
     min-height: 300px;
   }
+
+
+
   .reviews-grid > h2,
   .reviews-grid > .rating-card,
   .reviews-grid > blockquote {
     grid-column: auto;
   }
+
   .reviews-grid > blockquote:last-of-type {
     grid-column: 1 / -1;
   }
+
   .final-grid {
     grid-template-columns: 1fr;
   }
+
   .final-middle {
     text-align: left;
   }
+
   .final-brand {
     grid-column: auto;
   }
+
   .consent-panel {
     grid-template-columns: 1fr;
   }
+
   .consent-actions {
     justify-content: flex-start;
   }
 }
+
+/* Celular e zoom extremo: preserva conteúdo e hierarquia sem overflow. */
 @media (max-width: 720px) {
   .header-cta {
     display: none;
   }
+
   .brand-copy small {
     letter-spacing: .1em;
   }
+
   .hero-section {
     --hero-height: 880px;
     --hero-plate-bottom: 20px;
   }
+
   .hero-inner {
     padding-top: calc(var(--header-height) + 34px);
   }
+
   .hero-copy {
     width: 100%;
     max-width: 540px;
   }
+
   .hero-copy h1 {
     max-width: 540px;
     font-size: clamp(38px, 8vw, 48px);
   }
+
   .hero-copy > p {
     max-width: 500px;
   }
+
   .hero-trust {
     max-width: 500px;
   }
+
   .hero-section--refined .hero-action,
   .hero-section--refined .hero-action .cta-button {
     width: min(100%, 390px);
   }
+
   .benefits-layout,
   .process-steps,
   .reviews-grid {
     grid-template-columns: 1fr;
   }
+
   .benefits-layout > h2,
   .reviews-grid > h2,
   .reviews-grid > .rating-card,
@@ -321,6 +457,7 @@
   .reviews-grid > blockquote:last-of-type {
     grid-column: auto;
   }
+
   .benefit-item,
   .benefit-item:first-of-type,
   .benefit-item:nth-of-type(3) {
@@ -328,273 +465,395 @@
     border-top: 1px solid rgba(194, 145, 72, .5);
     border-left: 0;
   }
+
+
+
+
+
   .process-step {
     min-height: 0;
   }
+
   .process-step:last-child:nth-child(odd) {
     grid-column: auto;
     width: auto;
   }
+
   .process-heading {
     grid-template-columns: minmax(22px, 1fr) auto minmax(22px, 1fr);
     gap: 10px;
   }
+
   .process-heading h2 {
     font-size: 21px;
   }
+
   .process-image-panel {
     width: calc(100% - 20px);
     min-height: 250px;
     border-radius: 84px 0 0 0;
   }
+
   .process-image {
     min-height: 250px;
   }
+
   .final-points {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .privacy-footer__inner,
   .privacy-footer nav {
     flex-wrap: wrap;
   }
+
   .consent-layer {
     padding: 12px;
   }
+
   .consent-panel {
     gap: 18px;
     padding: 20px;
   }
 }
+
 @media (max-width: 520px) {
   .brand-copy strong {
     font-size: 15px;
   }
+
   .brand-copy small {
     font-size: 8px;
   }
+
   .hero-section {
     --hero-height: 900px;
   }
+
   .hero-copy h1 {
+    /* Piso reduzido de 36 para 27px: a 390px de viewport, "Quando algo
+       muda," a 36px (o piso anterior) mede ~356px de largura real,
+       maior que os ~342px disponíveis (390 - 48 de padding lateral),
+       ultrapassando a caixa e quebrando a linha de forma inesperada. */
     font-size: clamp(27px, 8.6vw, 40px);
   }
+
+  /* Linha única de selos de confiança (ver .hero-section--refined .hero-trust
+     em Hero.css); em telas bem estreitas só reduzimos fonte/gap, mantendo
+     a mesma faixa horizontal com divisores do modelo. */
   .hero-section--refined .trust-item {
     font-size: 10.5px;
   }
+
   .hero-section--refined .trust-item svg {
     width: 20px;
     height: 20px;
   }
+
   .hero-section--refined .hero-action,
   .hero-section--refined .hero-action .cta-button {
     width: 100%;
   }
+
+
+
+
+
   .doctor-content,
   .process-copy {
     padding-inline: 20px;
   }
+
   .process-copy {
     padding-block: 46px 50px;
   }
+
   .process-steps {
     gap: 34px 12px;
   }
+
   .step-number {
     width: 39px;
     height: 39px;
   }
+
   .process-step h3 {
     font-size: 13px;
   }
+
   .process-step p {
     font-size: 11.25px;
   }
+
   .final-points {
     grid-template-columns: 1fr;
   }
+
   .consent-actions,
   .consent-button,
   .consent-link-button {
     width: 100%;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .mobile-nav {
     transition: none;
   }
 }
+
+/* Ajustes responsivos — Ambiente editorial claro + avaliações premium */
 @media (max-width: 1360px) {
   .comfort-layout {
     grid-template-columns: minmax(0, 2fr) minmax(310px, .9fr);
   }
+
   .comfort-story {
     grid-template-columns: minmax(245px, .74fr) minmax(340px, 1.26fr);
   }
+
   .comfort-intro {
     padding-inline: 30px;
   }
+
   .reviews-grid {
     grid-template-columns: .92fr repeat(3, 1fr);
   }
+
   .reviews-grid > .rating-card,
   .reviews-grid > blockquote {
     grid-column: auto;
   }
 }
+
 @media (max-width: 1100px) {
   .comfort-layout {
     grid-template-columns: 1fr;
     min-height: 0;
     padding: 10px;
   }
+
   .comfort-story {
     min-height: 390px;
     grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
   }
+
   .comfort-stack {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: none;
   }
+
   .comfort-card {
     grid-template-columns: minmax(0, 1.18fr) minmax(105px, .82fr);
     min-height: 145px;
   }
 }
+
 @media (max-width: 920px) {
   .comfort-story {
     min-height: 400px;
     grid-template-columns: minmax(220px, .78fr) minmax(0, 1.22fr);
   }
+
   .comfort-story-overlay {
-    background: linear-gradient(90deg,
-              rgba(250, 247, 240, .99) 0%,
-              rgba(250, 247, 240, .97) 29%,
-              rgba(250, 247, 240, .72) 48%,
-              rgba(250, 247, 240, .13) 68%,
-              transparent 100%);
+    background:
+      linear-gradient(90deg,
+        rgba(250, 247, 240, .99) 0%,
+        rgba(250, 247, 240, .97) 29%,
+        rgba(250, 247, 240, .72) 48%,
+        rgba(250, 247, 240, .13) 68%,
+        transparent 100%);
   }
+
   .comfort-intro h2 {
     font-size: 24px;
   }
+
   .comfort-feature-caption {
     width: min(390px, 52%);
   }
+
   .comfort-stack {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
   .comfort-card {
     grid-template-columns: 1fr;
   }
+
   .comfort-card > img {
     order: -1;
     height: 112px;
   }
+
   .comfort-card__copy {
     padding: 14px;
   }
+
   .reviews-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .reviews-grid > .rating-card,
   .reviews-grid > blockquote,
   .reviews-grid > blockquote:last-of-type {
     grid-column: auto;
   }
 }
+
 @media (max-width: 720px) {
   .comfort-layout {
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 10px;
   }
+
   .comfort-story {
     min-height: 590px;
     display: block;
   }
+
   .comfort-story-image {
     object-position: center bottom;
   }
+
   .comfort-story-overlay {
-    background: linear-gradient(180deg,
-              rgba(250, 247, 240, .995) 0%,
-              rgba(250, 247, 240, .985) 35%,
-              rgba(250, 247, 240, .76) 53%,
-              rgba(250, 247, 240, .15) 72%,
-              transparent 100%);
+    background:
+      linear-gradient(180deg,
+        rgba(250, 247, 240, .995) 0%,
+        rgba(250, 247, 240, .985) 35%,
+        rgba(250, 247, 240, .76) 53%,
+        rgba(250, 247, 240, .15) 72%,
+        transparent 100%);
   }
+
   .comfort-intro {
     width: 100%;
     min-height: 310px;
     padding: 34px 28px;
   }
+
   .comfort-intro p {
     max-width: 520px;
   }
+
   .comfort-feature-caption {
     right: 14px;
     bottom: 14px;
     left: 14px;
     width: auto;
   }
+
   .comfort-stack {
     grid-column: auto;
     grid-template-columns: 1fr;
     gap: 10px;
   }
+
   .comfort-card {
     grid-template-columns: minmax(0, 1.2fr) minmax(120px, .8fr);
     min-height: 140px;
   }
+
   .comfort-card > img {
     order: initial;
     height: 100%;
     min-height: 140px;
   }
+
   .reviews-title {
     text-align: center;
   }
+
   .reviews-title::after {
     margin-inline: auto;
   }
+
   .reviews-grid {
     grid-template-columns: 1fr;
   }
+
   .rating-card,
   .review-card {
     min-height: 170px;
   }
 }
+
 @media (max-width: 520px) {
   .comfort-story {
     min-height: 540px;
   }
+
   .comfort-intro {
     min-height: 295px;
     padding: 30px 22px;
   }
+
   .comfort-intro h2 {
     font-size: 22px;
   }
+
   .comfort-feature-caption {
     padding: 12px 13px;
   }
+
   .comfort-card {
     grid-template-columns: 1fr;
   }
+
   .comfort-card > img {
     order: -1;
     height: 150px;
   }
+
   .reviews-section {
     padding-block: 36px 42px;
   }
 }
+
+/* ================================================================
+   FIDELIDADE AO MODELO APROVADO — DESKTOP / ZOOM CONTROLADO
+   IMPORTANTE: este bloco NÃO contém seletores do Hero.
+   Objetivo: aproximar somente as seções abaixo do Hero do mockup
+   aprovado em 08/08/2026, preservando a responsividade móvel.
+   ================================================================ */
 @media (min-width: 921px) {
+  /* 1. Sinais — mais compacto e editorial, como no modelo. */
+  .signals-section {
+    padding: 52px 0 56px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* 2. Faixa de benefícios — uma única linha, inclusive com zoom moderado. */
+  .benefits-strip {
+    padding: 26px 0;
+  }
+
   .benefits-layout {
     grid-template-columns: minmax(175px, 1.08fr) repeat(4, minmax(0, 1fr));
     row-gap: 0;
   }
+
   .benefits-layout > h2 {
     grid-column: auto;
     align-self: center;
@@ -602,6 +861,7 @@
     font-size: 21px;
     line-height: 1.3;
   }
+
   .benefit-item,
   .benefit-item:first-of-type,
   .benefit-item:nth-of-type(3) {
@@ -611,212 +871,502 @@
     border-top: 0;
     border-left: 1px solid rgba(194, 145, 72, .58);
   }
+
   .benefit-item svg {
     width: 29px;
     height: 29px;
   }
+
   .benefit-item h3 {
     margin-bottom: 5px;
     font-size: 12.7px;
     line-height: 1.28;
   }
+
   .benefit-item p {
     font-size: 10.7px;
     line-height: 1.48;
   }
+
+  /* 3. Especialista — composição 50/50 com mais presença vertical.
+     A foto ganha área para o médico aparecer inteiro e o conteúdo continua
+     integrado pelo fade, sem virar dois blocos independentes. */
+
+
+
+
   .doctor-office-bg {
+    object-position: center 54%;
     filter: saturate(.9) brightness(.9) sepia(.035);
+    transform: scale(1.01);
   }
+
+  .doctor-office-shade {
+    background:
+      linear-gradient(90deg, rgba(4, 31, 27, .11) 0%, rgba(4, 31, 27, .015) 48%, rgba(250, 247, 240, .5) 83%, rgba(250, 247, 240, .96) 100%),
+      linear-gradient(0deg, rgba(3, 27, 24, .16), transparent 66%);
+  }
+
+
+
+  .doctor-photo-vignette {
+    background:
+      linear-gradient(90deg, transparent 0 55%, rgba(250, 247, 240, .17) 72%, rgba(250, 247, 240, .93) 100%),
+      linear-gradient(0deg, rgba(5, 40, 35, .14), transparent 38%);
+  }
+
+  .doctor-content {
+    padding: 52px clamp(36px, 3.7vw, 58px) 70px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .doctor-callout .cta-button {
     min-height: 44px;
     font-size: 12.5px;
   }
+
   .doctor-callout small {
     margin-top: 6px;
     font-size: 10.2px;
   }
+
+  /* 4. Como é a consulta — mantém a faixa horizontal, mas ganha leitura
+     e uma foto lateral mais presente, sem ficar alta como uma seção comum. */
+
+
+  .process-copy {
+    padding: 30px 34px 34px max(28px, calc((100vw - var(--shell)) / 2));
+  }
+
   .process-heading {
     grid-template-columns: minmax(38px, 78px) auto minmax(38px, 78px);
     gap: 15px;
+    margin-bottom: 20px;
   }
+
   .process-heading h2 {
     font-size: clamp(21px, 1.7vw, 25px);
   }
+
   .process-steps {
     gap: 5px;
   }
+
   .process-steps::before {
     top: 19px;
     right: 6.8%;
     left: 6.8%;
   }
+
   .process-step {
     padding: 0 3px;
   }
+
   .step-number {
     width: 39px;
     height: 39px;
     margin-bottom: 6px;
-    box-shadow: 0 0 0 3px rgba(5, 48, 43, .72),
-            0 4px 11px rgba(0, 0, 0, .21),
-            inset 0 1px 1px rgba(255, 255, 255, .5);
+    box-shadow:
+      0 0 0 3px rgba(5, 48, 43, .72),
+      0 4px 11px rgba(0, 0, 0, .21),
+      inset 0 1px 1px rgba(255, 255, 255, .5);
     font-size: 12.5px;
   }
+
   .process-step svg {
     width: 24px;
     height: 24px;
   }
+
   .process-step h3 {
     margin: 6px 0 4px;
     font-size: 11.5px;
     line-height: 1.3;
   }
+
   .process-step p {
     max-width: 178px;
     font-size: 10.1px;
     line-height: 1.44;
   }
+
   .process-image-panel {
     min-height: 250px;
+    margin-left: -28px;
     border-left-width: 2px;
+    border-radius: 60% 0 0 60% / 100% 0 0 100%;
     box-shadow: -12px 0 27px rgba(0, 0, 0, .16);
   }
+
   .process-image {
     min-height: 250px;
     transform: scale(1.025);
   }
-  .comfort-story-overlay {
-    background: linear-gradient(90deg,
-              rgba(250, 247, 240, .995) 0%,
-              rgba(250, 247, 240, .99) 28%,
-              rgba(250, 247, 240, .9) 37%,
-              rgba(250, 247, 240, .42) 48%,
-              rgba(250, 247, 240, .08) 57%,
-              transparent 67%),
-            linear-gradient(0deg, rgba(69, 51, 31, .035), transparent 44%);
+
+  /* 5. Ambiente — 27% texto claro + 36% foto + 37% recursos. */
+  .comfort-section {
+    background: #f2ede5;
   }
+
+  .comfort-layout {
+    width: min(100%, 1560px);
+    min-height: 320px;
+    grid-template-columns: minmax(0, 1.72fr) minmax(300px, 1fr);
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .comfort-story {
+    min-height: 310px;
+    grid-template-columns: minmax(220px, 42.5%) minmax(0, 57.5%);
+    background: #f6f1e9;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .comfort-story-image {
+    object-position: 72% center;
+    filter: saturate(.9) contrast(1.025) brightness(1.055) sepia(.025);
+    transform: scale(1.005);
+  }
+
+  .comfort-story:hover .comfort-story-image {
+    transform: scale(1.018);
+  }
+
+  .comfort-story-overlay {
+    background:
+      linear-gradient(90deg,
+        rgba(250, 247, 240, .995) 0%,
+        rgba(250, 247, 240, .99) 28%,
+        rgba(250, 247, 240, .9) 37%,
+        rgba(250, 247, 240, .42) 48%,
+        rgba(250, 247, 240, .08) 57%,
+        transparent 67%),
+      linear-gradient(0deg, rgba(69, 51, 31, .035), transparent 44%);
+  }
+
+  .comfort-intro {
+    padding: 34px 30px;
+  }
+
+  .comfort-kicker {
+    margin-bottom: 11px;
+    font-size: 9.2px;
+    letter-spacing: .16em;
+  }
+
+  .comfort-intro h2 {
+    margin-bottom: 17px;
+    font-size: clamp(23px, 1.85vw, 28px);
+    line-height: 1.08;
+  }
+
+  .comfort-intro p {
+    max-width: 280px;
+    font-size: 12.2px;
+    line-height: 1.62;
+  }
+
+  .comfort-intro::after {
+    width: 38px;
+    margin-top: 18px;
+  }
+
+  /* O modelo aprovado não usa a tarja verde sobre a foto principal. */
+
+
+  .comfort-stack {
+    gap: 5px;
+  }
+
   .comfort-card {
+    grid-template-columns: minmax(0, 1.16fr) minmax(112px, .84fr);
+    border-radius: 7px;
     box-shadow: 0 5px 13px rgba(10, 34, 29, .065);
   }
+
+  .comfort-card__copy {
+    gap: 9px;
+    padding: 12px 11px 11px 13px;
+  }
+
   .comfort-card__copy > svg {
     width: 22px;
     height: 22px;
   }
+
   .comfort-card h3 {
     margin-bottom: 5px;
+    font-size: 12px;
     line-height: 1.22;
   }
+
+  .comfort-card p {
+    font-size: 9.7px;
+    line-height: 1.42;
+  }
+
+  .comfort-card > img {
+    min-height: 0;
+  }
+
+  /* 6. Avaliações — linha baixa, limpa e com 4 cartões equivalentes. */
+  .reviews-section {
+    padding: 26px 0 30px;
+  }
+
+  .reviews-title {
+    margin-bottom: 15px;
+    font-size: clamp(18px, 1.45vw, 21px);
+  }
+
   .reviews-title::after {
     display: none;
   }
+
   .reviews-grid {
     grid-template-columns: .98fr repeat(3, 1.04fr);
+    gap: 10px;
   }
+
   .rating-card,
   .review-card {
+    min-height: 138px;
     border-radius: 7px;
   }
+
+  .rating-card {
+    padding: 16px 14px;
+  }
+
   .rating-score {
     margin-bottom: 5px;
   }
+
   .rating-score strong {
     font-size: clamp(42px, 3.4vw, 52px);
   }
+
   .rating-score span {
     font-size: 16px;
   }
+
   .rating-card small {
     margin-top: 6px;
     font-size: 9.7px;
   }
+
   .review-card {
     gap: 8px;
+    padding: 14px 13px 12px;
   }
+
   .review-card b {
     height: 18px;
     font-size: 28px;
   }
+
+  .review-card p {
+    font-size: 10.7px;
+    line-height: 1.5;
+  }
+
   .reviews-note {
     margin-top: 7px;
     font-size: 9px;
   }
+
+  /* 7. Fechamento — compacto como no modelo aprovado. */
+  .final-cta-section {
+    min-height: 104px;
+    padding: 20px 0;
+  }
+
+  .final-grid {
+    grid-template-columns: 1.35fr .82fr 1fr;
+    gap: 24px;
+  }
+
   .final-left h2 {
     margin: 0;
+    font-size: 18px;
+    line-height: 1.17;
   }
+
   .final-points {
     display: none;
   }
+
   .final-middle .cta-button {
+    min-width: min(100%, 270px);
+    min-height: 43px;
     padding-inline: 20px;
+    font-size: 12.5px;
   }
+
+  .final-middle small {
+    margin-top: 5px;
+    font-size: 9.2px;
+  }
+
+  .final-brand {
+    min-height: 70px;
+    gap: 12px;
+    padding-left: 22px;
+  }
+
+  .final-brand .kidney-mark {
+    width: 55px;
+    height: 55px;
+  }
+
+  .final-brand strong {
+    font-size: 15.5px;
+  }
+
+  .final-brand span {
+    font-size: 9.8px;
+  }
+
+  .final-brand small {
+    font-size: 9px;
+  }
+
+  .privacy-footer {
+    padding: 11px 0;
+  }
+
   .privacy-footer small,
   .privacy-footer a,
   .privacy-footer button {
     font-size: 9px;
   }
+}
+
+/* ================================================================
+   FIDELIDADE ESTRUTURAL AO MODELO — V8
+   Refinamento de 09/08/2026 a partir da comparação direta entre o
+   modelo e a captura real. NÃO altera nenhum seletor do Hero.
+   ================================================================ */
+@media (min-width: 921px) {
+  /* Sinais: devolve um pouco do respiro editorial do mockup. */
   .signals-section {
     padding: 62px 0 66px;
   }
+
+
+
+  /* Benefícios: faixa baixa, porém sem comprimir demais o conteúdo. */
   .benefits-strip {
     padding: 30px 0;
   }
+
+  /* Especialista: no mockup esta é uma seção importante e mais alta.
+     O médico ocupa visualmente boa parte da fotografia e a curva fecha
+     o bloco antes da faixa escura da consulta. */
   .doctor-section {
     min-height: 452px;
     grid-template-columns: 49% 51%;
   }
+
   .doctor-photo-panel {
     min-height: 452px;
   }
+
   .doctor-office-bg {
     object-position: center 52%;
     transform: scale(1.018);
   }
+
   .doctor-office-shade {
-    background: linear-gradient(90deg,
-              rgba(4, 31, 27, .12) 0%,
-              rgba(4, 31, 27, .015) 50%,
-              rgba(250, 247, 240, .36) 74%,
-              rgba(250, 247, 240, .92) 100%),
-            linear-gradient(0deg, rgba(3, 27, 24, .18), transparent 64%);
+    background:
+      linear-gradient(90deg,
+        rgba(4, 31, 27, .12) 0%,
+        rgba(4, 31, 27, .015) 50%,
+        rgba(250, 247, 240, .36) 74%,
+        rgba(250, 247, 240, .92) 100%),
+      linear-gradient(0deg, rgba(3, 27, 24, .18), transparent 64%);
   }
+
+
+
   .doctor-photo-vignette {
-    background: linear-gradient(90deg,
-              transparent 0 58%,
-              rgba(250, 247, 240, .10) 70%,
-              rgba(250, 247, 240, .84) 100%),
-            linear-gradient(0deg, rgba(5, 40, 35, .16), transparent 38%);
+    background:
+      linear-gradient(90deg,
+        transparent 0 58%,
+        rgba(250, 247, 240, .10) 70%,
+        rgba(250, 247, 240, .84) 100%),
+      linear-gradient(0deg, rgba(5, 40, 35, .16), transparent 38%);
   }
+
   .doctor-content {
     padding: 54px clamp(38px, 4vw, 60px) 72px;
   }
+
   .doctor-content > h2 {
     margin-bottom: 30px;
     font-size: clamp(29px, 2.3vw, 35px);
     line-height: 1.13;
   }
+
+
+
+
+
+
+
   .doctor-callout {
     margin-top: 26px;
   }
+
+  /* Consulta: proporção horizontal e imagem curva lateral do mockup. */
   .process-section {
+    min-height: 250px;
     grid-template-columns: minmax(0, 69%) minmax(300px, 31%);
   }
+
   .process-copy {
     padding: 30px 34px 34px max(30px, calc((100vw - var(--shell)) / 2));
   }
+
   .process-heading {
     margin-bottom: 20px;
   }
+
   .process-image-panel,
   .process-image {
     min-height: 250px;
   }
+
   .process-image-panel {
     margin-left: -28px;
     border-radius: 60% 0 0 60% / 100% 0 0 100%;
   }
+
+  /* Ambiente: em vez de ampliar uma foto borrada por trás do texto,
+     o texto fica em um painel claro e a fotografia ocupa somente o miolo,
+     exatamente como no mockup aprovado. */
   .comfort-section {
     background: #f3eee7;
   }
+
   .comfort-layout {
     width: min(100%, 1560px);
     height: clamp(390px, 31vw, 445px);
@@ -825,6 +1375,7 @@
     gap: 5px;
     padding: 5px;
   }
+
   .comfort-story {
     height: 100%;
     min-height: 0;
@@ -836,6 +1387,7 @@
     border-radius: 0;
     box-shadow: none;
   }
+
   .comfort-story-image {
     position: relative;
     inset: auto;
@@ -849,135 +1401,172 @@
     filter: saturate(.92) contrast(1.025) brightness(1.03) sepia(.02);
     transform: none;
   }
+
   .comfort-story:hover .comfort-story-image {
     transform: scale(1.012);
     filter: saturate(.95) contrast(1.03) brightness(1.035) sepia(.015);
   }
+
   .comfort-story-overlay {
     display: none;
   }
+
   .comfort-intro {
     z-index: 2;
     grid-column: 1;
     grid-row: 1;
     padding: 38px 32px;
-    background: radial-gradient(circle at 100% 46%, rgba(207, 176, 130, .10), transparent 36%),
-            linear-gradient(90deg, #faf7f1 0%, #f7f1e8 100%);
+    background:
+      radial-gradient(circle at 100% 46%, rgba(207, 176, 130, .10), transparent 36%),
+      linear-gradient(90deg, #faf7f1 0%, #f7f1e8 100%);
   }
+
   .comfort-kicker {
     margin-bottom: 13px;
     font-size: 9.4px;
     letter-spacing: .17em;
   }
+
   .comfort-intro h2 {
     margin-bottom: 19px;
     font-size: clamp(24px, 1.9vw, 29px);
     line-height: 1.08;
   }
+
   .comfort-intro p {
     max-width: 285px;
     font-size: 12.25px;
     line-height: 1.64;
   }
+
   .comfort-intro::after {
     width: 42px;
     margin-top: 20px;
   }
+
   .comfort-feature-caption {
     display: none;
   }
+
   .comfort-stack {
     height: 100%;
     min-height: 0;
     grid-template-rows: repeat(3, minmax(0, 1fr));
     gap: 5px;
   }
+
   .comfort-card {
     height: 100%;
     min-height: 0;
     grid-template-columns: minmax(0, 1.18fr) minmax(118px, .82fr);
     border-radius: 7px;
   }
+
   .comfort-card__copy {
     gap: 10px;
     padding: 14px 12px 12px 14px;
   }
+
   .comfort-card h3 {
     font-size: 12.2px;
   }
+
   .comfort-card p {
     font-size: 9.9px;
     line-height: 1.43;
   }
+
   .comfort-card > img {
     width: 100%;
     height: 100%;
     min-height: 0;
     object-fit: cover;
   }
+
+  /* Avaliações: preserva a leitura e a altura do mockup. */
   .reviews-section {
     padding: 32px 0 36px;
   }
+
   .reviews-title {
     margin-bottom: 16px;
     font-size: clamp(18px, 1.5vw, 22px);
   }
+
   .reviews-grid {
     gap: 11px;
   }
+
   .rating-card,
   .review-card {
     min-height: 154px;
   }
+
   .rating-card {
     padding: 18px 15px;
   }
+
   .review-card {
     padding: 16px 15px 13px;
   }
+
   .review-card p {
     font-size: 10.9px;
     line-height: 1.52;
   }
+
+  /* Fechamento: no mockup o CTA central e a assinatura do médico ficam
+     sempre visíveis. Também evita que uma captura de página inteira os
+     fotografe antes de o IntersectionObserver disparar. */
   .final-cta-section {
     min-height: 154px;
     padding: 28px 0;
   }
+
   .final-grid {
     grid-template-columns: 1.25fr .82fr 1fr;
     gap: 30px;
   }
+
   .final-left h2 {
     font-size: 20px;
     line-height: 1.18;
   }
+
   .final-middle .cta-button {
     min-width: min(100%, 290px);
     min-height: 46px;
     font-size: 13px;
   }
+
   .final-middle small {
     margin-top: 6px;
     font-size: 9.8px;
   }
+
   .final-brand {
     min-height: 82px;
     gap: 13px;
     padding-left: 24px;
   }
+
   .final-brand .kidney-mark {
     width: 60px;
     height: 60px;
   }
+
   .final-brand strong {
     font-size: 16px;
   }
+
   .final-brand span {
     font-size: 10.2px;
   }
+
   .final-brand small {
     font-size: 9.2px;
   }
+
   .final-cta-section .reveal,
   .final-cta-section .reveal--up,
   .final-cta-section .reveal--left,
@@ -989,42 +1578,77 @@
     filter: none !important;
     transition: none !important;
   }
+
   .privacy-footer {
     padding: 13px 0;
   }
+}
+
+/* ================================================================
+   Especialista > Consulta — ajuste de altura em telas maiores.
+   A separação entre as seções é uma linha dourada reta aplicada
+   diretamente à seção do especialista em sections.css.
+   ================================================================ */
+@media (min-width: 921px) {
   .process-section {
     min-height: 292px;
   }
+
   .process-copy {
     padding-top: 62px;
     padding-bottom: 34px;
   }
 }
+
+/* ==========================================================================
+   HERO MOBILE V8 — composição fiel ao modelo
+   --------------------------------------------------------------------------
+   No celular, cenário/casal, médico, placa e conteúdo voltam a ser camadas
+   independentes. Isso elimina a composição única antiga e deixa cada peça
+   ajustável sem afetar o desktop.
+   ========================================================================== */
 @media (max-width: 600px) {
+
+
+  .site-header {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 39, 34, .98) 0%,
+      rgba(2, 39, 34, .90) 72%,
+      rgba(2, 39, 34, .28) 100%
+    );
+  }
+
   .header-inner {
     width: calc(100% - 32px);
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 10px;
   }
+
   .brand {
     gap: 8px;
   }
+
   .brand-symbol {
     width: 34px;
     height: 34px;
   }
+
   .brand-copy strong {
     font-size: 14.5px;
     line-height: 1.02;
   }
+
   .brand-copy small {
     margin-top: 3px;
     font-size: 7.2px;
     letter-spacing: .15em;
   }
+
   .header-actions {
     transform: none;
   }
+
   .menu-toggle {
     width: 36px;
     height: 36px;
@@ -1033,28 +1657,35 @@
     border: 0;
     border-radius: 0;
   }
+
   .menu-toggle svg {
     width: 29px;
     height: 29px;
     stroke-width: 2.2;
   }
+
   .hero-section.hero-section--refined {
     --hero-height: 600px;
     --hero-divider-drop: 93px;
+
     --hero-copy-x: 0px;
     --hero-copy-y: 0px;
+
     --hero-doctor-right: -8px;
     --hero-doctor-bottom: -43px;
     --hero-doctor-width: 210px;
     --hero-doctor-height: 290px;
     --hero-doctor-photo-height: 104%;
+
     --hero-plate-left: -92px;
     --hero-plate-bottom: 52px;
     --hero-plate-width: 160px;
   }
+
   .hero-section--refined .hero-media {
     inset: 0;
   }
+
   .hero-section--refined .hero-bg {
     width: 100%;
     height: 100%;
@@ -1062,13 +1693,64 @@
     object-position: center top;
     transform: none;
     transform-origin: center;
+    filter:
+      brightness(.93)
+      contrast(1.055)
+      saturate(.92)
+      sepia(.02)
+      hue-rotate(-2deg);
   }
+
+  .hero-section--refined .hero-shade {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(2, 43, 37, .95) 0%,
+        rgba(2, 43, 37, .91) 32%,
+        rgba(2, 39, 34, .72) 52%,
+        rgba(1, 28, 24, .32) 72%,
+        rgba(0, 17, 15, .11) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(1, 35, 30, .34) 0%,
+        rgba(1, 31, 27, .14) 47%,
+        rgba(0, 19, 16, .28) 79%,
+        rgba(0, 14, 12, .58) 100%
+      );
+  }
+
   .hero-section--refined .hero-lighting--lamp {
     display: block;
+    opacity: .72;
+    background:
+      radial-gradient(
+        circle at 88% 36%,
+        rgba(255, 229, 181, .32) 0%,
+        rgba(247, 188, 108, .15) 9%,
+        rgba(225, 136, 54, .055) 20%,
+        transparent 34%
+      );
+    mix-blend-mode: screen;
   }
+
   .hero-section--refined .hero-lighting--couple {
     display: block;
+    opacity: .34;
+    background:
+      radial-gradient(
+        ellipse at 39% 57%,
+        rgba(244, 181, 108, .12) 0%,
+        rgba(221, 137, 66, .035) 14%,
+        transparent 31%
+      );
+    mix-blend-mode: screen;
   }
+
+  .hero-section--refined .hero-lighting--vignette {
+    opacity: .48;
+  }
+
   .hero-inner {
     width: calc(100% - 48px);
     min-height: var(--hero-height);
@@ -1076,6 +1758,7 @@
     padding-top: calc(var(--header-height) + 14px);
     padding-bottom: 0;
   }
+
   .hero-section--refined .hero-copy {
     width: min(66vw, 258px);
     max-width: none;
@@ -1084,6 +1767,7 @@
     padding-bottom: 0;
     transform: none;
   }
+
   .hero-section--refined .hero-copy h1 {
     order: 1;
     width: 100%;
@@ -1094,25 +1778,31 @@
     letter-spacing: -.032em;
     text-wrap: initial;
   }
+
   .hero-section--refined .hero-copy h1 > span {
     white-space: nowrap;
   }
+
   .hero-section--refined .hero-copy > p {
     order: 2;
     width: 100%;
     max-width: none;
     margin: 0 0 12px;
+    color: rgba(255, 255, 255, .95);
     font-size: clamp(12.2px, 3.25vw, 13px);
     line-height: 1.46;
   }
+
   .hero-section--refined .hero-copy > p br {
     display: none;
   }
+
   .hero-section--refined .hero-action {
     order: 3;
     width: min(62vw, 242px);
     max-width: none;
   }
+
   .hero-section--refined .hero-action .cta-button {
     width: 100%;
     min-width: 0;
@@ -1121,16 +1811,20 @@
     gap: 8px;
     border-radius: 7px;
     font-size: clamp(12.4px, 3.3vw, 13.2px);
-    box-shadow: 0 11px 24px rgba(31, 18, 4, .20),
-            inset 0 1px 0 rgba(255, 255, 255, .15);
+    box-shadow:
+      0 11px 24px rgba(31, 18, 4, .20),
+      inset 0 1px 0 rgba(255, 255, 255, .15);
   }
+
   .hero-section--refined .hero-action .cta-button svg {
     width: 18px;
     height: 18px;
   }
+
   .hero-section--refined .hero-action small {
     display: none;
   }
+
   .hero-section--refined .hero-trust {
     order: 4;
     width: min(67vw, 262px);
@@ -1142,54 +1836,84 @@
     gap: 0;
     margin: 14px 0 0;
   }
+
   .hero-section--refined .trust-item {
     flex: 0 0 auto;
     justify-content: flex-start;
     gap: 5px;
     padding: 0;
+    color: rgba(255, 255, 255, .95);
     font-size: clamp(9.6px, 2.65vw, 10.6px);
     font-weight: 500;
     white-space: nowrap;
   }
+
   .hero-section--refined .trust-item:not(:first-child) {
     position: relative;
     padding-left: 11px;
   }
+
   .hero-section--refined .trust-item:not(:first-child)::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 50%;
     width: 1px;
     height: 21px;
+    background: rgba(210, 164, 95, .70);
     transform: translateY(-50%);
   }
+
   .hero-section--refined .trust-item svg {
     width: 19px;
     height: 19px;
+    color: var(--gold-light);
     opacity: 1;
   }
+
   .hero-section--refined .trust-item > .trust-item__full {
     display: none;
   }
+
   .hero-section--refined .trust-item > .trust-item__short {
     display: inline;
   }
+
+  /* Retrato volta a ser independente da imagem de fundo. */
   .hero-section--refined .hero-doctor-card {
     right: var(--hero-doctor-right);
     bottom: var(--hero-doctor-bottom);
     width: var(--hero-doctor-width);
     height: var(--hero-doctor-height);
   }
+
   .hero-section--refined .hero-doctor-card__portrait {
     display: block;
   }
+
   .hero-section--refined .hero-doctor-card__base-fade {
     display: none;
   }
+
   .hero-section--refined .hero-doctor-card__photo {
     height: var(--hero-doctor-photo-height);
+    filter:
+      brightness(.96)
+      contrast(.98)
+      saturate(.94)
+      sepia(.035)
+      hue-rotate(-3deg)
+      drop-shadow(-12px 15px 20px rgba(0, 8, 6, .28));
   }
+
+  .hero-section--refined .hero-doctor-card__photo--warm {
+    opacity: .12;
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--shade {
+    opacity: .08;
+  }
+
   .hero-section--refined .hero-doctor-card__plate {
     left: var(--hero-plate-left);
     bottom: var(--hero-plate-bottom);
@@ -1197,11 +1921,13 @@
     max-width: var(--hero-plate-width);
     filter: drop-shadow(0 9px 18px rgba(0, 0, 0, .23));
   }
+
   .hero-bottom-divider {
     height: 93px;
     object-fit: fill;
   }
 }
+
 @media (max-width: 370px) {
   .hero-section.hero-section--refined {
     --hero-height: 580px;
@@ -1214,280 +1940,634 @@
     --hero-plate-bottom: 49px;
     --hero-plate-width: 150px;
   }
+
   .hero-section--refined .hero-copy {
     width: min(69vw, 246px);
   }
+
   .hero-section--refined .hero-copy h1 {
     font-size: clamp(25px, 7.55vw, 28px);
   }
+
   .hero-section--refined .hero-action {
     width: min(66vw, 232px);
   }
+
   .hero-section--refined .hero-trust {
     width: min(72vw, 252px);
   }
+}
+
+@media (max-width: 370px) {
   .hero-bottom-divider {
     height: 85px;
   }
 }
+
+/* ==========================================================================
+   HERO MOBILE V9 — color grading, luz e contraste
+   --------------------------------------------------------------------------
+   Ajuste puramente visual. Não altera posição, escala, largura, altura ou
+   ordem dos elementos do Hero V8. O objetivo é aproximar o tratamento do
+   modelo: verde-petróleo mais profundo, luz âmbar localizada à direita,
+   casal mais legível, médico com maior recorte tonal e dourado menos amarelo.
+   ========================================================================== */
 @media (max-width: 600px) {
   .site-header {
     background: linear-gradient(
-            180deg,
-            rgba(1, 29, 25, .985) 0%,
-            rgba(1, 29, 25, .955) 72%,
-            rgba(1, 25, 22, .56) 100%
-          );
+      180deg,
+      rgba(1, 29, 25, .985) 0%,
+      rgba(1, 29, 25, .955) 72%,
+      rgba(1, 25, 22, .56) 100%
+    );
     box-shadow: 0 8px 24px rgba(0, 8, 7, .08);
   }
+
+  .hero-section.hero-section--refined {
+    background: #011d19;
+  }
+
+  /*
+   * O cenário recebe mais alcance tonal sem ficar lavado. A cena continua
+   * exatamente no mesmo enquadramento; só o color grading é modificado.
+   */
+  .hero-section--refined .hero-bg {
+    filter:
+      brightness(1.025)
+      contrast(1.095)
+      saturate(.96)
+      sepia(.045)
+      hue-rotate(-3deg);
+  }
+
+  /*
+   * Verde do topo próximo ao modelo (#011d19), preservando detalhes da sala
+   * conforme a imagem desce. A região inferior ganha profundidade sem ocultar
+   * o casal e sem transformar o fundo em um bloco verde uniforme.
+   */
+  .hero-section--refined .hero-shade {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 20, 17, .16) 0%,
+        rgba(0, 17, 15, .11) 38%,
+        rgba(0, 12, 10, .035) 62%,
+        rgba(0, 9, 8, .02) 78%,
+        rgba(0, 8, 7, .08) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 12, 10, .42) 0%,
+        rgba(0, 13, 11, .36) 34%,
+        rgba(0, 12, 10, .12) 54%,
+        rgba(0, 10, 9, .17) 77%,
+        rgba(0, 9, 8, .50) 100%
+      );
+  }
+
+  /* Luz quente concentrada na luminária e espalhada suavemente pela direita. */
+  .hero-section--refined .hero-lighting--lamp {
+    opacity: .94;
+    background:
+      radial-gradient(
+        circle at 89% 39%,
+        rgba(255, 231, 187, .47) 0%,
+        rgba(250, 194, 116, .24) 8%,
+        rgba(229, 145, 58, .10) 18%,
+        rgba(201, 113, 35, .035) 27%,
+        transparent 38%
+      ),
+      radial-gradient(
+        ellipse at 83% 45%,
+        rgba(233, 151, 66, .15) 0%,
+        rgba(200, 108, 31, .055) 24%,
+        transparent 49%
+      ),
+      linear-gradient(
+        90deg,
+        transparent 58%,
+        rgba(181, 97, 29, .025) 72%,
+        rgba(232, 148, 60, .055) 100%
+      );
+    mix-blend-mode: screen;
+  }
+
+  /*
+   * Recupera pele, cabelo e roupa do casal com uma luz quente sutil. A luz é
+   * localizada e não clareia o retângulo inteiro do fundo.
+   */
+  .hero-section--refined .hero-lighting--couple {
+    opacity: .66;
+    background:
+      radial-gradient(
+        ellipse at 38% 58%,
+        rgba(255, 220, 171, .17) 0%,
+        rgba(239, 171, 94, .075) 13%,
+        rgba(208, 121, 47, .025) 24%,
+        transparent 36%
+      ),
+      radial-gradient(
+        circle at 47% 55%,
+        rgba(255, 218, 166, .105) 0%,
+        rgba(225, 149, 75, .035) 10%,
+        transparent 22%
+      );
+    mix-blend-mode: screen;
+  }
+
+  /* Vignette mais cinematográfica: centro preservado e cantos mais densos. */
+  .hero-section--refined .hero-lighting--vignette {
+    opacity: .72;
+    background:
+      radial-gradient(
+        ellipse at 58% 53%,
+        transparent 0%,
+        transparent 50%,
+        rgba(0, 18, 15, .09) 67%,
+        rgba(0, 10, 9, .34) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 10, 9, .06) 0%,
+        transparent 27%,
+        transparent 72%,
+        rgba(0, 11, 9, .24) 100%
+      );
+  }
+
+  /* Tipografia: branco levemente quente e dourado cobre do modelo. */
+  .hero-section--refined .hero-copy h1 {
+    color: #eef0ed;
+    text-shadow:
+      0 2px 16px rgba(0, 8, 7, .30),
+      0 1px 2px rgba(0, 0, 0, .16);
+  }
+
+  .hero-section--refined .hero-copy h1 em {
+    color: #c99951;
+    text-shadow:
+      0 2px 14px rgba(72, 39, 8, .15),
+      0 1px 1px rgba(0, 0, 0, .12);
+  }
+
   .hero-section--refined .hero-copy > p,
   .hero-section--refined .trust-item {
     color: rgba(239, 241, 238, .96);
     text-shadow: 0 1px 9px rgba(0, 8, 7, .23);
   }
+
+  .hero-section--refined .trust-item svg {
+    color: #c99951;
+    filter: drop-shadow(0 1px 4px rgba(54, 29, 5, .16));
+  }
+
+  .hero-section--refined .trust-item:not(:first-child)::before {
+    background: rgba(201, 153, 81, .72);
+  }
+
+  /* Botão com dourado menos amarelo, mais próximo da referência. */
+  .hero-section--refined .hero-action .cta-button--gold {
+    background: linear-gradient(
+      180deg,
+      #d7a556 0%,
+      #c89148 52%,
+      #bd813b 100%
+    );
+    border-color: rgba(221, 171, 92, .92);
+    box-shadow:
+      0 12px 28px rgba(45, 24, 5, .27),
+      inset 0 1px 0 rgba(255, 244, 218, .27),
+      inset 0 -1px 0 rgba(107, 61, 13, .13);
+  }
+
+  /*
+   * Retrato: mais contraste no terno e microcontraste no rosto, com calor
+   * vindo do lado esquerdo como na luz ambiente da sala.
+   */
+  .hero-section--refined .hero-doctor-card__photo {
+    filter:
+      brightness(.995)
+      contrast(1.085)
+      saturate(.91)
+      sepia(.055)
+      hue-rotate(-4deg)
+      drop-shadow(-13px 16px 22px rgba(0, 7, 6, .34))
+      drop-shadow(-2px 0 5px rgba(218, 147, 69, .085));
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--warm {
+    opacity: .21;
+    filter:
+      brightness(.78)
+      contrast(1.08)
+      saturate(1.42)
+      sepia(.84)
+      hue-rotate(-9deg);
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--shade {
+    opacity: .12;
+    filter:
+      brightness(.48)
+      contrast(1.13)
+      saturate(.72);
+  }
+
+  .hero-section--refined .hero-doctor-card__portrait::before {
+    background:
+      radial-gradient(
+        ellipse at 17% 36%,
+        rgba(239, 166, 85, .22) 0%,
+        rgba(213, 126, 50, .085) 27%,
+        rgba(161, 82, 23, .024) 45%,
+        transparent 64%
+      ),
+      radial-gradient(
+        ellipse at 78% 68%,
+        rgba(0, 22, 19, .34) 0%,
+        rgba(2, 20, 17, .10) 49%,
+        transparent 73%
+      );
+    opacity: .92;
+  }
+
+  /* Placa: somente acabamento visual; geometria permanece intacta. */
+  .hero-section--refined .doctor-plaque {
+    --plaque-gold-dark: #8f5f20;
+    --plaque-gold-light: #edcf8d;
+    --plaque-gold-mid: #c99951;
+    --plaque-gold-highlight: #f8df9f;
+    --plaque-gold-deep: #9a6826;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, .055) 0%,
+        rgba(255, 255, 255, .016) 36%,
+        rgba(255, 255, 255, .003) 68%,
+        rgba(201, 153, 81, .022) 100%
+      ),
+      rgba(0, 18, 15, .30);
+
+    border-color: rgba(245, 225, 183, .54);
+    box-shadow:
+      0 18px 34px rgba(0, 7, 6, .31),
+      0 4px 11px rgba(0, 7, 6, .16),
+      inset 2px 2px 0 rgba(255, 255, 255, .28),
+      inset -2px -2px 0 rgba(82, 48, 8, .18),
+      inset 0 0 0 1px rgba(255, 255, 255, .05),
+      0 0 0 1px rgba(96, 56, 9, .15);
+  }
+
+  .hero-section--refined .doctor-plaque::before {
+    border-color: rgba(201, 153, 81, .86);
+  }
+
+  /* A curva continua no mesmo lugar; apenas ganha leitura metálica. */
+  .hero-section--refined .hero-bottom-divider {
+    filter:
+      contrast(1.07)
+      saturate(1.04)
+      drop-shadow(0 -1px 2px rgba(84, 48, 9, .16));
+  }
+}
+
+/* ==========================================================================
+   HERO MOBILE V10 — acabamento sênior de luz, contraste e integração
+   --------------------------------------------------------------------------
+   Somente color grading/iluminação. Não altera geometria do Hero V8/V9:
+   nenhuma regra de position, top/right/bottom/left, width, height ou transform
+   dos objetos foi modificada neste bloco.
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* Base mais profunda: verde-petróleo quase preto como na referência. */
   .hero-section.hero-section--refined {
     background: #011915;
   }
+
+  /*
+   * Cena: preserva textura e detalhe, mas retira a névoa amarela do miolo.
+   * O contraste sobe pouco e a saturação cai o suficiente para o âmbar ficar
+   * reservado à luminária, em vez de contaminar toda a fotografia.
+   */
   .hero-section--refined .hero-bg {
-    filter: brightness(.985)
-            contrast(1.115)
-            saturate(.90)
-            sepia(.018)
-            hue-rotate(-2deg);
+    filter:
+      brightness(.985)
+      contrast(1.115)
+      saturate(.90)
+      sepia(.018)
+      hue-rotate(-2deg);
   }
+
+  /*
+   * Esquerda deliberadamente mais escura e limpa. O centro permanece aberto
+   * para o casal; o lado direito recebe menos verde e deixa a luz da sala agir.
+   */
   .hero-section--refined .hero-shade {
-    background: linear-gradient(
-              90deg,
-              rgba(0, 17, 14, .58) 0%,
-              rgba(0, 18, 15, .48) 24%,
-              rgba(0, 17, 14, .27) 43%,
-              rgba(0, 13, 11, .09) 58%,
-              rgba(0, 10, 9, .025) 73%,
-              rgba(0, 9, 8, .07) 100%
-            ),
-            linear-gradient(
-              180deg,
-              rgba(0, 14, 12, .44) 0%,
-              rgba(0, 14, 12, .31) 28%,
-              rgba(0, 12, 10, .10) 53%,
-              rgba(0, 11, 9, .18) 76%,
-              rgba(0, 8, 7, .56) 100%
-            );
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 17, 14, .58) 0%,
+        rgba(0, 18, 15, .48) 24%,
+        rgba(0, 17, 14, .27) 43%,
+        rgba(0, 13, 11, .09) 58%,
+        rgba(0, 10, 9, .025) 73%,
+        rgba(0, 9, 8, .07) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 14, 12, .44) 0%,
+        rgba(0, 14, 12, .31) 28%,
+        rgba(0, 12, 10, .10) 53%,
+        rgba(0, 11, 9, .18) 76%,
+        rgba(0, 8, 7, .56) 100%
+      );
   }
+
+  /*
+   * Luz âmbar mais localizada. O hotspot principal fica na luminária e uma
+   * segunda área bem suave dá profundidade ao móvel sem invadir o centro.
+   */
   .hero-section--refined .hero-lighting--lamp {
     opacity: .90;
-    background: radial-gradient(
-              circle at 89.5% 39.5%,
-              rgba(255, 232, 190, .50) 0%,
-              rgba(248, 190, 109, .25) 7%,
-              rgba(225, 137, 54, .095) 15%,
-              rgba(190, 98, 28, .025) 23%,
-              transparent 31%
-            ),
-            radial-gradient(
-              ellipse at 88% 47%,
-              rgba(229, 143, 57, .105) 0%,
-              rgba(194, 100, 27, .035) 22%,
-              transparent 42%
-            );
+    background:
+      radial-gradient(
+        circle at 89.5% 39.5%,
+        rgba(255, 232, 190, .50) 0%,
+        rgba(248, 190, 109, .25) 7%,
+        rgba(225, 137, 54, .095) 15%,
+        rgba(190, 98, 28, .025) 23%,
+        transparent 31%
+      ),
+      radial-gradient(
+        ellipse at 88% 47%,
+        rgba(229, 143, 57, .105) 0%,
+        rgba(194, 100, 27, .035) 22%,
+        transparent 42%
+      );
     mix-blend-mode: screen;
   }
+
+  /* Casal visível, mas sem banho âmbar geral. */
   .hero-section--refined .hero-lighting--couple {
     opacity: .46;
-    background: radial-gradient(
-              ellipse at 39% 58%,
-              rgba(255, 220, 174, .14) 0%,
-              rgba(235, 166, 91, .050) 12%,
-              rgba(205, 117, 43, .016) 21%,
-              transparent 31%
-            ),
-            radial-gradient(
-              circle at 47% 55%,
-              rgba(255, 222, 177, .075) 0%,
-              rgba(225, 148, 72, .020) 9%,
-              transparent 18%
-            );
+    background:
+      radial-gradient(
+        ellipse at 39% 58%,
+        rgba(255, 220, 174, .14) 0%,
+        rgba(235, 166, 91, .050) 12%,
+        rgba(205, 117, 43, .016) 21%,
+        transparent 31%
+      ),
+      radial-gradient(
+        circle at 47% 55%,
+        rgba(255, 222, 177, .075) 0%,
+        rgba(225, 148, 72, .020) 9%,
+        transparent 18%
+      );
     mix-blend-mode: screen;
   }
+
+  /* Cantos mais densos, mantendo o rosto do médico e o casal livres. */
   .hero-section--refined .hero-lighting--vignette {
     opacity: .79;
-    background: radial-gradient(
-              ellipse at 57% 52%,
-              transparent 0%,
-              transparent 47%,
-              rgba(0, 16, 13, .10) 65%,
-              rgba(0, 8, 7, .39) 100%
-            ),
-            linear-gradient(
-              180deg,
-              rgba(0, 8, 7, .10) 0%,
-              transparent 25%,
-              transparent 69%,
-              rgba(0, 9, 8, .29) 100%
-            );
+    background:
+      radial-gradient(
+        ellipse at 57% 52%,
+        transparent 0%,
+        transparent 47%,
+        rgba(0, 16, 13, .10) 65%,
+        rgba(0, 8, 7, .39) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 8, 7, .10) 0%,
+        transparent 25%,
+        transparent 69%,
+        rgba(0, 9, 8, .29) 100%
+      );
   }
+
+  /* Branco mais limpo; ouro mais coerente entre título, ícones e divisores. */
   .hero-section--refined .hero-copy h1 {
     color: #f3f1ec;
-    text-shadow: 0 2px 18px rgba(0, 7, 6, .36),
-            0 1px 2px rgba(0, 0, 0, .20);
+    text-shadow:
+      0 2px 18px rgba(0, 7, 6, .36),
+      0 1px 2px rgba(0, 0, 0, .20);
   }
+
   .hero-section--refined .hero-copy h1 em {
     color: #d29b4d;
-    text-shadow: 0 2px 12px rgba(75, 41, 8, .17),
-            0 1px 1px rgba(0, 0, 0, .13);
+    text-shadow:
+      0 2px 12px rgba(75, 41, 8, .17),
+      0 1px 1px rgba(0, 0, 0, .13);
   }
+
   .hero-section--refined .hero-copy > p {
     color: rgba(245, 245, 241, .96);
     text-shadow: 0 1px 10px rgba(0, 7, 6, .30);
   }
+
+  /*
+   * Contraste localizado na faixa de confiança. Não cria caixa visual e não
+   * altera sua posição: é apenas um halo escuro muito difuso atrás do conteúdo.
+   */
   .hero-section--refined .hero-trust {
     position: relative;
     isolation: isolate;
   }
+
   .hero-section--refined .hero-trust::before {
-    content: "";
+    content: '';
     position: absolute;
     z-index: -1;
     inset: -10px -14px;
     pointer-events: none;
     background: radial-gradient(
-            ellipse at center,
-            rgba(0, 18, 15, .34) 0%,
-            rgba(0, 16, 13, .16) 48%,
-            transparent 78%
-          );
+      ellipse at center,
+      rgba(0, 18, 15, .34) 0%,
+      rgba(0, 16, 13, .16) 48%,
+      transparent 78%
+    );
     filter: blur(4px);
   }
+
   .hero-section--refined .trust-item {
     color: rgba(246, 245, 240, .95);
     text-shadow: 0 1px 8px rgba(0, 7, 6, .34);
   }
+
   .hero-section--refined .trust-item svg {
     color: #d29b4d;
     filter: drop-shadow(0 1px 3px rgba(52, 28, 4, .18));
   }
+
   .hero-section--refined .trust-item:not(:first-child)::before {
     background: rgba(210, 155, 77, .68);
   }
+
+  /* Ouro com três níveis: claro, médio e profundo — mais metálico, menos amarelo. */
   .hero-section--refined .hero-action .cta-button--gold {
     background: linear-gradient(
-            135deg,
-            #e2ad58 0%,
-            #cf9342 53%,
-            #ba782f 100%
-          );
+      135deg,
+      #e2ad58 0%,
+      #cf9342 53%,
+      #ba782f 100%
+    );
     border-color: rgba(226, 176, 91, .90);
     color: #fffaf1;
-    box-shadow: 0 12px 27px rgba(42, 22, 4, .28),
-            inset 0 1px 0 rgba(255, 247, 226, .30),
-            inset 0 -1px 0 rgba(91, 48, 8, .17);
+    box-shadow:
+      0 12px 27px rgba(42, 22, 4, .28),
+      inset 0 1px 0 rgba(255, 247, 226, .30),
+      inset 0 -1px 0 rgba(91, 48, 8, .17);
   }
+
+  /*
+   * Médico integrado ao ambiente: um pouco menos brilhante e menos saturado,
+   * com contraste suficiente para manter o rosto como ponto focal.
+   */
   .hero-section--refined .hero-doctor-card__photo {
-    filter: brightness(.945)
-            contrast(1.07)
-            saturate(.88)
-            sepia(.028)
-            hue-rotate(-3deg)
-            drop-shadow(-12px 16px 22px rgba(0, 7, 6, .38))
-            drop-shadow(-2px 0 5px rgba(208, 137, 60, .065));
+    filter:
+      brightness(.945)
+      contrast(1.07)
+      saturate(.88)
+      sepia(.028)
+      hue-rotate(-3deg)
+      drop-shadow(-12px 16px 22px rgba(0, 7, 6, .38))
+      drop-shadow(-2px 0 5px rgba(208, 137, 60, .065));
   }
+
   .hero-section--refined .hero-doctor-card__photo--warm {
     opacity: .15;
-    filter: brightness(.76)
-            contrast(1.06)
-            saturate(1.28)
-            sepia(.76)
-            hue-rotate(-8deg);
+    filter:
+      brightness(.76)
+      contrast(1.06)
+      saturate(1.28)
+      sepia(.76)
+      hue-rotate(-8deg);
   }
+
   .hero-section--refined .hero-doctor-card__photo--shade {
     opacity: .15;
-    filter: brightness(.44)
-            contrast(1.12)
-            saturate(.68);
+    filter:
+      brightness(.44)
+      contrast(1.12)
+      saturate(.68);
   }
+
+  /* Luz ambiente na borda esquerda do médico, sem aureola evidente. */
   .hero-section--refined .hero-doctor-card__portrait::before {
-    background: radial-gradient(
-              ellipse at 16% 36%,
-              rgba(226, 151, 72, .155) 0%,
-              rgba(196, 108, 37, .055) 25%,
-              rgba(145, 68, 17, .014) 43%,
-              transparent 61%
-            ),
-            radial-gradient(
-              ellipse at 79% 69%,
-              rgba(0, 18, 15, .40) 0%,
-              rgba(1, 16, 14, .12) 48%,
-              transparent 72%
-            );
+    background:
+      radial-gradient(
+        ellipse at 16% 36%,
+        rgba(226, 151, 72, .155) 0%,
+        rgba(196, 108, 37, .055) 25%,
+        rgba(145, 68, 17, .014) 43%,
+        transparent 61%
+      ),
+      radial-gradient(
+        ellipse at 79% 69%,
+        rgba(0, 18, 15, .40) 0%,
+        rgba(1, 16, 14, .12) 48%,
+        transparent 72%
+      );
     opacity: .90;
   }
+
+  /* Placa: vidro mais escuro e ouro coerente com o restante do Hero. */
   .hero-section--refined .doctor-plaque {
     --plaque-gold-dark: #86571d;
     --plaque-gold-light: #edc679;
     --plaque-gold-mid: #d09a4b;
     --plaque-gold-highlight: #f6d991;
     --plaque-gold-deep: #925f20;
-    background: linear-gradient(
-              145deg,
-              rgba(255, 255, 255, .048) 0%,
-              rgba(255, 255, 255, .012) 37%,
-              rgba(255, 255, 255, .002) 68%,
-              rgba(208, 154, 75, .018) 100%
-            ),
-            rgba(0, 15, 13, .38);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, .048) 0%,
+        rgba(255, 255, 255, .012) 37%,
+        rgba(255, 255, 255, .002) 68%,
+        rgba(208, 154, 75, .018) 100%
+      ),
+      rgba(0, 15, 13, .38);
+
     border-color: rgba(239, 214, 166, .51);
-    box-shadow: 0 18px 34px rgba(0, 6, 5, .34),
-            0 4px 11px rgba(0, 6, 5, .18),
-            inset 2px 2px 0 rgba(255, 255, 255, .25),
-            inset -2px -2px 0 rgba(77, 43, 7, .20),
-            inset 0 0 0 1px rgba(255, 255, 255, .045),
-            0 0 0 1px rgba(90, 50, 8, .16);
+    box-shadow:
+      0 18px 34px rgba(0, 6, 5, .34),
+      0 4px 11px rgba(0, 6, 5, .18),
+      inset 2px 2px 0 rgba(255, 255, 255, .25),
+      inset -2px -2px 0 rgba(77, 43, 7, .20),
+      inset 0 0 0 1px rgba(255, 255, 255, .045),
+      0 0 0 1px rgba(90, 50, 8, .16);
   }
+
   .hero-section--refined .doctor-plaque::before {
     border-color: rgba(208, 154, 75, .84);
   }
+
   .hero-section--refined .hero-bottom-divider {
-    filter: brightness(.98)
-            contrast(1.10)
-            saturate(.98)
-            sepia(.03)
-            drop-shadow(0 -1px 2px rgba(75, 42, 7, .18));
+    filter:
+      brightness(.98)
+      contrast(1.10)
+      saturate(.98)
+      sepia(.03)
+      drop-shadow(0 -1px 2px rgba(75, 42, 7, .18));
   }
 }
+
+/* ==========================================================================
+   CONSOLIDAÇÃO FINAL — cabeçalho e segunda seção
+   --------------------------------------------------------------------------
+   Estas regras são a referência final para as áreas revisadas em 16/08/2026.
+   Mantêm a altura do cabeçalho estável ao rolar e adaptam o novo hub de
+   urologia sem interferir nas demais seções da landing page.
+   ========================================================================== */
+
+/* Cabeçalho: altura e eixo vertical não mudam entre topo e scroll. */
 .site-header,
 .site-header.site-header--scrolled {
   height: var(--header-height);
 }
+
 .header-inner {
   height: 100%;
   align-items: center;
 }
+
 .brand,
 .header-actions {
   align-self: center;
 }
+
 .header-actions {
   transform: none;
 }
+
 .header-cta {
   height: 46px;
   min-height: 46px;
   padding-top: 0;
   padding-bottom: 0;
 }
+
 @media (min-width: 1101px) {
   :root {
     --header-height: 80px;
   }
+
   .site-header {
     background: linear-gradient(180deg, rgba(2, 39, 34, .97) 0%, rgba(2, 37, 32, .94) 100%);
   }
+
   .site-header--scrolled {
     background: rgba(4, 38, 33, .985);
   }
+
   .desktop-nav {
     height: 100%;
   }
+
   .desktop-nav a {
     height: 100%;
     display: inline-flex;
@@ -1496,127 +2576,158 @@
     padding-bottom: 0;
   }
 }
+
 @media (max-width: 1100px) {
   :root {
     --header-height: 78px;
   }
+
   .site-header,
   .site-header--scrolled {
     background: rgba(4, 38, 33, .98);
   }
+
   .header-cta {
     height: 44px;
     min-height: 44px;
   }
 }
+
 @media (max-width: 920px) {
   :root {
     --header-height: 74px;
   }
 }
+
 @media (max-width: 600px) {
   :root {
     --header-height: 62px;
   }
+
   .site-header,
   .site-header.site-header--scrolled {
     height: var(--header-height);
     background: rgba(2, 34, 30, .975);
     border-bottom-color: rgba(210, 164, 95, .10);
   }
+
   .header-inner {
     height: 100%;
   }
 }
+
+/* Segunda seção: conteúdo semântico e de conversão. */
 @media (max-width: 1100px) {
   .signals-section.signals-section--hub {
     padding: 52px 0 60px;
   }
+
   .signals-hub {
     width: min(calc(100% - 44px), 1120px);
   }
+
   .signals-topic-card {
     grid-template-columns: 78px minmax(0, 1fr);
     gap: 18px;
     min-height: 170px;
     padding: 20px 22px;
   }
+
   .signals-topic-card__icon {
     width: 64px;
     height: 64px;
   }
+
   .signals-topic-card__icon::after {
     right: -15px;
   }
+
   .signals-other {
     align-items: flex-start;
   }
+
   .signals-action {
     grid-template-columns: 62px minmax(0, 1fr) auto;
   }
+
   .signals-action__cta {
     min-width: 218px;
     padding-inline: 16px;
     font-size: 13.5px;
   }
 }
+
 @media (max-width: 900px) {
   .signals-hub__header {
     max-width: 760px;
     margin-bottom: 28px;
   }
+
   .signals-hub__title {
     font-size: clamp(31px, 5vw, 40px);
   }
+
   .signals-topic-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+
   .signals-topic-card {
     min-height: 0;
   }
+
   .signals-other {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 5px 10px;
   }
+
   .signals-other__items {
     grid-column: 2;
   }
+
   .signals-action {
     grid-template-columns: 58px minmax(0, 1fr);
   }
+
   .signals-action__cta {
     grid-column: 2;
     width: min(100%, 330px);
     margin-top: 8px;
   }
 }
+
 @media (max-width: 600px) {
   .signals-section.signals-section--hub {
     padding: 44px 0 50px;
   }
+
   .signals-hub {
     width: calc(100% - 30px);
   }
+
   .signals-hub__header {
     margin-bottom: 24px;
     text-align: left;
   }
+
   .signals-hub__eyebrow {
     margin-bottom: 8px;
     font-size: 10.5px;
     letter-spacing: .12em;
   }
+
   .signals-hub__title {
     margin-bottom: 11px;
     font-size: clamp(29px, 8.4vw, 36px);
     line-height: 1.04;
   }
+
   .signals-hub__intro {
     font-size: 13px;
     line-height: 1.55;
   }
+
   .signals-topic-card {
     grid-template-columns: 50px minmax(0, 1fr);
     align-items: flex-start;
@@ -1624,65 +2735,81 @@
     padding: 17px 16px;
     border-radius: 12px;
   }
+
   .signals-topic-card__icon {
     width: 48px;
     height: 48px;
   }
+
   .signals-topic-card__icon svg {
     width: 29px;
     height: 29px;
   }
+
   .signals-topic-card__icon::after {
     display: none;
   }
+
   .signals-topic-card h3 {
     margin-bottom: 5px;
     font-size: 20px;
   }
+
   .signals-topic-card p {
     font-size: 12.5px;
     line-height: 1.52;
   }
+
   .signals-other {
     grid-template-columns: 24px 1fr;
     margin-top: 12px;
     padding: 12px 14px;
     font-size: 11.8px;
   }
+
   .signals-other > strong,
   .signals-other__items {
     grid-column: 2;
   }
+
   .signals-other__items {
     display: block;
   }
+
   .signals-other__items span {
     display: inline;
     white-space: normal;
   }
+
   .signals-other__items span:not(:last-child)::after {
     margin: 0 6px;
   }
+
   .signals-action {
     grid-template-columns: 42px minmax(0, 1fr);
     gap: 12px;
     margin-top: 12px;
     padding: 15px 14px 16px;
   }
+
   .signals-action__icon {
     align-self: stretch;
   }
+
   .signals-action__icon svg {
     width: 34px;
     height: 34px;
   }
+
   .signals-action__copy h3 {
     font-size: 21px;
   }
+
   .signals-action__copy p {
     font-size: 12.3px;
     line-height: 1.46;
   }
+
   .signals-action__cta {
     grid-column: 1 / -1;
     width: 100%;
@@ -1690,16 +2817,39 @@
     min-height: 46px;
     margin-top: 5px;
   }
+}
+
+
+/* ==========================================================================
+   CONSOLIDAÇÃO FINAL — seção 4 e conteúdo essencial
+   Restaura a composição aprovada do especialista sem alterar o cabeçalho
+   consolidado nem a nova segunda seção.
+   ========================================================================== */
+/* ================================================================
+   HERO MOBILE — remove o CTA laranja antigo.
+   A placa do médico permanece como CTA no mobile.
+   Regra final e intencionalmente mais específica para prevalecer
+   sobre os ajustes anteriores de largura/posição do .hero-action.
+   ================================================================ */
+@media (max-width: 600px) {
   .hero-section.hero-section--refined .hero-copy .hero-action,
   .hero-section--refined .hero-action {
     display: none !important;
   }
 }
+
+/* ================================================================
+   SEÇÃO 4 MOBILE — força o uso da imagem única do médico.
+   O Doctor.jsx já usa doctor-office-section.webp; este bloco apenas
+   garante o enquadramento correto no layout empilhado do mobile e
+   impede qualquer retrato antigo sobreposto. Não afeta o desktop.
+   ================================================================ */
 @media (max-width: 920px) {
   .doctor-section .doctor-photo-panel {
     min-height: clamp(390px, 92vw, 500px);
     background: #24332f;
   }
+
   .doctor-section .doctor-office-bg {
     display: block !important;
     position: absolute;
@@ -1708,135 +2858,195 @@
     height: 100%;
     opacity: 1 !important;
     object-fit: cover;
+    /* No empilhamento também preservamos o médico como protagonista. */
     object-position: 68% 48%;
     filter: saturate(1.10) brightness(1.045) contrast(1.075);
     transform: none !important;
   }
+
+
 }
+
 @media (max-width: 600px) {
   .doctor-section .doctor-photo-panel {
     min-height: 410px;
   }
+
   .doctor-section .doctor-office-bg {
     object-position: 72% 48%;
   }
 }
+
+/* ================================================================
+   Especialista — responsividade do novo perfil profissional
+   ================================================================ */
 @media (min-width: 921px) {
   .doctor-section.doctor-section--profile {
     min-height: 505px;
     grid-template-columns: 52% 48%;
   }
+
   .doctor-section--profile .doctor-photo-panel {
     min-height: 505px;
   }
+
   .doctor-section--profile .doctor-content {
     padding: 24px clamp(28px, 3vw, 48px) 38px;
   }
 }
+
 @media (max-width: 1100px) and (min-width: 921px) {
   .doctor-section.doctor-section--profile {
     min-height: 555px;
     grid-template-columns: 49% 51%;
   }
+
   .doctor-section--profile .doctor-photo-panel {
     min-height: 555px;
   }
+
   .doctor-profile-content > h2 {
     font-size: clamp(26px, 2.8vw, 32px);
   }
+
   .doctor-profile-kicker {
     font-size: 22px;
   }
+
   .doctor-profile-intro h3 {
     font-size: 18px;
   }
+
   .doctor-credential-row p {
     font-size: 12.7px;
   }
 }
+
 @media (max-width: 920px) {
   .doctor-section.doctor-section--profile {
     min-height: 0;
     grid-template-columns: 1fr;
   }
+
   .doctor-section--profile .doctor-photo-panel {
     min-height: 460px;
   }
+
   .doctor-section--profile .doctor-content {
     padding: 54px 32px 78px;
   }
+
   .doctor-profile-content > h2 {
     margin-bottom: 22px;
   }
+
   .doctor-credentials-list,
   .doctor-profile-statement,
   .doctor-profile-callout {
     max-width: none;
   }
 }
+
 @media (max-width: 600px) {
   .doctor-section--profile .doctor-photo-panel {
     min-height: clamp(330px, 92vw, 430px);
   }
+
   .doctor-section--profile .doctor-content {
     padding: 42px 22px 72px;
   }
+
   .doctor-profile-content > h2 {
     margin-bottom: 20px;
     font-size: clamp(25px, 7.4vw, 31px);
   }
+
   .doctor-profile-intro {
     padding-left: 17px;
     margin-bottom: 18px;
   }
+
   .doctor-profile-kicker {
     font-size: 21px;
   }
+
   .doctor-profile-intro h3 {
     font-size: 17px;
   }
+
   .doctor-credential-row {
     grid-template-columns: 40px minmax(0, 1fr);
     gap: 10px;
     min-height: 0;
     padding: 10px 0;
   }
+
   .doctor-credential-icon {
     width: 34px;
     height: 34px;
   }
+
   .doctor-credential-icon svg {
     width: 22px;
     height: 22px;
   }
+
   .doctor-credential-row p {
     font-size: 12.4px;
     line-height: 1.45;
   }
+
   .doctor-profile-statement {
     grid-template-columns: 38px minmax(0, 1fr);
     gap: 12px;
     margin-top: 18px;
     padding: 14px 15px;
   }
+
   .doctor-profile-quote {
     font-size: 43px;
   }
+
   .doctor-profile-statement p {
     font-size: 15px;
     line-height: 1.4;
   }
+
   .doctor-profile-callout {
     margin-top: 16px;
   }
+
   .doctor-profile-callout .cta-button {
     width: 100%;
     min-height: 48px;
   }
+
   .doctor-profile-callout small {
     font-size: 10.5px;
   }
 }
+
+/* ================================================================
+   Conteúdo essencial sempre visível
+   Evita que capturas de página, navegação por âncora ou rolagem muito rápida
+   deixem etapas da consulta e cards do ambiente presos no estado inicial do
+   Reveal. Mantemos as animações do título/fotos e retiramos apenas o atraso
+   dos elementos que carregam informação essencial.
+   ================================================================ */
+.js .process-section .process-steps.reveal,
+.js .process-section .process-step.reveal,
+.js .comfort-section .comfort-stack .comfort-card.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+.js .process-section .process-steps.reveal::before {
+  transform: scaleX(1) !important;
+  transition: none !important;
+}
+
 .js .process-section .process-step .step-number {
   opacity: 1 !important;
   transform: none !important;

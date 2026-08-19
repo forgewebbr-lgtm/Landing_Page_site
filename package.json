@@ -9,6 +9,8 @@
     "generate:seo": "node scripts/generate-seo.mjs",
     "validate": "node scripts/validate-config.mjs",
     "validate:production": "node scripts/validate-config.mjs --strict",
+    "check:production": "npm run generate:seo && npm run validate:production",
+    "build:production": "npm run check:production && vite build",
     "prebuild": "npm run generate:seo",
     "build": "vite build",
     "preview": "vite preview"

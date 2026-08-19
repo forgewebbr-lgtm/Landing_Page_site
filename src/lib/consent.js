@@ -64,6 +64,7 @@ export function toGoogleConsent(preferences) {
     ad_storage: consent.marketing ? 'granted' : 'denied',
     ad_user_data: consent.marketing ? 'granted' : 'denied',
     ad_personalization: consent.marketing ? 'granted' : 'denied',
+    personalization_storage: 'denied',
     functionality_storage: 'granted',
     security_storage: 'granted',
   }
