@@ -112,3 +112,20 @@ Limpeza acelerada do CSS sem redesenho. Backups e relatório técnico: `docs/css
 ## CSS Final v4
 
 Consolidação da cascata responsiva após validação visual da v3. Relatório e backup: `docs/css-backup/FINAL-V4-REPORT.txt` e `docs/css-backup/final-v4/`.
+
+## V6 — Localização
+
+- Nova seção de localização entre Avaliações e CTA final.
+- Atendimento indicado em Einstein Hospital Israelita – Goiânia, Órion Complex, consultórios do 6º andar.
+- Endereço exibido: Avenida Portugal, 1.148 — Setor Marista — Goiânia/GO — CEP 74150-030.
+- Botão “Como chegar” abre a rota no Google Maps.
+- O mapa interativo é carregado somente após clique do visitante, reduzindo carregamento externo inicial e mantendo a política de privacidade alinhada ao comportamento da página.
+- Dados estruturados do médico passaram a incluir rua e CEP.
+
+## V6.1 — Localização panorâmica
+
+- seção de localização redesenhada com mapa horizontal de ponta a ponta;
+- informações do Einstein/Órion integradas em uma placa sobre o mapa;
+- endereço e botão “Como chegar” em uma barra compacta abaixo do mapa;
+- comportamento responsivo preservado, com empilhamento no celular;
+- nenhuma outra seção da landing page foi redesenhada nesta versão.

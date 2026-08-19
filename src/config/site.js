@@ -3,7 +3,7 @@ const doctorShortName = 'Dr. Antonio Flávio'
 const city = 'Goiânia'
 const state = 'GO'
 const stateName = 'Goiás'
-const whatsappNumber = '5562992147794'
+const whatsappNumber = '5562960002373'
 
 export const SITE = Object.freeze({
   // Identificação profissional
@@ -26,11 +26,17 @@ export const SITE = Object.freeze({
   cityState: `${city} · ${state}`,
   serviceLocation: `${city} e telemedicina`,
   serviceLocationLines: Object.freeze([city, 'e telemedicina']),
+  facilityName: 'Einstein Hospital Israelita – Goiânia',
+  complexName: 'Órion Complex',
+  consultingFloor: 'Consultórios – 6º andar',
+  streetAddress: 'Avenida Portugal, 1.148',
+  neighborhood: 'Setor Marista',
+  postalCode: '74150-030',
 
   // Contato
   whatsappNumber,
-  whatsappDisplay: '(62) 99214-7794',
-  whatsappInternational: '+55 62 99214-7794',
+  whatsappDisplay: '(62) 96000-2373',
+  whatsappInternational: '+55 62 96000-2373',
   whatsappMessage:
     `Olá, gostaria de informações e de verificar a disponibilidade para atendimento particular com o ${doctorName}.`,
 

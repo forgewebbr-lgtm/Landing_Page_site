@@ -210,8 +210,7 @@
     min-height: 460px;
   }
   .doctor-photo-vignette {
-    background: linear-gradient(90deg, transparent 0 64%, rgba(250, 247, 240, .08) 78%, rgba(250, 247, 240, .5) 100%),
-            linear-gradient(0deg, rgba(5, 40, 35, .22), transparent 36%);
+    background: linear-gradient(0deg, rgba(5, 40, 35, .22), transparent 36%);
   }
   .doctor-content {
     padding: 64px 32px 72px;
@@ -769,22 +768,18 @@
   }
   .doctor-office-bg {
     object-position: center 52%;
-    transform: scale(1.018);
+    transform: scale(1.0);
   }
   .doctor-office-shade {
     background: linear-gradient(90deg,
-              rgba(4, 31, 27, .12) 0%,
-              rgba(4, 31, 27, .015) 50%,
-              rgba(250, 247, 240, .36) 74%,
-              rgba(250, 247, 240, .92) 100%),
+              rgba(4, 31, 27, .16) 0%,
+              rgba(4, 31, 27, .07) 42%,
+              transparent 72%,
+              transparent 100%),
             linear-gradient(0deg, rgba(3, 27, 24, .18), transparent 64%);
   }
   .doctor-photo-vignette {
-    background: linear-gradient(90deg,
-              transparent 0 58%,
-              rgba(250, 247, 240, .10) 70%,
-              rgba(250, 247, 240, .84) 100%),
-            linear-gradient(0deg, rgba(5, 40, 35, .16), transparent 38%);
+    background: linear-gradient(0deg, rgba(5, 40, 35, .16), transparent 38%);
   }
   .doctor-content {
     padding: 54px clamp(38px, 4vw, 60px) 72px;
@@ -1842,3 +1837,4 @@
   transform: none !important;
   transition: none !important;
 }
+

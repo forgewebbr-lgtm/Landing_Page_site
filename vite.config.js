@@ -31,8 +31,10 @@ function siteDataPlugin(siteUrl) {
         },
         address: {
           '@type': 'PostalAddress',
+          streetAddress: SITE.streetAddress,
           addressLocality: SITE.city,
           addressRegion: SITE.state,
+          postalCode: SITE.postalCode,
           addressCountry: 'BR',
         },
         contactPoint: {
