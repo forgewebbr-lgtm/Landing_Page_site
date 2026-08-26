@@ -59,7 +59,7 @@ export default function Doctor() {
         </Reveal>
 
         <Reveal className="doctor-profile-intro" delay={150} distance={14}>
-          <span className="doctor-profile-kicker">Quem é o Dr. Antônio Flávio?</span>
+          <span className="doctor-profile-kicker">Quem é o Dr. Antonio Flávio?</span>
           <h3>Urologista Oncológico e especialista em Cirurgia Robótica.</h3>
         </Reveal>
 

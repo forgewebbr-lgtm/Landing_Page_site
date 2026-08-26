@@ -2,7 +2,7 @@ import Icon from '../ui/Icon'
 import Reveal from '../ui/Reveal'
 import TextLines from '../ui/TextLines'
 import WhatsAppButton from '../ui/WhatsAppButton'
-import KidneyLogo from '../ui/KidneyLogo'
+import doctorLogo from '../../assets/logos/logo-dr-antonio.svg'
 import { SITE } from '../../config/site'
 
 const points = [
@@ -62,16 +62,21 @@ export default function FinalCTA() {
           <small>Atendimento particular e reservado pelo WhatsApp.</small>
         </Reveal>
 
-        <Reveal className="final-brand" delay={460} variant="fade">
-          <KidneyLogo size={78} className="kidney-mark" />
-          <div>
-            <strong>{SITE.doctorName}</strong>
-            <span>{SITE.specialty}</span>
-            <small>
-              {SITE.crm}&nbsp;&nbsp;|&nbsp;&nbsp;{SITE.rqe}
-            </small>
-          </div>
-        </Reveal>
+       <Reveal className="final-brand" delay={460} variant="fade">
+        <img
+          src={doctorLogo}
+          alt=""
+          aria-hidden="true"
+          className="kidney-mark"
+        />
+        <div>
+          <strong>{SITE.doctorName}</strong>
+          <span>{SITE.specialty}</span>
+          <small>
+            {SITE.crm}&nbsp;&nbsp;|&nbsp;&nbsp;{SITE.rqe}
+          </small>
+        </div>
+      </Reveal>
       </div>
     </section>
   )

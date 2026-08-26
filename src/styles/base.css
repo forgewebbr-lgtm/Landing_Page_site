@@ -3,7 +3,10 @@
   --cream-light: #f7f3ed;
   --gold: #b9853f;
   --gold-light: #d2a45f;
-  --ink: #173b36;
+  --brand-blue: #0a3965;
+  --brand-blue-dark: #061b2f;
+  --brand-blue-deep: #03101d;
+  --ink: var(--brand-blue);
   --serif: 'Source Serif 4', Georgia, serif;
   --sans: 'DM Sans', Arial, sans-serif;
   --shell: 1440px;
@@ -23,7 +26,7 @@ body {
   min-width: 320px;
   overflow-x: clip;
   background: var(--cream);
-  color: #2f413c;
+  color: #2c3844;
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.55;

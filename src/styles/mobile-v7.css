@@ -1,0 +1,1088 @@
+/*
+  Mobile V7 — refinamento exclusivo para telas pequenas.
+  Objetivo: reduzir verticalidade, melhorar legibilidade e preservar o desktop aprovado.
+*/
+@media (max-width: 600px) {
+  /* HERO — mantém a composição, melhora ritmo e traz o CTA de volta */
+  .hero-section.hero-section--refined {
+    --hero-height: 620px;
+  }
+
+  .hero-section--refined .hero-copy {
+    width: min(68vw, 264px);
+  }
+
+  .hero-section--refined .hero-copy h1 {
+    margin-bottom: 12px;
+    font-size: clamp(28px, 7.7vw, 31px);
+    line-height: 1;
+  }
+
+  .hero-section--refined .hero-copy > p {
+    margin-bottom: 10px;
+    font-size: clamp(12.5px, 3.35vw, 13.2px);
+    line-height: 1.5;
+  }
+
+  .hero-section--refined .hero-trust {
+    order: 3;
+    width: min(69vw, 268px);
+    margin-top: 4px;
+  }
+
+  .hero-section.hero-section--refined .hero-copy .hero-action,
+  .hero-section--refined .hero-action {
+    order: 4;
+    display: none !important;
+    width: min(63vw, 244px);
+    margin-top: 14px;
+  }
+
+  .hero-section--refined .hero-action .cta-button {
+    min-height: 43px;
+    font-size: 12.5px;
+  }
+
+  /* SINAIS — mesmos cards, porém mais legíveis e compactos */
+  .signals-section.signals-section--hub {
+    padding: 38px 0 42px;
+  }
+
+  .signals-hub__header {
+    max-width: 350px;
+    margin-inline: auto;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .signals-hub__title {
+    font-size: clamp(27px, 7.7vw, 33px);
+    line-height: 1.04;
+  }
+
+  .signals-hub__intro {
+    font-size: 12.8px;
+    line-height: 1.52;
+  }
+
+  .signals-topic-grid {
+    gap: 9px;
+  }
+
+  .signals-topic-card {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px 14px;
+  }
+
+  .signals-topic-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .signals-topic-card__icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .signals-topic-card h3 {
+    font-size: 18.5px;
+    line-height: 1.16;
+  }
+
+  .signals-topic-card p {
+    font-size: 12.2px;
+    line-height: 1.48;
+  }
+
+  .signals-other {
+    margin-top: 9px;
+    padding: 10px 12px;
+  }
+
+  .signals-action {
+    margin-top: 9px;
+    padding: 13px 13px 14px;
+  }
+
+  /* BENEFÍCIOS — de pilha vertical para grid 2x2 */
+  .benefits-strip {
+    padding: 24px 0 26px;
+  }
+
+  .benefits-layout {
+    width: calc(100% - 28px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .benefits-layout > h2 {
+    grid-column: 1 / -1;
+    margin: 0 0 4px;
+    padding: 0 0 7px;
+    font-size: 17px;
+    line-height: 1.2;
+    border-bottom: 1px solid rgba(209, 163, 92, .26);
+  }
+
+  .benefit-item,
+  .benefit-item:first-of-type,
+  .benefit-item:nth-of-type(3) {
+    min-height: 112px;
+    display: grid;
+    grid-template-columns: 27px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    padding: 12px 10px;
+    background: rgba(255, 255, 255, .025);
+    border: 1px solid rgba(194, 145, 72, .42);
+    border-radius: 8px;
+  }
+
+  .benefit-item svg {
+    width: 24px;
+    height: 24px;
+    margin-top: 1px;
+  }
+
+  .benefit-item h3 {
+    margin: 0 0 4px;
+    font-size: 11.6px;
+    line-height: 1.25;
+  }
+
+  .benefit-item p {
+    font-size: 9.7px;
+    line-height: 1.38;
+  }
+
+  /* ESPECIALISTA — apenas compactação; não altera o recorte manual da foto */
+  .doctor-section--profile .doctor-content {
+    padding-top: 34px;
+    padding-bottom: 50px;
+  }
+
+  .doctor-profile-content > h2 {
+    margin-bottom: 15px;
+    font-size: clamp(23px, 6.8vw, 28px);
+  }
+
+  .doctor-profile-intro {
+    margin-bottom: 13px;
+  }
+
+  .doctor-credential-row {
+    padding-block: 8px;
+  }
+
+  .doctor-profile-statement {
+    margin-top: 14px;
+  }
+
+  /* COMO É A CONSULTA — imagem real em destaque + painel lateral transparente */
+  .process-section {
+    position: relative;
+    min-height: 372px;
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+    color: #f8f2e7;
+    background: #171512;
+    border-top: 1px solid rgba(190, 145, 70, .32);
+    border-bottom: 1px solid rgba(190, 145, 70, .38);
+  }
+
+  .process-section::before,
+  .process-section::after {
+    display: none;
+  }
+
+  .process-image-panel {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .process-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    /* Mantém janela, poltrona laranja e cadeira do paciente no enquadramento. */
+    object-position: 20% 50%;
+    filter: saturate(.98) contrast(1.02) brightness(.93);
+    transform: none;
+  }
+
+  .process-image-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg,
+        rgba(10, 12, 11, .40) 0%,
+        rgba(10, 12, 11, .24) 43%,
+        rgba(10, 12, 11, .07) 69%,
+        rgba(10, 12, 11, 0) 100%
+      ),
+      linear-gradient(180deg,
+        rgba(8, 10, 9, .08) 0%,
+        rgba(8, 10, 9, 0) 45%,
+        rgba(8, 10, 9, .08) 100%
+      );
+  }
+
+  .process-copy {
+    position: relative;
+    z-index: 2;
+    width: min(58%, 200px);
+    min-height: 344px;
+    margin: 14px 0 14px 10px;
+    padding: 16px 13px 15px;
+    justify-content: flex-start;
+    overflow: hidden;
+    border: 1px solid rgba(231, 200, 153, .34);
+    border-radius: 17px;
+    background: rgba(22, 20, 17, .07);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .20);
+  }
+
+  .process-heading {
+    grid-template-columns: 12px auto 1fr;
+    justify-content: stretch;
+    gap: 7px;
+    width: 100%;
+    margin: 0 0 12px;
+  }
+
+  .process-heading h2 {
+    color: #fff8ec;
+    font-size: 13.8px;
+    line-height: 1;
+    text-align: left;
+    letter-spacing: .025em;
+    white-space: nowrap;
+  }
+
+  .process-heading-line {
+    background: linear-gradient(90deg, transparent, rgba(215, 166, 91, .92));
+  }
+
+  .process-heading-line:last-child {
+    transform: none;
+    background: linear-gradient(90deg, rgba(215, 166, 91, .92), transparent);
+  }
+
+  .process-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .process-steps::before {
+    display: block;
+    top: 12px;
+    bottom: 11px;
+    left: 12px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(211, 159, 82, .88), rgba(211, 159, 82, .30));
+    box-shadow: none;
+  }
+
+  .process-step,
+  .process-step:last-child:nth-child(odd) {
+    width: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 25px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 8px;
+    row-gap: 1px;
+    padding: 0 0 9px;
+    text-align: left;
+  }
+
+  .process-step:last-child {
+    padding-bottom: 0;
+  }
+
+  .step-number {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    color: #fff8eb;
+    font-size: 8.8px;
+    box-shadow: 0 0 0 2px rgba(19, 17, 14, .48), 0 2px 7px rgba(0, 0, 0, .20);
+  }
+
+  .process-step > svg {
+    display: none;
+  }
+
+  .process-step h3 {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    margin: 0;
+    color: #fff8ec;
+    font-size: 10.6px;
+    line-height: 1.18;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, .34);
+  }
+
+  .process-step p {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 0;
+    max-width: none;
+    margin: 1px 0 0;
+    color: rgba(248, 242, 231, .88);
+    font-size: 8.15px;
+    line-height: 1.31;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, .30);
+  }
+
+  /* AMBIENTE — mais editorial e menos vertical */
+  .comfort-section {
+    padding: 0;
+  }
+
+  .comfort-layout {
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .comfort-story {
+    min-height: 420px;
+  }
+
+  .comfort-intro {
+    min-height: 185px;
+    padding: 24px 20px;
+  }
+
+  .comfort-intro h2 {
+    font-size: 20.5px;
+    line-height: 1.08;
+  }
+
+  .comfort-intro p {
+    max-width: 240px;
+    font-size: 11.4px;
+    line-height: 1.48;
+  }
+
+  .comfort-card > img {
+    height: 122px;
+  }
+
+  /* AVALIAÇÕES — faixa horizontal rolável para reduzir altura */
+  .reviews-section {
+    padding: 28px 0 32px;
+    overflow: hidden;
+  }
+
+  .reviews-title {
+    margin-bottom: 13px;
+    font-size: 17px;
+  }
+
+  .reviews-grid {
+    width: 100%;
+    display: flex;
+    gap: 9px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 2px 7px;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .reviews-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-grid > .rating-card,
+  .reviews-grid > blockquote,
+  .reviews-grid > blockquote:last-of-type {
+    flex: 0 0 78%;
+    min-width: 0;
+    min-height: 146px;
+    scroll-snap-align: start;
+  }
+
+  .reviews-grid > .rating-card {
+    flex-basis: 62%;
+  }
+
+  /* Em telas touch, tocar/arrastar não deve deslocar o card no eixo vertical. */
+  .rating-card:hover,
+  .review-card:hover {
+    transform: none;
+  }
+
+  .review-card p {
+    font-size: 11.4px;
+  }
+
+  .reviews-note {
+    margin-top: 4px;
+  }
+
+  /* LOCALIZAÇÃO — mapa sempre visível, carregado com lazy loading */
+  .location-section {
+    padding: 34px 0 46px;
+  }
+
+  .location-heading {
+    margin-bottom: 18px;
+  }
+
+  .location-heading h2 {
+    font-size: clamp(27px, 7.8vw, 33px);
+  }
+
+  .location-heading p {
+    font-size: 12.7px;
+  }
+
+  .location-map__stage,
+  .location-map iframe {
+    min-height: 235px;
+  }
+
+  .location-map__footer {
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .location-address__text strong {
+    font-size: 12.5px;
+  }
+
+  .location-address__text > span {
+    font-size: 10.6px;
+  }
+
+  .location-directions {
+    min-height: 44px;
+  }
+
+  /* CTA FINAL — mais compacto */
+  .final-cta-section {
+    padding-block: 24px;
+  }
+}
+
+/* Em aparelhos muito estreitos, preserva a mesma composição lateral. */
+@media (max-width: 360px) {
+  .process-section {
+    min-height: 356px;
+  }
+
+  .process-copy {
+    width: min(67%, 228px);
+    min-height: 330px;
+    margin: 13px 0 13px 8px;
+    padding: 14px 11px 13px;
+  }
+
+  .process-heading h2 {
+    font-size: 12.7px;
+  }
+
+  .process-image {
+    object-position: 100% 50%;
+  }
+}
+
+/* ==========================================================
+   V7.1 — refinamento de densidade mobile
+   Mantém desktop e estrutura V7 intactos.
+   ========================================================== */
+@media (max-width: 600px) {
+  /* ESPECIALISTA — menos altura, mesma foto e mesmo conteúdo */
+  .doctor-section--profile .doctor-photo-panel {
+    min-height: clamp(285px, 74vw, 320px);
+  }
+
+  .doctor-section--profile .doctor-content {
+    padding: 28px 18px 36px;
+  }
+
+  .doctor-profile-content > h2 {
+    margin-bottom: 13px;
+    font-size: clamp(22px, 6.2vw, 26px);
+    line-height: 1.08;
+  }
+
+  .doctor-profile-intro {
+    padding-left: 14px;
+    margin-bottom: 11px;
+  }
+
+  .doctor-profile-kicker {
+    margin-bottom: 3px;
+    font-size: 18.5px;
+  }
+
+  .doctor-profile-intro h3 {
+    font-size: 15.5px;
+    line-height: 1.28;
+  }
+
+  .doctor-credential-row {
+    grid-template-columns: 31px minmax(0, 1fr);
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .doctor-credential-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .doctor-credential-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .doctor-credential-row p {
+    font-size: 11.2px;
+    line-height: 1.38;
+  }
+
+  .doctor-profile-statement {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 9px;
+    margin-top: 12px;
+    padding: 10px 12px;
+  }
+
+  .doctor-profile-quote {
+    font-size: 34px;
+  }
+
+  .doctor-profile-statement p {
+    font-size: 13.1px;
+    line-height: 1.35;
+  }
+
+  .doctor-profile-callout {
+    margin-top: 12px;
+  }
+
+  .doctor-profile-callout .cta-button {
+    min-height: 43px;
+    font-size: 11.8px;
+  }
+
+  .doctor-profile-callout small {
+    margin-top: 5px;
+    font-size: 9.3px;
+    line-height: 1.35;
+  }
+
+  /* AMBIENTE — preserva a foto principal e transforma os 3 recursos em linhas compactas */
+  .comfort-layout {
+    gap: 7px;
+    padding: 7px;
+  }
+
+  .comfort-story {
+    min-height: 355px;
+  }
+
+  .comfort-story-image {
+    object-position: center 68%;
+  }
+
+  .comfort-intro {
+    min-height: 154px;
+    padding: 20px 18px;
+  }
+
+  .comfort-kicker {
+    margin-bottom: 8px;
+    font-size: 8.8px;
+  }
+
+  .comfort-intro h2 {
+    margin-bottom: 10px;
+    font-size: 19px;
+    line-height: 1.06;
+  }
+
+  .comfort-intro p {
+    max-width: 235px;
+    font-size: 10.8px;
+    line-height: 1.42;
+  }
+
+  .comfort-intro::after {
+    width: 34px;
+    margin-top: 12px;
+  }
+
+  .comfort-feature-caption {
+    right: 9px;
+    bottom: 9px;
+    left: 9px;
+    gap: 8px;
+    padding: 9px 10px;
+  }
+
+  .comfort-feature-caption svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .comfort-feature-caption strong {
+    margin-bottom: 1px;
+    font-size: 10.8px;
+  }
+
+  .comfort-feature-caption span {
+    font-size: 8.9px;
+  }
+
+  .comfort-stack {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .comfort-card {
+    min-height: 104px;
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-rows: 104px;
+    border-radius: 8px;
+  }
+
+  .comfort-card__copy {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 11px;
+  }
+
+  .comfort-card__copy > svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .comfort-card h3 {
+    margin-bottom: 4px;
+    font-size: 11.2px;
+    line-height: 1.18;
+  }
+
+  .comfort-card p {
+    font-size: 9.2px;
+    line-height: 1.32;
+  }
+
+  .comfort-card > img {
+    order: 0;
+    grid-column: 1;
+    grid-row: 1;
+    width: 112px;
+    height: 104px;
+    min-height: 104px;
+    object-fit: cover;
+  }
+
+  /* CTA/RODAPÉ — mantém informação, remove excesso de altura */
+  .final-cta-section {
+    min-height: 0;
+    padding: 20px 0 18px;
+  }
+
+  .final-grid {
+    gap: 15px;
+  }
+
+  .final-left h2 {
+    margin: 0 0 12px;
+    font-size: 19px;
+    line-height: 1.15;
+  }
+
+  .final-points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 10px;
+  }
+
+  .final-points > div {
+    gap: 5px;
+    font-size: 9.4px;
+    line-height: 1.25;
+  }
+
+  .final-points svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .final-middle {
+    text-align: center;
+  }
+
+  .final-middle .cta-button {
+    width: 100%;
+    min-height: 43px;
+    font-size: 11.8px;
+  }
+
+  .final-middle small {
+    margin-top: 5px;
+    font-size: 8.9px;
+  }
+
+  .final-brand {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 10px;
+    padding: 13px 0 0;
+    border-top: 1px solid rgba(194, 145, 72, .45);
+    border-left: 0;
+  }
+
+  .final-brand .kidney-mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .final-brand strong {
+    font-size: 14px;
+  }
+
+  .final-brand span {
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+  .final-brand small {
+    font-size: 8.2px;
+    line-height: 1.3;
+  }
+
+  .privacy-footer {
+    padding: 9px 0;
+  }
+
+  .privacy-footer__inner {
+    gap: 6px 12px;
+  }
+
+  .privacy-footer small,
+  .privacy-footer a,
+  .privacy-footer button {
+    font-size: 8px;
+    line-height: 1.3;
+  }
+}
+
+/* V7.4: consulta mobile com foto real em destaque e painel lateral translúcido. */
+
+/* ==========================================================
+   V7.5 — AMBIENTE MOBILE COM MAIS DESTAQUE PARA AS FOTOS
+   Foto principal maior + 3 cards verticais com imagens amplas.
+   Desktop permanece intacto.
+   ========================================================== */
+@media (max-width: 600px) {
+  .comfort-section {
+    padding: 0;
+  }
+
+  .comfort-layout {
+    gap: 11px;
+    padding: 8px;
+  }
+
+  /* Foto principal: intro compacta em cima e ambiente maior abaixo */
+  .comfort-story {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 310px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .comfort-story-image {
+    position: relative;
+    inset: auto;
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 310px;
+    min-height: 310px;
+    object-fit: cover;
+    object-position: center 62%;
+    filter: saturate(.94) contrast(1.02) brightness(1.01) sepia(.015);
+    transform: none;
+  }
+
+  .comfort-story:hover .comfort-story-image {
+    transform: none;
+  }
+
+  .comfort-story-overlay {
+    display: none;
+  }
+
+  .comfort-intro {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-height: 0;
+    padding: 21px 18px 19px;
+    background: linear-gradient(180deg, #faf7f1 0%, #f7f1e8 100%);
+  }
+
+  .comfort-kicker {
+    margin-bottom: 7px;
+    font-size: 8.7px;
+  }
+
+  .comfort-intro h2 {
+    margin-bottom: 9px;
+    font-size: 20px;
+    line-height: 1.07;
+  }
+
+  .comfort-intro p {
+    max-width: 310px;
+    font-size: 10.9px;
+    line-height: 1.44;
+  }
+
+  .comfort-intro::after {
+    width: 34px;
+    margin-top: 11px;
+  }
+
+  .comfort-feature-caption {
+    display: flex;
+    right: 11px;
+    bottom: 11px;
+    left: 11px;
+    width: auto;
+    gap: 8px;
+    padding: 10px 11px;
+    background: rgba(4, 27, 48, .86);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  .comfort-feature-caption svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .comfort-feature-caption strong {
+    margin-bottom: 1px;
+    font-size: 10.9px;
+  }
+
+  .comfort-feature-caption span {
+    font-size: 8.9px;
+    line-height: 1.35;
+  }
+
+  /* Recursos: cards verticais maiores para o paciente enxergar a estrutura */
+  .comfort-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 12px;
+    height: auto;
+  }
+
+  .comfort-card {
+    min-height: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .comfort-card > img {
+    order: 0;
+    display: block;
+    width: 100%;
+    height: 225px;
+    min-height: 225px;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(.94) contrast(1.02) brightness(.98) sepia(.015);
+    transform: none;
+  }
+
+  .comfort-card:hover > img {
+    transform: none;
+  }
+
+  .comfort-card__copy {
+    order: 1;
+    width: 100%;
+    min-height: 72px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px 11px;
+  }
+
+  .comfort-card__copy > svg {
+    flex: 0 0 auto;
+    width: 21px;
+    height: 21px;
+    margin-top: 1px;
+  }
+
+  .comfort-card h3 {
+    margin-bottom: 3px;
+    font-size: 12px;
+    line-height: 1.18;
+  }
+
+  .comfort-card p {
+    font-size: 9.6px;
+    line-height: 1.32;
+  }
+}
+
+@media (max-width: 360px) {
+  .comfort-story {
+    grid-template-rows: auto 285px;
+  }
+
+  .comfort-story-image {
+    height: 285px;
+    min-height: 285px;
+  }
+
+  .comfort-card > img {
+    height: 205px;
+    min-height: 205px;
+  }
+}
+
+
+/* V7.6: ambiente mobile — foto principal ampliada e textos dos cards inferiores compactados. */
+
+
+/* ==========================================================
+   V7.7 — HERO MOBILE NAVY LOCALIZADO
+   Azul apenas atrás do texto; casal preservado em tons naturais/quentes.
+   ========================================================== */
+@media (max-width: 600px) {
+  .hero-section.hero-section--refined {
+    background: #041226;
+  }
+
+  .hero-section--refined .hero-bg {
+    filter:
+      brightness(1.01)
+      contrast(1.06)
+      saturate(.74)
+      sepia(.035)
+      hue-rotate(0deg);
+  }
+
+  .hero-section--refined .hero-shade {
+    background:
+      radial-gradient(
+        ellipse 96% 68% at -4% 12%,
+        rgba(4, 18, 38, 1) 0%,
+        rgba(4, 18, 38, .99) 30%,
+        rgba(4, 18, 38, .82) 46%,
+        rgba(4, 18, 38, .40) 60%,
+        rgba(4, 18, 38, .12) 72%,
+        transparent 82%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, .12) 0%,
+        rgba(0, 0, 0, .04) 30%,
+        transparent 52%,
+        rgba(0, 0, 0, .18) 100%
+      );
+  }
+
+  .hero-section--refined .hero-lighting--vignette {
+    background:
+      radial-gradient(
+        ellipse at 58% 49%,
+        transparent 0%,
+        transparent 58%,
+        rgba(0, 0, 0, .08) 76%,
+        rgba(0, 0, 0, .28) 100%
+      );
+    opacity: .50;
+  }
+
+  .hero-section--refined .hero-lighting--lamp {
+    opacity: .48;
+  }
+
+  .hero-section--refined .hero-lighting--couple {
+    display: none;
+  }
+
+  .hero-section--refined .hero-doctor-card__photo {
+    filter:
+      brightness(1.08)
+      contrast(1.04)
+      saturate(.94)
+      sepia(.012)
+      drop-shadow(-10px 16px 24px rgba(0, 0, 0, .28))
+      drop-shadow(-2px 0 5px rgba(208, 137, 60, .08));
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--shade {
+    opacity: .07;
+    filter:
+      brightness(.58)
+      contrast(1.06)
+      saturate(.72);
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--warm {
+    opacity: .19;
+    filter:
+      brightness(.84)
+      contrast(1.03)
+      saturate(1.20)
+      sepia(.66)
+      hue-rotate(-7deg);
+  }
+}

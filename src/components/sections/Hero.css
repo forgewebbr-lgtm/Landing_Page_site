@@ -9,7 +9,7 @@
 .hero-section--refined {
   --hero-warm-light: rgba(236, 160, 78, .18);
   --hero-warm-highlight: rgba(255, 220, 165, .12);
-  --hero-petrol-shadow: rgba(0, 25, 21, .28);
+  --hero-petrol-shadow: rgba(4, 18, 38, .28);
   --hero-parallax: 0px;
 
   /* Painel estrutural do médico — valores fluidos para zoom e resize. */
@@ -26,7 +26,7 @@
 
 .hero-section--refined .hero-copy h1 {
   text-wrap: balance;
-  text-shadow: 0 2px 18px rgba(0, 18, 15, .14);
+  text-shadow: 0 2px 18px rgba(2, 10, 22, .18);
 }
 
 .hero-section--refined .hero-copy > p {
@@ -85,28 +85,28 @@
   filter:
     brightness(1.005)
     contrast(1.055)
-    saturate(.94)
-    sepia(.018)
-    hue-rotate(-2deg);
+    saturate(.80)
+    sepia(.012)
+    hue-rotate(-5deg);
 }
 
 .hero-section--refined .hero-shade {
   background:
     linear-gradient(
       90deg,
-      rgba(1, 37, 32, .995) 0%,
-      rgba(1, 37, 32, .96) 16%,
-      rgba(1, 37, 32, .58) 28%,
-      rgba(1, 30, 26, .16) 40%,
-      rgba(0, 16, 14, .025) 54%,
-      rgba(0, 13, 11, .05) 70%,
-      rgba(0, 12, 10, .14) 86%,
-      rgba(0, 10, 9, .24) 100%
+      rgba(4, 18, 38, .998) 0%,
+      rgba(4, 18, 38, .985) 16%,
+      rgba(4, 18, 38, .72) 28%,
+      rgba(4, 18, 38, .28) 40%,
+      rgba(4, 18, 38, .055) 54%,
+      rgba(4, 18, 38, .06) 70%,
+      rgba(3, 15, 31, .14) 86%,
+      rgba(2, 10, 22, .24) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(0, 17, 14, .46) 0%,
-      rgba(0, 20, 17, .1) 35%,
+      rgba(2, 10, 22, .50) 0%,
+      rgba(3, 15, 31, .12) 35%,
       transparent 67%
     );
 }
@@ -178,15 +178,15 @@
       ellipse at 57% 45%,
       transparent 0%,
       transparent 48%,
-      rgba(0, 21, 18, .075) 63%,
-      rgba(0, 14, 12, .34) 100%
+      rgba(4, 18, 38, .085) 63%,
+      rgba(2, 10, 22, .36) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(0, 15, 13, .09) 0%,
+      rgba(2, 10, 22, .10) 0%,
       transparent 24%,
       transparent 72%,
-      rgba(0, 18, 15, .19) 100%
+      rgba(3, 15, 31, .20) 100%
     );
   opacity: .82;
 }
@@ -222,7 +222,7 @@
     radial-gradient(
       ellipse at 78% 66%,
       var(--hero-petrol-shadow) 0%,
-      rgba(2, 22, 19, .08) 48%,
+      rgba(4, 18, 38, .09) 48%,
       transparent 72%
     );
 
@@ -243,7 +243,7 @@
       180deg,
       rgba(255, 244, 220, .012) 0%,
       transparent 43%,
-      rgba(1, 20, 17, .12) 100%
+      rgba(3, 15, 31, .13) 100%
     );
 
   -webkit-mask-image: linear-gradient(
@@ -271,7 +271,7 @@
     saturate(.94)
     sepia(.055)
     hue-rotate(-4deg)
-    drop-shadow(-18px 22px 30px rgba(0, 8, 6, .32))
+    drop-shadow(-18px 22px 30px rgba(2, 8, 18, .34))
     drop-shadow(-3px 0 5px rgba(233, 162, 83, .08));
 }
 
@@ -349,9 +349,9 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(2, 29, 25, .055) 24%,
-    rgba(2, 29, 25, .20) 64%,
-    rgba(2, 29, 25, .39) 100%
+    rgba(4, 18, 38, .065) 24%,
+    rgba(4, 18, 38, .22) 64%,
+    rgba(3, 15, 31, .42) 100%
   );
 
   -webkit-mask-image: linear-gradient(
@@ -413,16 +413,51 @@
 }
 
 @media (max-width: 600px) {
+  /* Mobile: navy localizado apenas atrás do texto.
+     A cena do casal permanece quente e sem banho azul global. */
   .hero-section--refined .hero-bg {
     filter:
-      brightness(.98)
-      contrast(1.025)
-      saturate(.94)
-      sepia(.012);
+      brightness(1.01)
+      contrast(1.06)
+      saturate(.74)
+      sepia(.035)
+      hue-rotate(0deg);
+  }
+
+  .hero-section--refined .hero-shade {
+    background:
+      radial-gradient(
+        ellipse 96% 68% at -4% 12%,
+        rgba(4, 18, 38, 1) 0%,
+        rgba(4, 18, 38, .99) 30%,
+        rgba(4, 18, 38, .82) 46%,
+        rgba(4, 18, 38, .40) 60%,
+        rgba(4, 18, 38, .12) 72%,
+        transparent 82%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, .12) 0%,
+        rgba(0, 0, 0, .04) 30%,
+        transparent 52%,
+        rgba(0, 0, 0, .18) 100%
+      );
+  }
+
+  .hero-section--refined .hero-lighting--vignette {
+    background:
+      radial-gradient(
+        ellipse at 58% 49%,
+        transparent 0%,
+        transparent 58%,
+        rgba(0, 0, 0, .08) 76%,
+        rgba(0, 0, 0, .28) 100%
+      );
+    opacity: .50;
   }
 
   .hero-section--refined .hero-lighting--lamp {
-    opacity: .38;
+    opacity: .48;
   }
 
   .hero-section--refined .hero-lighting--couple {

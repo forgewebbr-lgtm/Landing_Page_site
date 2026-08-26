@@ -175,8 +175,8 @@
   text-align: center;
 }
 
-/* A composição CTA é exclusiva do mobile; o desktop continua usando
-   exatamente o conteúdo original da placa. */
+/* A composição CTA é usada em mobile + tablet; o desktop (>= 921px)
+   continua usando exatamente o conteúdo original da placa. */
 .doctor-plaque__content--mobile {
   display: none;
 }
@@ -537,10 +537,10 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 920px) {
   /*
-   * PLACA MOBILE — OURO + VIDRO + PULSO DE LUZ
-   * A geometria e a versão desktop permanecem intactas.
+   * PLACA MOBILE + TABLET — OURO + VIDRO + PULSO DE LUZ
+   * A versão desktop (>= 921px) permanece intacta.
    * O destaque vem de ouro/champagne e luz, nunca de laranja.
    */
   .doctor-plaque {
@@ -553,6 +553,7 @@
     aspect-ratio: 2.02 / 1;
     padding: 11px 14px 10px;
     cursor: pointer;
+    pointer-events: auto;
 
     background:
       linear-gradient(
@@ -666,6 +667,7 @@
     height: 100%;
     color: inherit;
     text-decoration: none;
+    pointer-events: auto;
     -webkit-tap-highlight-color: transparent;
     outline: none;
   }

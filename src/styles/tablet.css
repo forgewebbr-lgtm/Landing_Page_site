@@ -1,0 +1,1160 @@
+/* ==========================================================
+   TABLET — 601px a 920px
+   Estratégia: versão ampliada do mobile.
+   - Mobile (<= 600px) permanece intacto.
+   - Desktop (>= 921px) permanece intacto.
+   - Tablet reaproveita a linguagem visual do mobile, com mais respiro.
+   - Um único bloco de tablet: sem V1/V2 se anulando.
+   ========================================================== */
+@media (min-width: 601px) and (max-width: 920px) {
+  :root {
+    --header-height: 70px;
+  }
+
+  /* ========================================================
+     HEADER — mesma leitura do mobile
+     ======================================================== */
+  .site-header {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 7, 10, .97) 0%,
+      rgba(4, 7, 10, .92) 72%,
+      rgba(4, 7, 10, .42) 100%
+    );
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .16);
+  }
+
+  .header-inner {
+    width: min(calc(100% - 36px), 860px);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+  }
+
+  .brand {
+    gap: 9px;
+  }
+
+  .brand-symbol {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-copy strong {
+    font-size: 15.5px;
+    line-height: 1.03;
+  }
+
+  .brand-copy small {
+    margin-top: 3px;
+    font-size: 7.7px;
+    letter-spacing: .14em;
+  }
+
+  /* Igual ao mobile: o Hero/placa concentra a conversão. */
+  .header-cta {
+    display: none;
+  }
+
+  .header-actions {
+    transform: none;
+  }
+
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+    color: var(--gold-light);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .menu-toggle svg {
+    width: 29px;
+    height: 29px;
+    stroke-width: 2.2;
+  }
+
+  /* ========================================================
+     HERO — linguagem mobile ampliada
+     Ajustes manuais da placa preservados em clamp().
+     Em 768px: left ≈ -60px | bottom ≈ 5px | width ≈ 260px
+     ======================================================== */
+  .hero-section.hero-section--refined {
+    --hero-height: clamp(690px, 92vw, 760px);
+    --hero-divider-drop: clamp(76px, 10vw, 90px);
+    --hero-copy-x: 0px;
+    --hero-copy-y: 0px;
+
+    --hero-doctor-right: clamp(-24px, -2vw, -12px);
+    --hero-doctor-bottom: clamp(-34px, -3vw, -20px);
+    --hero-doctor-width: clamp(310px, 45vw, 370px);
+    --hero-doctor-height: clamp(390px, 53vw, 440px);
+    --hero-doctor-photo-height: 106%;
+
+    --hero-plate-left: clamp(-72px, -7.8vw, -52px);
+    --hero-plate-bottom: clamp(4px, .65vw, 7px);
+    --hero-plate-width: clamp(240px, 33.85vw, 275px);
+
+    background: #041226;
+  }
+
+  .hero-section--refined .hero-media {
+    inset: 0;
+  }
+
+  /* A imagem vertical já usada no tablet é tratada como a cena do mobile. */
+  .hero-section--refined .hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 56% 54%;
+    transform: none;
+    transform-origin: center;
+    filter:
+      brightness(1.01)
+      contrast(1.06)
+      saturate(.74)
+      sepia(.035)
+      hue-rotate(0deg);
+  }
+
+  .hero-section--refined .hero-shade {
+    background:
+      radial-gradient(
+        ellipse 82% 70% at -4% 12%,
+        rgba(4, 18, 38, 1) 0%,
+        rgba(4, 18, 38, .99) 30%,
+        rgba(4, 18, 38, .82) 46%,
+        rgba(4, 18, 38, .40) 60%,
+        rgba(4, 18, 38, .12) 72%,
+        transparent 84%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, .12) 0%,
+        rgba(0, 0, 0, .04) 30%,
+        transparent 52%,
+        rgba(0, 0, 0, .18) 100%
+      );
+  }
+
+  .hero-section--refined .hero-lighting--vignette {
+    background: radial-gradient(
+      ellipse at 58% 49%,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 0, 0, .08) 76%,
+      rgba(0, 0, 0, .28) 100%
+    );
+    opacity: .50;
+  }
+
+  .hero-section--refined .hero-lighting--lamp {
+    opacity: .48;
+  }
+
+  .hero-section--refined .hero-lighting--couple {
+    display: none;
+  }
+
+  .hero-inner {
+    width: min(calc(100% - 44px), 860px);
+    min-height: var(--hero-height);
+    align-items: flex-start;
+    padding-top: calc(var(--header-height) + 24px);
+    padding-bottom: 0;
+  }
+
+  .hero-section--refined .hero-copy {
+    width: min(48%, 350px);
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+    transform: none;
+  }
+
+  .hero-section--refined .hero-copy h1 {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 14px;
+    font-size: clamp(34px, 5vw, 40px);
+    line-height: .99;
+    letter-spacing: -.032em;
+    text-wrap: initial;
+  }
+
+  .hero-section--refined .hero-copy h1 > span {
+    white-space: normal;
+  }
+
+  .hero-section--refined .hero-copy > p {
+    order: 2;
+    width: 100%;
+    max-width: 330px;
+    margin: 0 0 12px;
+    color: rgba(242, 242, 239, .97);
+    font-size: clamp(13px, 1.8vw, 14px);
+    line-height: 1.48;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .28);
+  }
+
+  .hero-section--refined .hero-copy > p br {
+    display: none;
+  }
+
+  /* Igual ao mobile: sem botão laranja; a placa é o CTA. */
+  .hero-section.hero-section--refined .hero-copy .hero-action,
+  .hero-section--refined .hero-action {
+    display: none !important;
+  }
+
+  .hero-section--refined .hero-trust {
+    order: 3;
+    width: min(100%, 340px);
+    max-width: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    margin: 8px 0 0;
+  }
+
+  .hero-section--refined .trust-item {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0;
+    color: rgba(242, 242, 239, .97);
+    font-size: clamp(9.8px, 1.4vw, 10.8px);
+    font-weight: 500;
+    white-space: nowrap;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .28);
+  }
+
+  .hero-section--refined .trust-item:not(:first-child) {
+    position: relative;
+    margin-left: 10px;
+    padding-left: 10px;
+  }
+
+  .hero-section--refined .trust-item:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 20px;
+    transform: translateY(-50%);
+    background: rgba(210, 164, 95, .34);
+  }
+
+  .hero-section--refined .trust-item svg {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+
+  /* Mesmos rótulos curtos do mobile. */
+  .hero-section--refined .trust-item > .trust-item__full {
+    display: none;
+  }
+
+  .hero-section--refined .trust-item > .trust-item__short {
+    display: inline;
+  }
+
+  .hero-section--refined .hero-doctor-card {
+    right: var(--hero-doctor-right);
+    bottom: var(--hero-doctor-bottom);
+    width: var(--hero-doctor-width);
+    height: var(--hero-doctor-height);
+  }
+
+  .hero-section--refined .hero-doctor-card__portrait {
+    display: block;
+  }
+
+  .hero-section--refined .hero-doctor-card__base-fade {
+    display: none;
+  }
+
+  .hero-section--refined .hero-doctor-card__photo {
+    height: var(--hero-doctor-photo-height);
+    filter:
+      brightness(1.08)
+      contrast(1.04)
+      saturate(.94)
+      sepia(.012)
+      drop-shadow(-10px 16px 24px rgba(0, 0, 0, .28))
+      drop-shadow(-2px 0 5px rgba(208, 137, 60, .08));
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--shade {
+    opacity: .07;
+    filter: brightness(.58) contrast(1.06) saturate(.72);
+  }
+
+  .hero-section--refined .hero-doctor-card__photo--warm {
+    opacity: .19;
+    filter:
+      brightness(.84)
+      contrast(1.03)
+      saturate(1.20)
+      sepia(.66)
+      hue-rotate(-7deg);
+  }
+
+  .hero-section--refined .hero-doctor-card__plate {
+    left: var(--hero-plate-left);
+    bottom: var(--hero-plate-bottom);
+    width: var(--hero-plate-width);
+    max-width: var(--hero-plate-width);
+    filter: drop-shadow(0 9px 18px rgba(0, 0, 0, .23));
+  }
+
+  .hero-bottom-divider {
+    height: var(--hero-divider-drop);
+    object-fit: fill;
+  }
+
+  /* ========================================================
+     SINAIS — estética mobile, espaço de tablet
+     ======================================================== */
+  .signals-section.signals-section--hub {
+    padding: 42px 0 46px;
+  }
+
+  .signals-hub {
+    width: min(calc(100% - 40px), 860px);
+  }
+
+  .signals-hub__header {
+    max-width: 620px;
+    margin-inline: auto;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  .signals-hub__title {
+    font-size: clamp(30px, 4.7vw, 36px);
+    line-height: 1.04;
+  }
+
+  .signals-hub__intro {
+    font-size: 13px;
+    line-height: 1.52;
+  }
+
+  .signals-topic-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .signals-topic-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 11px;
+    min-height: 148px;
+    padding: 15px 14px;
+    border-radius: 12px;
+  }
+
+  .signals-topic-card__icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .signals-topic-card__icon::after {
+    display: none;
+  }
+
+  .signals-topic-card__icon svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .signals-topic-card h3 {
+    margin-bottom: 5px;
+    font-size: 18.5px;
+    line-height: 1.16;
+  }
+
+  .signals-topic-card p {
+    font-size: 11.8px;
+    line-height: 1.46;
+  }
+
+  .signals-other {
+    margin-top: 10px;
+    padding: 10px 13px;
+    font-size: 11px;
+  }
+
+  .signals-action {
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    gap: 13px;
+    margin-top: 10px;
+    padding: 13px 14px;
+  }
+
+  .signals-action__copy h3 {
+    font-size: 19px;
+  }
+
+  .signals-action__copy p {
+    font-size: 11.5px;
+  }
+
+  .signals-action__cta {
+    min-width: 180px;
+    min-height: 43px;
+    padding-inline: 12px;
+    font-size: 11.5px;
+  }
+
+  /* ========================================================
+     BENEFÍCIOS — mesma grade 2x2 do mobile
+     ======================================================== */
+  .benefits-strip {
+    padding: 27px 0 29px;
+  }
+
+  .benefits-layout {
+    width: min(calc(100% - 36px), 860px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .benefits-layout > h2 {
+    grid-column: 1 / -1;
+    margin: 0 0 5px;
+    padding: 0 0 9px;
+    color: var(--gold-light);
+    border-bottom: 1px solid rgba(209, 163, 92, .30);
+    font-size: clamp(18px, 2.6vw, 21px);
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .benefit-item,
+  .benefit-item:first-of-type,
+  .benefit-item:nth-of-type(3) {
+    min-height: 116px;
+    display: grid;
+    grid-template-columns: 29px minmax(0, 1fr);
+    align-items: start;
+    gap: 9px;
+    padding: 13px 12px;
+    background: rgba(255, 255, 255, .025);
+    border: 1px solid rgba(194, 145, 72, .42);
+    border-radius: 8px;
+  }
+
+  .benefit-item svg {
+    width: 25px;
+    height: 25px;
+    margin-top: 1px;
+  }
+
+  .benefit-item h3 {
+    margin: 0 0 4px;
+    font-size: 12.6px;
+    line-height: 1.25;
+  }
+
+  .benefit-item p {
+    font-size: 10.3px;
+    line-height: 1.4;
+  }
+
+  /* ========================================================
+     ESPECIALISTA — mesma estrutura vertical do mobile
+     ======================================================== */
+  .doctor-section.doctor-section--profile {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-section--profile .doctor-photo-panel {
+    min-height: clamp(380px, 56vw, 450px);
+  }
+
+  .doctor-section .doctor-office-bg {
+    object-position: 50% 46%;
+  }
+
+  .doctor-photo-vignette {
+    background: linear-gradient(0deg, rgba(5, 23, 40, .22), transparent 36%);
+  }
+
+  .doctor-section--profile .doctor-content {
+    padding: 34px clamp(28px, 6vw, 52px) 44px;
+  }
+
+  .doctor-profile-content {
+    max-width: 690px;
+    margin-inline: auto;
+  }
+
+  .doctor-profile-content > h2 {
+    margin-bottom: 14px;
+    font-size: clamp(25px, 4vw, 30px);
+    line-height: 1.08;
+  }
+
+  .doctor-profile-intro {
+    padding-left: 15px;
+    margin-bottom: 12px;
+  }
+
+  .doctor-profile-kicker {
+    margin-bottom: 3px;
+    font-size: 19.5px;
+  }
+
+  .doctor-profile-intro h3 {
+    font-size: 16px;
+    line-height: 1.28;
+  }
+
+  .doctor-credential-row {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 9px;
+    padding: 7px 0;
+  }
+
+  .doctor-credential-icon {
+    width: 29px;
+    height: 29px;
+  }
+
+  .doctor-credential-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .doctor-credential-row p {
+    font-size: 11.8px;
+    line-height: 1.4;
+  }
+
+  .doctor-profile-statement {
+    grid-template-columns: 31px minmax(0, 1fr);
+    gap: 9px;
+    margin-top: 13px;
+    padding: 11px 13px;
+  }
+
+  .doctor-profile-quote {
+    font-size: 35px;
+  }
+
+  .doctor-profile-statement p {
+    font-size: 13px;
+    line-height: 1.36;
+  }
+
+  .doctor-profile-callout {
+    margin-top: 13px;
+  }
+
+  .doctor-profile-callout .cta-button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .doctor-profile-callout small {
+    margin-top: 5px;
+    font-size: 9.5px;
+  }
+
+  /* ========================================================
+     COMO É A CONSULTA — mesma composição fotográfica mobile
+     ======================================================== */
+  .process-section {
+    position: relative;
+    min-height: clamp(430px, 61vw, 500px);
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+    color: #f8f2e7;
+    background: #171512;
+    border-top: 1px solid rgba(190, 145, 70, .32);
+    border-bottom: 1px solid rgba(190, 145, 70, .38);
+  }
+
+  .process-section::before,
+  .process-section::after {
+    display: none;
+  }
+
+  .process-image-panel {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .process-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: 30% 50%;
+    filter: saturate(.98) contrast(1.02) brightness(.93);
+    transform: none;
+  }
+
+  .process-image-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 12, 11, .44) 0%,
+        rgba(10, 12, 11, .27) 43%,
+        rgba(10, 12, 11, .07) 69%,
+        rgba(10, 12, 11, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 10, 9, .08) 0%,
+        rgba(8, 10, 9, 0) 45%,
+        rgba(8, 10, 9, .08) 100%
+      );
+  }
+
+  .process-copy {
+    position: relative;
+    z-index: 2;
+    width: min(46%, 345px);
+    min-height: calc(clamp(430px, 61vw, 500px) - 36px);
+    margin: 18px 0 18px 18px;
+    padding: 19px 16px 18px;
+    justify-content: flex-start;
+    overflow: hidden;
+    border: 1px solid rgba(231, 200, 153, .34);
+    border-radius: 18px;
+    background: rgba(22, 20, 17, .07);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .20);
+  }
+
+  .process-heading {
+    grid-template-columns: 14px auto 1fr;
+    justify-content: stretch;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 15px;
+  }
+
+  .process-heading h2 {
+    color: #fff8ec;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1;
+    text-align: left;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+
+  .process-heading-line {
+    background: linear-gradient(90deg, transparent, rgba(215, 166, 91, .92));
+  }
+
+  .process-heading-line:last-child {
+    transform: none;
+    background: linear-gradient(90deg, rgba(215, 166, 91, .92), transparent);
+  }
+
+  .process-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .process-steps::before {
+    display: block;
+    top: 14px;
+    bottom: 12px;
+    left: 14px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(211, 159, 82, .88), rgba(211, 159, 82, .30));
+    box-shadow: none;
+  }
+
+  .process-step,
+  .process-step:last-child:nth-child(odd) {
+    width: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 29px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 9px;
+    row-gap: 2px;
+    padding: 0 0 11px;
+    text-align: left;
+    grid-column: auto;
+    justify-self: stretch;
+  }
+
+  .process-step:last-child {
+    padding-bottom: 0;
+  }
+
+  .process-step .step-number,
+  .step-number {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 29px;
+    height: 29px;
+    margin: 0;
+    color: #fff8eb;
+    font-size: 9.5px;
+    box-shadow: 0 0 0 2px rgba(19, 17, 14, .48), 0 2px 7px rgba(0, 0, 0, .20);
+  }
+
+  .process-step > svg {
+    display: none;
+  }
+
+  .process-step h3 {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    margin: 0;
+    color: #fff8ec;
+    font-size: 11.5px;
+    line-height: 1.18;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, .34);
+  }
+
+  .process-step p {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 0;
+    max-width: none;
+    margin: 1px 0 0;
+    color: rgba(248, 242, 231, .88);
+    font-size: 9.2px;
+    line-height: 1.31;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, .30);
+  }
+
+  /* ========================================================
+     AMBIENTE — mesma narrativa do mobile, usando a largura extra
+     ======================================================== */
+  .comfort-section {
+    padding: 0;
+  }
+
+  .comfort-layout {
+    gap: 10px;
+    padding: 9px;
+  }
+
+  .comfort-story {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto clamp(340px, 48vw, 410px);
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .comfort-story-image {
+    position: relative;
+    inset: auto;
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center 62%;
+    filter: saturate(.94) contrast(1.02) brightness(1.01) sepia(.015);
+    transform: none;
+  }
+
+  .comfort-story:hover .comfort-story-image {
+    transform: none;
+  }
+
+  .comfort-story-overlay {
+    display: none;
+  }
+
+  .comfort-intro {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-height: 0;
+    padding: 24px 22px 21px;
+    background: linear-gradient(180deg, #faf7f1 0%, #f7f1e8 100%);
+  }
+
+  .comfort-kicker {
+    margin-bottom: 8px;
+    font-size: 9px;
+  }
+
+  .comfort-intro h2 {
+    margin-bottom: 10px;
+    font-size: clamp(21px, 3.2vw, 26px);
+    line-height: 1.07;
+  }
+
+  .comfort-intro p {
+    max-width: 520px;
+    font-size: 11.5px;
+    line-height: 1.46;
+  }
+
+  .comfort-intro::after {
+    width: 38px;
+    margin-top: 12px;
+  }
+
+  .comfort-feature-caption {
+    display: flex;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    width: auto;
+    gap: 9px;
+    padding: 10px 12px;
+    background: rgba(4, 27, 48, .86);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  .comfort-feature-caption svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .comfort-feature-caption strong {
+    margin-bottom: 1px;
+    font-size: 11.3px;
+  }
+
+  .comfort-feature-caption span {
+    font-size: 9.3px;
+    line-height: 1.35;
+  }
+
+  /* Mesmo card vertical do mobile; tablet mostra os três lado a lado. */
+  .comfort-stack {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    gap: 10px;
+    height: auto;
+  }
+
+  .comfort-card {
+    min-height: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .comfort-card > img {
+    order: 0;
+    display: block;
+    width: 100%;
+    height: clamp(145px, 21vw, 185px);
+    min-height: 145px;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(.94) contrast(1.02) brightness(.98) sepia(.015);
+    transform: none;
+  }
+
+  .comfort-card:hover > img {
+    transform: none;
+  }
+
+  .comfort-card__copy {
+    order: 1;
+    width: 100%;
+    min-height: 86px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 11px 12px 12px;
+  }
+
+  .comfort-card__copy > svg {
+    flex: 0 0 auto;
+    width: 21px;
+    height: 21px;
+    margin-top: 1px;
+  }
+
+  .comfort-card h3 {
+    margin-bottom: 3px;
+    font-size: 11.5px;
+    line-height: 1.18;
+  }
+
+  .comfort-card p {
+    font-size: 9.4px;
+    line-height: 1.34;
+  }
+
+  /* ========================================================
+     AVALIAÇÕES — mesmo comportamento horizontal do mobile
+     ======================================================== */
+  .reviews-section {
+    padding: 34px 0 38px;
+    overflow: hidden;
+  }
+
+  .reviews-title {
+    margin-bottom: 15px;
+    font-size: 19px;
+    text-align: left;
+  }
+
+  .reviews-grid {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 2px 8px;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .reviews-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-grid > .rating-card,
+  .reviews-grid > blockquote,
+  .reviews-grid > blockquote:last-of-type {
+    flex: 0 0 46%;
+    min-width: 0;
+    min-height: 156px;
+    scroll-snap-align: start;
+    grid-column: auto;
+  }
+
+  .reviews-grid > .rating-card {
+    flex-basis: 38%;
+  }
+
+  .rating-card:hover,
+  .review-card:hover {
+    transform: none;
+  }
+
+  .review-card {
+    padding: 17px 16px 15px;
+  }
+
+  .review-card p {
+    font-size: 11.5px;
+  }
+
+  .reviews-note {
+    margin-top: 5px;
+  }
+
+  /* ========================================================
+     LOCALIZAÇÃO — mesma hierarquia do mobile
+     ======================================================== */
+  .location-section {
+    padding: 38px 0 50px;
+  }
+
+  .location-heading {
+    max-width: 650px;
+    margin-bottom: 19px;
+  }
+
+  .location-heading h2 {
+    font-size: clamp(29px, 4.7vw, 35px);
+  }
+
+  .location-heading p {
+    font-size: 12.8px;
+  }
+
+  .location-map__stage,
+  .location-map iframe,
+  .location-map__placeholder {
+    min-height: clamp(260px, 39vw, 320px);
+  }
+
+  .location-map__footer {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .location-address__text strong {
+    font-size: 12.5px;
+  }
+
+  .location-address__text > span {
+    font-size: 10.7px;
+  }
+
+  .location-directions {
+    min-height: 44px;
+    padding-inline: 18px;
+  }
+
+  /* ========================================================
+     CTA FINAL / RODAPÉ — tablet equilibrado
+     Mesma linguagem do mobile, aproveitando a largura do tablet.
+     ======================================================== */
+  .final-cta-section {
+    min-height: 0;
+    padding: 28px 0 24px;
+  }
+
+  .final-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr);
+    align-items: center;
+    gap: 18px 30px;
+  }
+
+  .final-left h2 {
+    margin: 0 0 15px;
+    max-width: 470px;
+    font-size: clamp(21px, 3.1vw, 24px);
+    line-height: 1.15;
+  }
+
+  .final-points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px 16px;
+  }
+
+  .final-points > div {
+    gap: 7px;
+    font-size: 10.7px;
+    line-height: 1.3;
+  }
+
+  .final-points svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .final-middle {
+    align-self: center;
+    text-align: center;
+  }
+
+  .final-middle .cta-button {
+    width: 100%;
+    max-width: 330px;
+    min-width: 0;
+    min-height: 48px;
+    margin-inline: auto;
+    font-size: 12.5px;
+  }
+
+  .final-middle small {
+    max-width: 300px;
+    margin: 7px auto 0;
+    font-size: 9.3px;
+    line-height: 1.35;
+  }
+
+  .final-brand {
+    grid-column: 1 / -1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2px;
+    padding: 16px 0 0;
+    border-top: 1px solid rgba(194, 145, 72, .45);
+    border-left: 0;
+  }
+
+  .final-brand .kidney-mark {
+    width: 56px;
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  .final-brand > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .final-brand strong {
+    font-size: 15.5px;
+  }
+
+  .final-brand span {
+    font-size: 9.7px;
+    line-height: 1.3;
+  }
+
+  .final-brand small {
+    font-size: 8.7px;
+    line-height: 1.3;
+  }
+
+  /* Evita o espaço vazio caso o último Reveal ainda não tenha disparado. */
+  .final-cta-section .reveal,
+  .final-cta-section .reveal--up,
+  .final-cta-section .reveal--left,
+  .final-cta-section .reveal--right,
+  .final-cta-section .reveal--scale,
+  .final-cta-section .reveal--fade {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .privacy-footer {
+    padding: 10px 0;
+  }
+
+  .privacy-footer__inner {
+    gap: 7px 14px;
+    flex-wrap: wrap;
+  }
+
+  .privacy-footer small,
+  .privacy-footer a,
+  .privacy-footer button {
+    font-size: 8.4px;
+    line-height: 1.3;
+  }
+}

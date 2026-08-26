@@ -44,7 +44,7 @@
   min-height: calc(var(--hero-height) + var(--hero-divider-drop));
   overflow: hidden;
   color: #fff;
-  background: #052b27;
+  background: #05192b;
   isolation: isolate;
 }
 
@@ -81,7 +81,7 @@
   transform-origin:
     var(--hero-couple-origin-x)
     var(--hero-couple-origin-y);
-  filter: brightness(.95) contrast(1.03) saturate(.96);
+  filter: brightness(.96) contrast(1.035) saturate(.90) sepia(.01);
 }
 
 .hero-shade {
@@ -91,19 +91,19 @@
   background:
     linear-gradient(
       90deg,
-      rgba(3, 42, 37, .99) 0%,
-      rgba(3, 42, 37, .97) 19%,
-      rgba(3, 42, 37, .88) 29%,
-      rgba(3, 42, 37, .40) 41%,
-      rgba(3, 42, 37, .08) 55%,
-      rgba(3, 42, 37, .06) 72%,
-      rgba(3, 42, 37, .02) 100%
+      rgba(4, 18, 38, .995) 0%,
+      rgba(4, 18, 38, .985) 18%,
+      rgba(4, 18, 38, .92) 28%,
+      rgba(4, 18, 38, .56) 38%,
+      rgba(4, 18, 38, .22) 46%,
+      rgba(4, 18, 38, .07) 53%,
+      rgba(4, 18, 38, 0) 61%
     ),
     linear-gradient(
       0deg,
-      rgba(1, 19, 17, .45) 0%,
-      rgba(1, 19, 17, .14) 38%,
-      rgba(1, 19, 17, 0) 66%
+      rgba(2, 9, 18, .46) 0%,
+      rgba(2, 9, 18, .13) 36%,
+      rgba(2, 9, 18, 0) 64%
     );
 }
 
@@ -273,6 +273,32 @@
 @media (max-width: 600px) {
   .hero-section {
     --hero-divider-drop: 48px;
+    background: #041226;
+  }
+
+  /* Mobile: navy somente atrás do texto. A foto do casal permanece quente/natural. */
+  .hero-bg {
+    filter: brightness(1.01) contrast(1.045) saturate(.90) sepia(.012);
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(4, 18, 38, .98) 0%,
+        rgba(4, 18, 38, .91) 24%,
+        rgba(4, 18, 38, .60) 38%,
+        rgba(4, 18, 38, .24) 49%,
+        rgba(4, 18, 38, .07) 57%,
+        rgba(4, 18, 38, 0) 64%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(2, 9, 18, .22) 0%,
+        rgba(2, 9, 18, .08) 34%,
+        rgba(2, 9, 18, 0) 62%,
+        rgba(2, 9, 18, .12) 100%
+      );
   }
 
   .hero-bottom-divider {
@@ -281,4 +307,3 @@
     object-fit: fill;
   }
 }
-

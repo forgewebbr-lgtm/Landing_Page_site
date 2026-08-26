@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Icon from '../ui/Icon'
 import Reveal from '../ui/Reveal'
 import { SITE } from '../../config/site'
@@ -13,13 +12,6 @@ const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`
 
 export default function Location() {
-  const [mapLoaded, setMapLoaded] = useState(false)
-
-  const loadMap = () => {
-    setMapLoaded(true)
-    trackEvent('map_load_click', { location_name: 'einstein_goiania' })
-  }
-
   const trackDirections = () => {
     trackEvent('directions_click', { location_name: 'einstein_goiania' }, { category: 'conversion' })
   }
@@ -42,28 +34,13 @@ export default function Location() {
 
         <Reveal className="location-map" delay={120} variant="scale">
           <div className="location-map__stage">
-            {mapLoaded ? (
-              <iframe
-                src={mapEmbedUrl}
-                title={`Mapa de ${SITE.facilityName}`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            ) : (
-              <div className="location-map__placeholder">
-                <div className="location-map__pin" aria-hidden="true">
-                  <Icon name="pin" size={34} />
-                </div>
-                <strong>{SITE.complexName}</strong>
-                <span>{SITE.neighborhood} · {SITE.city}</span>
-                <button type="button" onClick={loadMap}>
-                  Ver mapa interativo
-                </button>
-                <small>O Google Maps só é carregado quando você solicitar.</small>
-              </div>
-            )}
-
+            <iframe
+              src={mapEmbedUrl}
+              title={`Mapa de ${SITE.facilityName}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
 
           <div className="location-map__footer">

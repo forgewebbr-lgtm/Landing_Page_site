@@ -7,6 +7,8 @@ import './styles/hero.css'
 import './styles/sections.css'
 import './styles/animations.css'
 import './styles/responsive.css'
+import './styles/mobile-v7.css'
+import './styles/tablet.css'
 import { initializeTracking } from './lib/tracking'
 import { startWebVitals } from './lib/webVitals'
 

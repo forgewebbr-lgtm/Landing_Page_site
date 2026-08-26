@@ -76,7 +76,7 @@ export default function Hero() {
     >
       <picture className="hero-media" aria-hidden="true">
         <source
-          media="(max-width: 600px)"
+          media="(max-width: 920px)"
           srcSet={heroMobileScene}
         />
 
